@@ -1,0 +1,50 @@
+﻿{ 
+"Students":[
+        {
+		"StudentId": 1,
+        "FirstName": "Isabel",
+        "LastName": "Vestli",
+        "UserName": "Isabelev",
+        "Password": "abc123",
+        "Courses": [
+            {
+                "CourseId": 7,
+                "Title": ".NET",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
+            },
+            {
+                "CourseId": 8,
+                "Title": "Bachelor",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
+            }
+        ]
+		},
+		{
+		"StudentId": 2,
+        "FirstName": "Kristin",
+        "LastName": "Kveine",
+        "UserName": "Kristikv",
+        "Password": "abc123",
+        "Courses": [
+            {
+                "CourseId": 7,
+                "Title": ".NET",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
+            },
+            {
+                "CourseId": 8,
+                "Title": "Bachelor",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
+            }
+        ]
+		}
+	]
+}

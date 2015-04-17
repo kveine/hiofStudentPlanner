@@ -1,0 +1,9 @@
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\DataModel.dll.config
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\DataModel.dll
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\DataModel.pdb
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\EntityFramework.dll
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\EntityFramework.SqlServer.dll
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\EntityFramework.xml
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\EntityFramework.SqlServer.xml
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\obj\Debug\DataModel.dll
+c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\obj\Debug\DataModel.pdb
