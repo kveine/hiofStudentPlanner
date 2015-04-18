@@ -102,10 +102,15 @@ namespace Client
         /// displaying the item clicked.</param>
         /// <param name="e">Event data that describes the item clicked.</param>
 
-        private void Course_click(Object sender, ItemClickEventArgs e)
+        private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
+        }
+
+        private void Courses_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GroupDetailPage), e.OriginalSource);
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {

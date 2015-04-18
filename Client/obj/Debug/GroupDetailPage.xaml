@@ -62,7 +62,9 @@
                             <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <TextBlock Text="{Binding Semester}" Style="{StaticResource TitleTextBlockStyle}" TextWrapping="NoWrap"/>
+                            <CheckBox
+	                            HorizontalAlignment="Left"
+	                            VerticalAlignment="Top"/>
                             <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>                         
                         </StackPanel>
                     </Grid>
@@ -91,5 +93,12 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="True">
+            <AppBarButton Label="Edit" Icon="Edit"/>
+            <AppBarButton Label="Remove" Icon="Remove"/>
+            <AppBarButton Label="Add" Icon="Add"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
 

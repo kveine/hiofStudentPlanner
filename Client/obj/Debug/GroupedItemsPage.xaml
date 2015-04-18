@@ -13,16 +13,13 @@
 
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-        <!--
-            Collection of grouped items displayed by this page, bound to a subset
-            of the complete item list because items in groups cannot be virtualized
-        -->
+   
         <CollectionViewSource
             x:Name="groupedItemsViewSource"
             Source="{Binding Students}"
             IsSourceGrouped="true"
             ItemsPath="Courses"
-            d:Source="{Binding Students[0].Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
+            d:Source="{Binding Students, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
     </Page.Resources>
 
     <!--
@@ -53,16 +50,17 @@
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
                                     >
-            <!--<GridView.ItemTemplate>
+            <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Width="250" Height="250">
+                    <Grid HorizontalAlignment="Left" Width="250" Height="100">
                         <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
-                            <TextBlock Text="{Binding FirstName}" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding LastName}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            <TextBlock Text="Courses" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
+                            <TextBlock Text="{Binding CourseId}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            <TextBlock Text="{Binding Title}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
-            </GridView.ItemTemplate>-->
+            </GridView.ItemTemplate>
             <GridView.ItemsPanel>
                 <ItemsPanelTemplate>
                     <ItemsWrapGrid GroupPadding="0,0,70,0"/>
@@ -75,12 +73,11 @@
                             <Grid Margin="0,0,0,2">
                                 <Button x:ConnectionId='2' Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
                                     AutomationProperties.Name="Group Title"
-                                                        
+                                                         
                                     Style="{StaticResource TextBlockButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding FirstName}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
                                         <TextBlock Text="{Binding LastName}" FontFamily="Segoe UI Symbol" Margin="0,-11,0,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                        
                                     </StackPanel>
                                 </Button>
                             </Grid>
@@ -88,7 +85,7 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>            
             </GridView.GroupStyle>
-        </GridView>
+  </GridView>
 
         <!-- Back button and page title -->
         <!--<Grid>
@@ -106,5 +103,12 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>-->
     </Grid>
+    <Page.BottomAppBar>
+        <CommandBar IsOpen="True" IsSticky="True">
+            <AppBarButton x:ConnectionId='3' Content="{Binding Students[0].Courses}" Width="140" Height="80"                       />
+            <AppBarButton Label="Submissions" Icon="Document"/>
+            <AppBarButton Label="Grades" Icon="List"/>
+        </CommandBar>
+    </Page.BottomAppBar>
 </Page>
 

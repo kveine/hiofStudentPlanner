@@ -20,6 +20,13 @@
                 "Description": null,
                 "Semester": 1,
                 "Students": []
+            },
+            {
+                "CourseId": 9,
+                "Title": "Algoritmer og datastrukturer",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
             }
         ]
 		},
@@ -40,6 +47,13 @@
             {
                 "CourseId": 8,
                 "Title": "Bachelor",
+                "Description": null,
+                "Semester": 1,
+                "Students": []
+            },
+            {
+                "CourseId": 10,
+                "Title": "Objektorientert programmering",
                 "Description": null,
                 "Semester": 1,
                 "Students": []
