@@ -80,21 +80,21 @@ namespace Client
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             this.DefaultViewModel["Courses"] = await DataSource.GetCoursesAsync();
         }
-         private void Course_Click(Object sender, ItemClickEventArgs e)
+
+        //Har prøvd å fjerne ubrukte parameter, men da får jeg feil melding. Aner derfor ikke hvordan jeg skal gjøre det. Er mange warnings på dette, skriver bare begrunnelsen her.
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
+        private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
-         private void WeekOverview_Click(Object sender, RoutedEventArgs e)
-         {
-             this.Frame.Navigate(typeof(GroupedItemsPage));
-         }
 
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Courses));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
@@ -102,6 +102,10 @@ namespace Client
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades));
+        }
+        private void WeekOverview_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WeekOverview));
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -124,6 +128,8 @@ namespace Client
             comboBox.SelectedIndex = 0;
         }
 
+        //Har ikke jobbet med denne enda, skal implementeres ordentlig senere
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
         private string ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             var comboBox = sender as ComboBox;

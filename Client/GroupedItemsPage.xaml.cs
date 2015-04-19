@@ -7,6 +7,7 @@ using System.IO;
 using System.Linq;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -75,6 +76,7 @@ namespace Client
         /// </summary>
         /// <param name="sender">The Button used as a group header for the selected group.</param>
         /// <param name="e">Event data that describes how the click was initiated.</param>
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
         void Header_Click(object sender, RoutedEventArgs e)
         {
             // Determine what group the Button instance represents
@@ -85,6 +87,7 @@ namespace Client
             this.Frame.Navigate(typeof(GroupDetailPage), ((Student)student));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
         void Student_Click(object sender, RoutedEventArgs e)
         {
             // Determine what group the Button instance represents
@@ -102,30 +105,82 @@ namespace Client
         /// displaying the item clicked.</param>
         /// <param name="e">Event data that describes the item clicked.</param>
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Courses));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void WeekOverview_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(GroupedItemsPage));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades));
         }
+        private async void Register_Click(Object sender, RoutedEventArgs e)
+        {
+            string firstName = firstNameInput.Text;
+            string lastName = lastNameInput.Text;
+            string userName = userNameInput.Text;
+            string password = passwordInput.Text;
+
+            if (firstName == "" || lastName == "" || userName == "" || password == "")
+            {
+                MessageDialog md = new MessageDialog("All fields must be filled out!");
+                await md.ShowAsync();
+            }
+            else
+            {
+                await DataSource.AddStudentAsync(firstName, lastName, userName, password);
+                this.Frame.Navigate(typeof(WeekOverview));   
+            }
+        }
+
+        private async void LogIn_Click(Object sender, RoutedEventArgs e)
+        {
+            string userName = usernameLogIn.Text;
+            string password = PasswordLogIn.Text;
+
+            if (userName == "" || password == "")
+            {
+                MessageDialog md = new MessageDialog("Username or password is incorrect!");
+                await md.ShowAsync();
+            }
+
+            bool registered = false;
+            var students = await DataSource.GetStudentsAsync();
+            foreach(var item in students)
+            {
+                if (item.UserName == userName && item.Password == password)
+                {
+                    registered = true;
+                    this.Frame.Navigate(typeof(WeekOverview));
+                }
+            }
+            if (!registered)
+            {
+                MessageDialog md = new MessageDialog("Username or password is incorrect!");
+                await md.ShowAsync();
+            }
+        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page

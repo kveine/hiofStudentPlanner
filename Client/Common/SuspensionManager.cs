@@ -242,6 +242,7 @@ namespace Client.Common
             frameState["Navigation"] = frame.GetNavigationState();
         }
     }
+    //Får ikke suppresset
     public class SuspensionManagerException : Exception
     {
         public SuspensionManagerException()

@@ -69,21 +69,25 @@ namespace Client
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             //this.DefaultViewModel["Submissions"] = await DataSource.GetSubmissionsAsync();
         }
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
          private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Courses));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
         }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades));

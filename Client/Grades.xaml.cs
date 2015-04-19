@@ -74,17 +74,19 @@ namespace Client
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             this.DefaultViewModel["Grades"] = await DataSource.GetGradesAsync();
         }
+         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
          private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
 
-        private void Courses_Click(Object sender, RoutedEventArgs e)
+         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Courses));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
@@ -93,15 +95,15 @@ namespace Client
         {
             this.Frame.Navigate(typeof(Grades));
         }
-
+        private void WeekOverview_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WeekOverview));
+        }
         private async void AddGrade_Click(Object sender, RoutedEventArgs e)
         {
             int courseId = int.Parse(courseIdInput.Text);
             int studentId = int.Parse(studentIdInput.Text);
             string grade = gradeInput.Text;
-            Debug.WriteLine(courseId);
-            Debug.WriteLine(studentId);
-            Debug.WriteLine(grade);
 
             using (var client = new HttpClient())
             {
@@ -119,21 +121,6 @@ namespace Client
                 var response = await client.PostAsync("api/Grades", content);
 
                 response.EnsureSuccessStatusCode();
-                //var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
-                //var stream = new MemoryStream();
-                //jsonSerializer.WriteObject(stream, newGrade);
-                //var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-                //var result = await client.PostAsJsonAsync<Grade>("api/Grades", newGrade);
-
-                /*if (result.IsSuccessStatusCode)
-                {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                }
-                else
-                {
-                    result.EnsureSuccessStatusCode(); 
-                }*/
-                
             }
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -149,6 +136,8 @@ namespace Client
             Handle(sender as CheckBox, grade);
         }
 
+        //Har ikke jobbet med denne metoden enda, skal implementeres ordentlig senere
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
         void Handle(CheckBox checkBox, Object grade)
         {
             // Use IsChecked.

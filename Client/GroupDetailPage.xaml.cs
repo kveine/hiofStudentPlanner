@@ -74,7 +74,7 @@ namespace Client
             //var student = (Student)e.NavigationParameter;
             //this.defaultViewModel["Student"] = student;
             //this.defaultViewModel["Courses"] = student.Courses;
-            this.DefaultViewModel["Courses"] = await DataSource.GetCoursesAsync();
+            this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync();
         }
 
         /// <summary>
@@ -82,7 +82,8 @@ namespace Client
         /// </summary>
         /// <param name="sender">The GridView displaying the item clicked.</param>
         /// <param name="e">Event data that describes the item clicked.</param>
-         private void Course_Click(Object sender, ItemClickEventArgs e)
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
+        private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
@@ -93,6 +94,7 @@ namespace Client
             this.Frame.Navigate(typeof(Courses));
         }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
@@ -100,6 +102,11 @@ namespace Client
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades));
+        }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
+        private void WeekOverview_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(WeekOverview));
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
@@ -116,6 +123,8 @@ namespace Client
             comboBox.SelectedIndex = 0;
         }
 
+        //Har ikke jobbet med denne metoden enda, skal implementeres ordentlig senere
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             // Add code to perform some action here.

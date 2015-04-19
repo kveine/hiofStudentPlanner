@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE;NETFX_CORE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>ExtendedDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -113,6 +114,7 @@
     </Compile>
     <Compile Include="DataModel\DataModelRelay.cs" />
     <Compile Include="DataModel\DataSource.cs" />
+    <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Grades.xaml.cs">
       <DependentUpon>Grades.xaml</DependentUpon>
     </Compile>
@@ -136,6 +138,9 @@
     <Compile Include="Common\ObservableDictionary.cs" />
     <Compile Include="Submissions.xaml.cs">
       <DependentUpon>Submissions.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WeekOverview.xaml.cs">
+      <DependentUpon>WeekOverview.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -186,6 +191,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Submissions.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="WeekOverview.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

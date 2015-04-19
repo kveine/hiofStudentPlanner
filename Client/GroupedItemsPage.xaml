@@ -15,7 +15,7 @@
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 
         <CollectionViewSource
-            x:Name="groupedItemsViewSource"
+            x:Name="weekOverviewViewSource"
             Source="{Binding Students}"
             IsSourceGrouped="true"
             ItemsPath="Courses"
@@ -39,7 +39,7 @@
         </Grid.RowDefinitions>
 
         <!-- Horizontal scrolling grid -->
-        <GridView
+        <!--<GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -85,36 +85,43 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </GridView.GroupStyle>
-        </GridView>
-        <GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="748" Background="Gray" Grid.RowSpan="2">
+    </GridView>-->
+        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="748" Background="Gray" Grid.RowSpan="2">
             <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
             <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
             <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
             <Button Content="Submissions" Width="287" Height="52"/>
             <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
         </GridView>
+        <Grid HorizontalAlignment="Left" Height="189" Margin="449,166,0,0" Grid.Row="1" VerticalAlignment="Top" Width="269"/>
+        <Grid HorizontalAlignment="Left" Height="608" Margin="303,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1063">
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="18,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="411,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
+            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="806,153,-66,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
+            <TextBlock Text="Monday" FontFamily="Segoe UI Symbol" Margin="18,94,929,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+            <TextBlock Text="Tuesday" FontFamily="Segoe UI Symbol" Margin="411,94,536,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+            <TextBlock Text="Wednesday" FontFamily="Segoe UI Symbol" Margin="806,94,94,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+        </Grid>-->
+
 
         <!-- Back button and page title -->
-        <!--<Grid>
+        <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
-                        Style="{StaticResource NavigationBackButtonNormalStyle}"
-                        VerticalAlignment="Top"
-                        AutomationProperties.Name="Back"
-                        AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="Home" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+            <TextBlock x:Name="pageTitle" Text="Register" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
-        </Grid>-->
+        </Grid>
+        <Grid HorizontalAlignment="Left" Height="416" Margin="195,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="964">
+            <TextBox x:Name="firstNameInput" HorizontalAlignment="Left" Margin="147,59,0,0" TextWrapping="Wrap" PlaceholderText="Firstname" VerticalAlignment="Top" Width="187"/>
+            <TextBox x:Name="lastNameInput" HorizontalAlignment="Left" Margin="147,118,0,0" TextWrapping="Wrap" PlaceholderText="Lastname" VerticalAlignment="Top" Width="187"/>
+            <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="147,178,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="187"/>
+            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="147,236,0,0" TextWrapping="Wrap" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
+            <Button Content="Register" HorizontalAlignment="Left" Margin="144,293,0,0" VerticalAlignment="Top" Width="113" Click="Register_Click"/>
+            <TextBox x:Name="usernameLogIn" HorizontalAlignment="Left" Margin="588,59,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="187"/>
+            <TextBox x:Name="PasswordLogIn" HorizontalAlignment="Left" Margin="588,118,0,0" TextWrapping="Wrap" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
+            <Button Content="Log in" HorizontalAlignment="Left" Margin="585,293,0,0" VerticalAlignment="Top" Width="113" Click="LogIn_Click"/>
+        </Grid>
     </Grid>
-    <!--<Page.BottomAppBar>
-        <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
-            <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
-        </CommandBar>
-    </Page.BottomAppBar>-->
 </Page>

@@ -17,13 +17,13 @@
     <AppXManifest Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-04-19T10:55:45.175</Modified>
+      <Modified>2015-04-19T19:52:16.126</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe">
       <PackagePath>Client.exe</PackagePath>
-      <Modified>2015-04-19T14:49:42.494</Modified>
+      <Modified>2015-04-19T19:52:15.931</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\DataModel\SampleData.json">
       <PackagePath>DataModel\SampleData.json</PackagePath>
@@ -63,39 +63,43 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-04-18T22:01:14.050</Modified>
+      <Modified>2015-04-19T19:52:15.538</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
       <PackagePath>Courses.xbf</PackagePath>
-      <Modified>2015-04-19T14:49:42.173</Modified>
+      <Modified>2015-04-19T19:52:15.542</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Grades.xbf">
       <PackagePath>Grades.xbf</PackagePath>
-      <Modified>2015-04-19T14:49:42.176</Modified>
+      <Modified>2015-04-19T19:52:15.545</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupedItemsPage.xbf">
       <PackagePath>GroupedItemsPage.xbf</PackagePath>
-      <Modified>2015-04-19T14:49:42.180</Modified>
+      <Modified>2015-04-19T19:52:15.546</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupDetailPage.xbf">
       <PackagePath>GroupDetailPage.xbf</PackagePath>
-      <Modified>2015-04-19T12:33:18.788</Modified>
+      <Modified>2015-04-19T19:52:15.551</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ItemDetailPage.xbf">
       <PackagePath>ItemDetailPage.xbf</PackagePath>
-      <Modified>2015-04-18T22:01:14.065</Modified>
+      <Modified>2015-04-19T19:52:15.551</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-04-19T10:55:44.581</Modified>
+      <Modified>2015-04-19T19:52:15.552</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
       <PackagePath>Submissions.xbf</PackagePath>
-      <Modified>2015-04-18T22:01:14.070</Modified>
+      <Modified>2015-04-19T19:52:15.556</Modified>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf">
+      <PackagePath>WeekOverview.xbf</PackagePath>
+      <Modified>2015-04-19T19:52:15.558</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-04-19T10:55:45.009</Modified>
+      <Modified>2015-04-19T19:52:16.055</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>
