@@ -3,6 +3,7 @@ using Client.Data;
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -106,6 +107,13 @@ namespace Client
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+        }
+        private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            ObservableCollection<Course> data = await DataSource.GetCoursesAsync();
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 0;
         }
 
         private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)

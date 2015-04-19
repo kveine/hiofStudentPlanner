@@ -111,15 +111,51 @@ namespace Client
                 
                 Grade newGrade = new Grade() { CourseId = courseId, StudentId = studentId, Value = grade };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
+
                 var stream = new MemoryStream();
                 jsonSerializer.WriteObject(stream, newGrade);
+                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Grades", content);
 
-                if (response.IsSuccessStatusCode)
+                response.EnsureSuccessStatusCode();
+                //var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
+                //var stream = new MemoryStream();
+                //jsonSerializer.WriteObject(stream, newGrade);
+                //var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+                //var result = await client.PostAsJsonAsync<Grade>("api/Grades", newGrade);
+
+                /*if (result.IsSuccessStatusCode)
                 {
-        
+                    var resultSTream = await result.Content.ReadAsStreamAsync();
                 }
+                else
+                {
+                    result.EnsureSuccessStatusCode(); 
+                }*/
+                
+            }
+        }
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var grade = (Grade)e.OriginalSource;
+            Handle(sender as CheckBox, grade);
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var grade = (Grade)e.OriginalSource;
+            Handle(sender as CheckBox, grade);
+        }
+
+        void Handle(CheckBox checkBox, Grade grade)
+        {
+            // Use IsChecked.
+            bool flag = checkBox.IsChecked.Value;
+
+            if (flag)
+            {
+                Debug.WriteLine(grade);
             }
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)

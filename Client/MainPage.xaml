@@ -1,0 +1,51 @@
+﻿<Page
+    x:Class="Client.MainPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Client"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <ContentControl  x:Name="container"  Height="450" Margin="0,194,0,124">
+            <Popup x:Name="logincontrol1" IsOpen="False" >
+                <StackPanel Orientation="Vertical" Background="DarkBlue" Height="400" x:Name="pop" >
+                    <StackPanel>
+                        <TextBlock Text="Sign In With an Account"  HorizontalAlignment="Center" Foreground="White" FontSize="25" />
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,50" HorizontalAlignment="Center">
+                        <TextBlock Text="Email Id" Margin="10" Foreground="White" FontSize="25" />
+                        <TextBox x:Name="id"  Height="40" Margin="13,1" Width="408"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                        <TextBlock Text="Password" Foreground="White"  FontSize="25" />
+                        <PasswordBox  x:Name="pwd"  Height="40" Margin="5,1"  Width="408"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0,50" HorizontalAlignment="Center">
+                        <Button x:Name="loginclick" Foreground="Wheat"   Width="100" Content="Login" ></Button>
+                        <Button x:Name="cancel"  Foreground="Wheat"  Width="100" Content="Cancel" ></Button>
+                    </StackPanel>
+                </StackPanel>
+            </Popup>
+        </ContentControl>
+        <ContentControl Grid.Column="1" HorizontalAlignment="Right" x:Name="parent">
+            <Grid Background="Purple"  >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="150"></RowDefinition>
+                    <RowDefinition Height="*" ></RowDefinition>
+                    <RowDefinition Height="100"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                    <RowDefinition Height="200"></RowDefinition>
+                </Grid.RowDefinitions>
+                <TextBlock  Grid.Row="3"   FontFamily="Segoe UI Light" FontSize="26.667" TextAlignment="Center"><Run Text="Welcome to"/><LineBreak/><Run FontSize="32" Text="My Application"/></TextBlock>
+                <Button VerticalAlignment="Top" Content="Sign in" Grid.Row="7" Height="50"   Width="313"  Background="#FF700B7C"  Foreground="#FFF9F7F7"  BorderBrush="#FF898989"  HorizontalAlignment="Center"   FontSize="18.667" FontFamily="Segoe UI Light" Click="Button_Click_1"/>
+            </Grid>
+        </ContentControl>
+    </Grid>
+</Page>

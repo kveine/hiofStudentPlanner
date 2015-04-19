@@ -3,6 +3,7 @@ using Client.Data;
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -96,6 +97,23 @@ namespace Client
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
 
+        private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> data = new List<String>();
+            ObservableCollection<Course> obsColl = await DataSource.GetCoursesAsync();
+            
+            foreach(var course in obsColl){
+                data.Add(course.Title);
+            }
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 0;
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Add code to perform some action here.
+        }
         #region NavigationHelper registration
 
         /// The methods provided in this section are simply used to allow

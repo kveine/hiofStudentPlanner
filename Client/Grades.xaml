@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick" Margin="419,10,0,0">
+            ItemClick="ItemView_ItemClick" Margin="298,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">
@@ -64,7 +64,9 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top"/>
+	                            VerticalAlignment="Top"
+                                Checked="CheckBox_Checked"
+	                            Unchecked="CheckBox_Unchecked"/>
                             <TextBlock Text="{Binding Value}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
@@ -92,7 +94,7 @@
             <TextBlock x:Name="pageTitle" Text="{Binding Value}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="329" Height="613" Background="Silver">
+        <GridView HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="293" Height="613" Background="Silver">
             <TextBox x:Name="gradeInput" Height="35" Width="200" Text="Grade" Margin="10"/>
             <TextBox x:Name="courseIdInput" Height="35" Width="200" Text="CourseId" Margin="10"/>
             <TextBox x:Name="studentIdInput" Height="35" Width="200" Text="StudentID" Margin="10"/>

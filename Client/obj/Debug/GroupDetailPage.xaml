@@ -39,7 +39,7 @@
 
         <!-- Horizontal scrolling grid -->
 
-        <GridView x:ConnectionId='0'
+        <GridView x:ConnectionId='1'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Items In Group"
@@ -95,9 +95,9 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton x:ConnectionId='0' Label="Courses" Icon="Library"                      />
+            <AppBarButton x:ConnectionId='2' Label="Courses" Icon="Library"                      />
             <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton x:ConnectionId='0' Label="Grades" Icon="List"                     />
+            <AppBarButton x:ConnectionId='3' Label="Grades" Icon="List"                     />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
