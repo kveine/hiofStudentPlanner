@@ -16,7 +16,7 @@
         <CollectionViewSource
             x:Name="itemsViewSource"
             Source="{Binding Courses}"
-            d:Source="{Binding Students[0].Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}"/>
+            d:Source="{Binding Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}"/>
     </Page.Resources>
 
     <!--
@@ -26,7 +26,7 @@
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
         DataContext="{Binding Courses}"
-        d:DataContext="{Binding Students[0].Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}">
+        d:DataContext="{Binding Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
                 <EntranceThemeTransition/>
@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick">
+            ItemClick="ItemView_ItemClick" Margin="419,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">
@@ -65,7 +65,7 @@
                             <CheckBox
 	                            HorizontalAlignment="Left"
 	                            VerticalAlignment="Top"/>
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>                         
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -95,9 +95,9 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Label="Edit" Icon="Edit"/>
-            <AppBarButton Label="Remove" Icon="Remove"/>
-            <AppBarButton Label="Add" Icon="Add"/>
+            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
+            <AppBarButton Label="Submissions" Icon="Document"/>
+            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

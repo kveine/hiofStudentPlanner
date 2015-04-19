@@ -124,29 +124,35 @@ namespace Client.Client_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[10];
-            _typeNameTable[0] = "Client.GroupedItemsPage";
+            _typeNameTable = new string[13];
+            _typeNameTable[0] = "Client.Courses";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
-            _typeNameTable[3] = "Client.Common.NavigationHelper";
-            _typeNameTable[4] = "Windows.UI.Xaml.DependencyObject";
-            _typeNameTable[5] = "Client.Common.ObservableDictionary";
-            _typeNameTable[6] = "Object";
-            _typeNameTable[7] = "String";
-            _typeNameTable[8] = "Client.GroupDetailPage";
-            _typeNameTable[9] = "Client.ItemDetailPage";
+            _typeNameTable[3] = "Client.Common.ObservableDictionary";
+            _typeNameTable[4] = "Object";
+            _typeNameTable[5] = "String";
+            _typeNameTable[6] = "Client.Common.NavigationHelper";
+            _typeNameTable[7] = "Windows.UI.Xaml.DependencyObject";
+            _typeNameTable[8] = "Client.Grades";
+            _typeNameTable[9] = "Client.GroupedItemsPage";
+            _typeNameTable[10] = "Client.GroupDetailPage";
+            _typeNameTable[11] = "Client.ItemDetailPage";
+            _typeNameTable[12] = "Client.Submissions";
 
-            _typeTable = new global::System.Type[10];
-            _typeTable[0] = typeof(global::Client.GroupedItemsPage);
+            _typeTable = new global::System.Type[13];
+            _typeTable[0] = typeof(global::Client.Courses);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
-            _typeTable[3] = typeof(global::Client.Common.NavigationHelper);
-            _typeTable[4] = typeof(global::Windows.UI.Xaml.DependencyObject);
-            _typeTable[5] = typeof(global::Client.Common.ObservableDictionary);
-            _typeTable[6] = typeof(global::System.Object);
-            _typeTable[7] = typeof(global::System.String);
-            _typeTable[8] = typeof(global::Client.GroupDetailPage);
-            _typeTable[9] = typeof(global::Client.ItemDetailPage);
+            _typeTable[3] = typeof(global::Client.Common.ObservableDictionary);
+            _typeTable[4] = typeof(global::System.Object);
+            _typeTable[5] = typeof(global::System.String);
+            _typeTable[6] = typeof(global::Client.Common.NavigationHelper);
+            _typeTable[7] = typeof(global::Windows.UI.Xaml.DependencyObject);
+            _typeTable[8] = typeof(global::Client.Grades);
+            _typeTable[9] = typeof(global::Client.GroupedItemsPage);
+            _typeTable[10] = typeof(global::Client.GroupDetailPage);
+            _typeTable[11] = typeof(global::Client.ItemDetailPage);
+            _typeTable[12] = typeof(global::Client.Submissions);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -181,11 +187,14 @@ namespace Client.Client_XamlTypeInfo
             return -1;
         }
 
-        private object Activate_0_GroupedItemsPage() { return new global::Client.GroupedItemsPage(); }
-        private object Activate_5_ObservableDictionary() { return new global::Client.Common.ObservableDictionary(); }
-        private object Activate_8_GroupDetailPage() { return new global::Client.GroupDetailPage(); }
-        private object Activate_9_ItemDetailPage() { return new global::Client.ItemDetailPage(); }
-        private void MapAdd_5_ObservableDictionary(object instance, object key, object item)
+        private object Activate_0_Courses() { return new global::Client.Courses(); }
+        private object Activate_3_ObservableDictionary() { return new global::Client.Common.ObservableDictionary(); }
+        private object Activate_8_Grades() { return new global::Client.Grades(); }
+        private object Activate_9_GroupedItemsPage() { return new global::Client.GroupedItemsPage(); }
+        private object Activate_10_GroupDetailPage() { return new global::Client.GroupDetailPage(); }
+        private object Activate_11_ItemDetailPage() { return new global::Client.ItemDetailPage(); }
+        private object Activate_12_Submissions() { return new global::Client.Submissions(); }
+        private void MapAdd_3_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
             var newKey = (global::System.String)key;
@@ -203,11 +212,11 @@ namespace Client.Client_XamlTypeInfo
             switch (typeIndex)
             {
 
-            case 0:   //  Client.GroupedItemsPage
+            case 0:   //  Client.Courses
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_0_GroupedItemsPage;
-                userType.AddMemberName("NavigationHelper");
+                userType.Activator = Activate_0_Courses;
                 userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
                 xamlType = userType;
                 break;
 
@@ -219,44 +228,68 @@ namespace Client.Client_XamlTypeInfo
                 xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 3:   //  Client.Common.NavigationHelper
+            case 3:   //  Client.Common.ObservableDictionary
+                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
+                userType.DictionaryAdd = MapAdd_3_ObservableDictionary;
+                userType.SetIsReturnTypeStub();
+                xamlType = userType;
+                break;
+
+            case 4:   //  Object
+                xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 5:   //  String
+                xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
+                break;
+
+            case 6:   //  Client.Common.NavigationHelper
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.DependencyObject"));
                 userType.SetIsReturnTypeStub();
                 xamlType = userType;
                 break;
 
-            case 4:   //  Windows.UI.Xaml.DependencyObject
+            case 7:   //  Windows.UI.Xaml.DependencyObject
                 xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
                 break;
 
-            case 5:   //  Client.Common.ObservableDictionary
-                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Object"));
-                userType.DictionaryAdd = MapAdd_5_ObservableDictionary;
-                userType.SetIsReturnTypeStub();
+            case 8:   //  Client.Grades
+                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_8_Grades;
+                userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
                 xamlType = userType;
                 break;
 
-            case 6:   //  Object
-                xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 7:   //  String
-                xamlType = new global::Client.Client_XamlTypeInfo.XamlSystemBaseType(typeName, type);
-                break;
-
-            case 8:   //  Client.GroupDetailPage
+            case 9:   //  Client.GroupedItemsPage
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_8_GroupDetailPage;
+                userType.Activator = Activate_9_GroupedItemsPage;
                 userType.AddMemberName("NavigationHelper");
                 userType.AddMemberName("DefaultViewModel");
                 xamlType = userType;
                 break;
 
-            case 9:   //  Client.ItemDetailPage
+            case 10:   //  Client.GroupDetailPage
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_9_ItemDetailPage;
+                userType.Activator = Activate_10_GroupDetailPage;
                 userType.AddMemberName("NavigationHelper");
                 userType.AddMemberName("DefaultViewModel");
+                xamlType = userType;
+                break;
+
+            case 11:   //  Client.ItemDetailPage
+                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_11_ItemDetailPage;
+                userType.AddMemberName("NavigationHelper");
+                userType.AddMemberName("DefaultViewModel");
+                xamlType = userType;
+                break;
+
+            case 12:   //  Client.Submissions
+                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_12_Submissions;
+                userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
                 xamlType = userType;
                 break;
             }
@@ -264,35 +297,65 @@ namespace Client.Client_XamlTypeInfo
         }
 
 
-        private object get_0_GroupedItemsPage_NavigationHelper(object instance)
+        private object get_0_Courses_DefaultViewModel(object instance)
+        {
+            var that = (global::Client.Courses)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_1_Courses_NavigationHelper(object instance)
+        {
+            var that = (global::Client.Courses)instance;
+            return that.NavigationHelper;
+        }
+        private object get_2_Grades_DefaultViewModel(object instance)
+        {
+            var that = (global::Client.Grades)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_3_Grades_NavigationHelper(object instance)
+        {
+            var that = (global::Client.Grades)instance;
+            return that.NavigationHelper;
+        }
+        private object get_4_GroupedItemsPage_NavigationHelper(object instance)
         {
             var that = (global::Client.GroupedItemsPage)instance;
             return that.NavigationHelper;
         }
-        private object get_1_GroupedItemsPage_DefaultViewModel(object instance)
+        private object get_5_GroupedItemsPage_DefaultViewModel(object instance)
         {
             var that = (global::Client.GroupedItemsPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_2_GroupDetailPage_NavigationHelper(object instance)
+        private object get_6_GroupDetailPage_NavigationHelper(object instance)
         {
             var that = (global::Client.GroupDetailPage)instance;
             return that.NavigationHelper;
         }
-        private object get_3_GroupDetailPage_DefaultViewModel(object instance)
+        private object get_7_GroupDetailPage_DefaultViewModel(object instance)
         {
             var that = (global::Client.GroupDetailPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_4_ItemDetailPage_NavigationHelper(object instance)
+        private object get_8_ItemDetailPage_NavigationHelper(object instance)
         {
             var that = (global::Client.ItemDetailPage)instance;
             return that.NavigationHelper;
         }
-        private object get_5_ItemDetailPage_DefaultViewModel(object instance)
+        private object get_9_ItemDetailPage_DefaultViewModel(object instance)
         {
             var that = (global::Client.ItemDetailPage)instance;
             return that.DefaultViewModel;
+        }
+        private object get_10_Submissions_DefaultViewModel(object instance)
+        {
+            var that = (global::Client.Submissions)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_11_Submissions_NavigationHelper(object instance)
+        {
+            var that = (global::Client.Submissions)instance;
+            return that.NavigationHelper;
         }
 
         private global::Windows.UI.Xaml.Markup.IXamlMember CreateXamlMember(string longMemberName)
@@ -302,40 +365,76 @@ namespace Client.Client_XamlTypeInfo
 
             switch (longMemberName)
             {
+            case "Client.Courses.DefaultViewModel":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Courses");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
+                xamlMember.Getter = get_0_Courses_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.Courses.NavigationHelper":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Courses");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
+                xamlMember.Getter = get_1_Courses_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.Grades.DefaultViewModel":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Grades");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
+                xamlMember.Getter = get_2_Grades_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.Grades.NavigationHelper":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Grades");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
+                xamlMember.Getter = get_3_Grades_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
             case "Client.GroupedItemsPage.NavigationHelper":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.GroupedItemsPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
-                xamlMember.Getter = get_0_GroupedItemsPage_NavigationHelper;
+                xamlMember.Getter = get_4_GroupedItemsPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.GroupedItemsPage.DefaultViewModel":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.GroupedItemsPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
-                xamlMember.Getter = get_1_GroupedItemsPage_DefaultViewModel;
+                xamlMember.Getter = get_5_GroupedItemsPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.GroupDetailPage.NavigationHelper":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.GroupDetailPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
-                xamlMember.Getter = get_2_GroupDetailPage_NavigationHelper;
+                xamlMember.Getter = get_6_GroupDetailPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.GroupDetailPage.DefaultViewModel":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.GroupDetailPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
-                xamlMember.Getter = get_3_GroupDetailPage_DefaultViewModel;
+                xamlMember.Getter = get_7_GroupDetailPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.ItemDetailPage.NavigationHelper":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.ItemDetailPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
-                xamlMember.Getter = get_4_ItemDetailPage_NavigationHelper;
+                xamlMember.Getter = get_8_ItemDetailPage_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.ItemDetailPage.DefaultViewModel":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.ItemDetailPage");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
-                xamlMember.Getter = get_5_ItemDetailPage_DefaultViewModel;
+                xamlMember.Getter = get_9_ItemDetailPage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.Submissions.DefaultViewModel":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Submissions");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
+                xamlMember.Getter = get_10_Submissions_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.Submissions.NavigationHelper":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Submissions");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
+                xamlMember.Getter = get_11_Submissions_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             }

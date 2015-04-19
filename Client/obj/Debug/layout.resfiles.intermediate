@@ -6,7 +6,10 @@ Assets\SmallLogo.scale-100.png
 Assets\SplashScreen.scale-100.png
 Assets\StoreLogo.scale-100.png
 App.xbf
+Courses.xbf
+Grades.xbf
 GroupDetailPage.xbf
 GroupedItemsPage.xbf
 ItemDetailPage.xbf
+Submissions.xbf
 DataModel\SampleData.json

@@ -105,9 +105,9 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Content="{Binding Students[0].Courses}" Width="140" Height="80" Click="Courses_Click" />
+            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
             <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List"/>
+            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

@@ -64,15 +64,16 @@ namespace Client
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
             //var group = await SampleDataSource.GetGroupAsync((String)e.NavigationParameter);
             //this.DefaultViewModel["Group"] = group;
             //this.DefaultViewModel["Items"] = group.Items;
-            var student = (Student)e.NavigationParameter;
-            this.defaultViewModel["Student"] = student;
-            this.defaultViewModel["Courses"] = student.Courses;
+            //var student = (Student)e.NavigationParameter;
+            //this.defaultViewModel["Student"] = student;
+            //this.defaultViewModel["Courses"] = student.Courses;
+            this.DefaultViewModel["Courses"] = await DataSource.GetCoursesAsync();
         }
 
         /// <summary>
@@ -80,12 +81,36 @@ namespace Client
         /// </summary>
         /// <param name="sender">The GridView displaying the item clicked.</param>
         /// <param name="e">Event data that describes the item clicked.</param>
+         private void Course_Click(Object sender, ItemClickEventArgs e)
+        {
+            var course = (Course)e.ClickedItem;
+            this.Frame.Navigate(typeof(ItemDetailPage), course);
+        }
+
+        private void Courses_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Courses));
+        }
+
+        private void Submissions_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Submissions));
+        }
+        private void Grades_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Grades));
+        }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            // Add code to perform some action here.
         }
 
         #region NavigationHelper registration

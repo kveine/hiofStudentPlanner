@@ -110,7 +110,16 @@ namespace Client
 
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GroupDetailPage), e.OriginalSource);
+            this.Frame.Navigate(typeof(Courses));
+        }
+
+        private void Submissions_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Submissions));
+        }
+        private void Grades_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Grades));
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {

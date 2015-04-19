@@ -39,7 +39,7 @@
         </Grid.RowDefinitions>
 
         <!-- Horizontal scrolling grid -->
-        <GridView x:ConnectionId='1'
+        <GridView x:ConnectionId='0'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -71,7 +71,7 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="0,0,0,2">
-                                <Button x:ConnectionId='2' Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
+                                <Button x:ConnectionId='0' Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
                                     AutomationProperties.Name="Group Title"
                                                          
                                     Style="{StaticResource TextBlockButtonStyle}" >
@@ -105,9 +105,9 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton x:ConnectionId='3' Content="{Binding Students[0].Courses}" Width="140" Height="80"                       />
+            <AppBarButton x:ConnectionId='0' Label="Courses" Icon="Library"                      />
             <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List"/>
+            <AppBarButton x:ConnectionId='0' Label="Grades" Icon="List"                     />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>
