@@ -138,20 +138,22 @@ namespace Client
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
-            var grade = (Grade)e.OriginalSource;
+            var grade = e.OriginalSource;
             Handle(sender as CheckBox, grade);
+
         }
 
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
-            var grade = (Grade)e.OriginalSource;
+            var grade = e.OriginalSource;
             Handle(sender as CheckBox, grade);
         }
 
-        void Handle(CheckBox checkBox, Grade grade)
+        void Handle(CheckBox checkBox, Object grade)
         {
             // Use IsChecked.
             bool flag = checkBox.IsChecked.Value;
+            Debug.WriteLine(checkBox.IsChecked.Value);
 
             if (flag)
             {

@@ -52,8 +52,18 @@ namespace Client
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
+            //this.Fill_ComboBox();
         }
 
+        private async void Fill_ComboBox()
+        {
+            ObservableCollection<Course> obsColl =  await DataSource.GetCoursesAsync();
+
+            foreach (var course in obsColl)
+            {
+                CoursesComboBox.Items.Add(course.Title);
+            }
+        }
         /// <summary>
         /// Populates the page with content passed during navigation.  Any saved state is also
         /// provided when recreating a page from a prior session.
@@ -75,6 +85,10 @@ namespace Client
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
+         private void WeekOverview_Click(Object sender, RoutedEventArgs e)
+         {
+             this.Frame.Navigate(typeof(GroupedItemsPage));
+         }
 
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
@@ -110,10 +124,13 @@ namespace Client
             comboBox.SelectedIndex = 0;
         }
 
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private string ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            // Add code to perform some action here.
+            var comboBox = sender as ComboBox;
+            string value = comboBox.SelectedItem as string;
+            return value;
         }
+
         #region NavigationHelper registration
 
         /// The methods provided in this section are simply used to allow

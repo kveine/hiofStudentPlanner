@@ -113,6 +113,11 @@ namespace Client
             this.Frame.Navigate(typeof(Courses));
         }
 
+        private void WeekOverview_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GroupedItemsPage));
+        }
+
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions));
