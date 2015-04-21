@@ -20,6 +20,7 @@ using Windows.UI.Xaml.Data;
 using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
+using System.Collections.ObjectModel;
 
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
@@ -72,7 +73,8 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            this.DefaultViewModel["Grades"] = await DataSource.GetGradesAsync();
+            var grades = await DataSource.GetGradesAsync();
+            this.DefaultViewModel["Grades"] = grades;
         }
          [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
          private void Course_Click(Object sender, ItemClickEventArgs e)
@@ -101,9 +103,30 @@ namespace Client
         }
         private async void AddGrade_Click(Object sender, RoutedEventArgs e)
         {
-            int courseId = int.Parse(courseIdInput.Text);
-            int studentId = int.Parse(studentIdInput.Text);
-            string grade = gradeInput.Text;
+            string courseTitle = courseName.Text;
+            string studentUserName = username.Text;
+            string grade = gradeValue.Text;
+
+            ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
+            ObservableCollection<Student> students = await DataSource.GetStudentsAsync();
+
+            Course course = new Course();
+            Student student = new Student();
+
+            foreach(var entry in courses)
+            {
+                if (entry.Title == courseTitle)
+                {
+                    course = entry;
+                }
+            }
+            foreach (var entry in students)
+            {
+                if (entry.UserName == studentUserName)
+                {
+                    student = entry;
+                }
+            }
 
             using (var client = new HttpClient())
             {
@@ -111,7 +134,7 @@ namespace Client
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
                 
-                Grade newGrade = new Grade() { CourseId = courseId, StudentId = studentId, Value = grade };
+                Grade newGrade = new Grade() { Course = course, Student = student, Value = grade };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
 
                 var stream = new MemoryStream();
@@ -126,6 +149,8 @@ namespace Client
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var grade = e.OriginalSource;
+            //var grade = sender as CheckBox;
+            //Debug.WriteLine(grade.Content);
             Handle(sender as CheckBox, grade);
 
         }
@@ -143,18 +168,24 @@ namespace Client
             // Use IsChecked.
             bool flag = checkBox.IsChecked.Value;
             Debug.WriteLine(checkBox.IsChecked.Value);
+            Debug.WriteLine(checkBox.Content);
 
             if (flag)
             {
-                Debug.WriteLine(grade);
+                
+                //Debug.WriteLine(grade);
             }
         }
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page
             // by passing required information as a navigation parameter
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+            
+            Grade grade = (Grade)e.ClickedItem;
+            this.Frame.Navigate(typeof(ItemDetailPage), grade);
+
+            /*var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
+            this.Frame.Navigate(typeof(ItemDetailPage), itemId);*/
         }
         #region NavigationHelper registration
 

@@ -64,10 +64,20 @@ namespace Client
         /// <see cref="Frame.Navigate(Type, Object)"/> when this page was initially requested and
         /// a dictionary of state preserved by this page during an earlier
         /// session.  The state will be null the first time a page is visited.</param>
-        private void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
+        private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            this.Frame.Navigate(typeof(GroupDetailPage));
+            //this.Frame.Navigate(typeof(GroupDetailPage));
+            this.DefaultViewModel["Students"] = await DataSource.GetStudentsAsync();
+        }
+        void Student_Click(object sender, RoutedEventArgs e)
+        {
+            // Determine what group the Button instance represents
+            var student = (sender as FrameworkElement).DataContext;
+
+            // Navigate to the appropriate destination page, configuring the new page
+            // by passing required information as a navigation parameter
+            this.Frame.Navigate(typeof(GroupDetailPage), ((Student)student));
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]

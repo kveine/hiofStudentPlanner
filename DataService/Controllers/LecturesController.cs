@@ -12,43 +12,43 @@ using DataModel;
 
 namespace DataService.Controllers
 {
-    public class GradesController : ApiController
+    public class LecturesController : ApiController
     {
         private SchoolEntities db = new SchoolEntities();
 
-        // GET api/Grades
-        public IQueryable<Grade> GetGrades()
+        // GET api/Lectures
+        public IQueryable<Lecture> GetLectures()
         {
-            return db.Grades;
+            return db.Lectures;
         }
 
-        // GET api/Grades/5
-        [ResponseType(typeof(Grade))]
-        public IHttpActionResult GetGrade(int id)
+        // GET api/Lectures/5
+        [ResponseType(typeof(Lecture))]
+        public IHttpActionResult GetLecture(int id)
         {
-            Grade grade = db.Grades.Find(id);
-            if (grade == null)
+            Lecture lecture = db.Lectures.Find(id);
+            if (lecture == null)
             {
                 return NotFound();
             }
 
-            return Ok(grade);
+            return Ok(lecture);
         }
 
-        // PUT api/Grades/5
-        public IHttpActionResult PutGrade(int id, Grade grade)
+        // PUT api/Lectures/5
+        public IHttpActionResult PutLecture(int id, Lecture lecture)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
-            if (id != grade.GradeId)
+            if (id != lecture.LectureId)
             {
                 return BadRequest();
             }
 
-            db.Entry(grade).State = EntityState.Modified;
+            db.Entry(lecture).State = EntityState.Modified;
 
             try
             {
@@ -56,7 +56,7 @@ namespace DataService.Controllers
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!GradeExists(id))
+                if (!LectureExists(id))
                 {
                     return NotFound();
                 }
@@ -69,43 +69,39 @@ namespace DataService.Controllers
             return StatusCode(HttpStatusCode.NoContent);
         }
 
-        // POST api/Grades
-        [ResponseType(typeof(Grade))]
-        public IHttpActionResult PostGrade(Grade grade)
+        // POST api/Lectures
+        [ResponseType(typeof(Lecture))]
+        public IHttpActionResult PostLecture(Lecture lecture)
         {
             /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }*/
-
-            var courseInGrades = grade.Course;
-            var studentInGrades = grade.Student;
-            Course course = db.Courses.Find(courseInGrades.CourseId);
-            Student student = db.Students.Find(studentInGrades.StudentId);
-            grade.Course = course;
-            grade.Student = student;
+            var courseInLecture = lecture.Course;
+            Course course = db.Courses.Find(courseInLecture.CourseId);
+            lecture.Course = course;
             ModelState.Clear();
 
-            db.Grades.Add(grade);
+            db.Lectures.Add(lecture);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = grade.GradeId }, grade);
+            return CreatedAtRoute("DefaultApi", new { id = lecture.LectureId }, lecture);
         }
 
-        // DELETE api/Grades/5
-        [ResponseType(typeof(Grade))]
-        public IHttpActionResult DeleteGrade(int id)
+        // DELETE api/Lectures/5
+        [ResponseType(typeof(Lecture))]
+        public IHttpActionResult DeleteLecture(int id)
         {
-            Grade grade = db.Grades.Find(id);
-            if (grade == null)
+            Lecture lecture = db.Lectures.Find(id);
+            if (lecture == null)
             {
                 return NotFound();
             }
 
-            db.Grades.Remove(grade);
+            db.Lectures.Remove(lecture);
             db.SaveChanges();
 
-            return Ok(grade);
+            return Ok(lecture);
         }
 
         protected override void Dispose(bool disposing)
@@ -117,9 +113,9 @@ namespace DataService.Controllers
             base.Dispose(disposing);
         }
 
-        private bool GradeExists(int id)
+        private bool LectureExists(int id)
         {
-            return db.Grades.Count(e => e.GradeId == id) > 0;
+            return db.Lectures.Count(e => e.LectureId == id) > 0;
         }
     }
 }

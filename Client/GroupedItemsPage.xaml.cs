@@ -149,10 +149,13 @@ namespace Client
             else
             {
                 await DataSource.AddStudentAsync(firstName, lastName, userName, password);
-                this.Frame.Navigate(typeof(WeekOverview));   
+                //this.Frame.Navigate(typeof(WeekOverview));   
+                MessageDialog md = new MessageDialog("User " + userName + " is created");
+                await md.ShowAsync();
             }
         }
 
+        
         private async void LogIn_Click(Object sender, RoutedEventArgs e)
         {
             string userName = usernameLogIn.Text;
@@ -166,11 +169,13 @@ namespace Client
 
             bool registered = false;
             var students = await DataSource.GetStudentsAsync();
+            int currentStudent;
             foreach(var item in students)
             {
                 if (item.UserName == userName && item.Password == password)
                 {
                     registered = true;
+                    currentStudent = item.StudentId;
                     this.Frame.Navigate(typeof(WeekOverview));
                 }
             }

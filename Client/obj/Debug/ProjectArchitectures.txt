@@ -1,1 +1,1 @@
-C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Client.csproj;neutral
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Client.csproj;neutral

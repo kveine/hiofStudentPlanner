@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Diagnostics;
 using System.Net.Http.Headers;
 using System.IO;
+using System.Runtime.Serialization;
 
 namespace Client.DataModel
 {
@@ -92,7 +93,18 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
                 var result = await client.GetAsync("api/Courses");
+                result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
 
+                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffK";
+                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>), jsonSerializerSettings);
+                var stream = await result.Content.ReadAsStreamAsync();
+
+                ObservableCollection<Course> courses = (ObservableCollection<Course>)jsonSerializer.ReadObject(stream);
+
+                return courses;
+                //return (Course)jsonSerializer.ReadObject(stream);
+                /*
                 if (result.IsSuccessStatusCode)
                 {
                     var resultSTream = await result.Content.ReadAsStreamAsync();
@@ -105,7 +117,7 @@ namespace Client.DataModel
                 else
                 {
                     return null;
-                }
+                }*/
             }
         }
 
@@ -161,7 +173,44 @@ namespace Client.DataModel
             }
         }
 
-        /*public static async Task<ObservableCollection<Student>> GetStudentAsync()
+        public static async Task<ObservableCollection<Lecture>> GetLecturesAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Lectures");
+                result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
+
+                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffzz";
+                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>), jsonSerializerSettings);
+                var stream = await result.Content.ReadAsStreamAsync();
+
+                ObservableCollection<Lecture> lectures = (ObservableCollection<Lecture>)jsonSerializer.ReadObject(stream);
+
+                return lectures;
+
+
+                /*if (result.IsSuccessStatusCode)
+                {
+                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Grade>));
+
+                    ObservableCollection<Grade> grades = (ObservableCollection<Grade>)serializer.ReadObject(resultSTream);
+
+                    return grades;
+                }
+                else
+                {
+                    return null;
+                }*/
+            }
+        }
+
+        public static async Task<ObservableCollection<Student>> GetStudentAsync()
         {
             using (var client = new HttpClient())
             {
@@ -185,7 +234,7 @@ namespace Client.DataModel
                     return null;
                 }
             }
-        }*/
+        }
 
         public static async Task AddStudentAsync(string firstname, string lastname, string username, string password)
         {
@@ -207,5 +256,24 @@ namespace Client.DataModel
                 response.EnsureSuccessStatusCode();
             }
         }
+
+        /*public static async void DeleteGrade(){
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                
+
+                var stream = new MemoryStream();
+                jsonSerializer.WriteObject(stream, newStudent);
+                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("api/Students", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+        }*/
     }
 }

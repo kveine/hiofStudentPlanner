@@ -61,7 +61,7 @@ namespace Client
 
             foreach (var course in obsColl)
             {
-                CoursesComboBox.Items.Add(course.Title);
+               // CoursesComboBox.Items.Add(course[].Title);
             }
         }
         /// <summary>
@@ -78,7 +78,7 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            this.DefaultViewModel["Courses"] = await DataSource.GetCoursesAsync();
+            this.DefaultViewModel["Lectures"] = await DataSource.GetLecturesAsync();
         }
 
         //Har prøvd å fjerne ubrukte parameter, men da får jeg feil melding. Aner derfor ikke hvordan jeg skal gjøre det. Er mange warnings på dette, skriver bare begrunnelsen her.

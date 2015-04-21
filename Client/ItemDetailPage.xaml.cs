@@ -1,5 +1,6 @@
 ﻿using Client.Common;
 using Client.Data;
+using Client.DataModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -64,8 +65,11 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Create an appropriate data model for your problem domain to replace the sample data
-            var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
-            this.DefaultViewModel["Item"] = item;
+            /*var item = await SampleDataSource.GetItemAsync((String)e.NavigationParameter);
+            this.DefaultViewModel["Item"] = item;*/
+            var grade = (Grade)e.NavigationParameter;
+            this.defaultViewModel["Grade"] = grade;
+            this.defaultViewModel["Course"] = grade.Course;
         }
 
         #region NavigationHelper registration

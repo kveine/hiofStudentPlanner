@@ -19,7 +19,7 @@ namespace DataService.Controllers
         // GET api/Courses
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses.Include(b => b.Students); // Fix Three - loads related objects (but not cycles)
+            return db.Courses.Include(b => b.Lectures); // Fix Three - loads related objects (but not cycles)
         }
 
         // GET api/Courses/5
@@ -31,13 +31,25 @@ namespace DataService.Controllers
             {
                 return NotFound();
             }
-            db.Entry(course).Collection(b => b.Students).Load(); // Fix Three - loads related objects (but not cycles)
+            db.Entry(course).Collection(b => b.Lectures).Load(); // Fix Three - loads related objects (but not cycles)
             return Ok(course);
         }
 
         // PUT api/Courses/5
         public IHttpActionResult PutCourse(int id, Course course)
         {
+            /*var lectures = course.Lectures.ToList<Lecture>();
+            course.Lectures.Clear();
+
+            foreach (var a in lectures)
+            {
+                Lecture lecture = db.Lectures.Find(a.LectureId);
+                course.Lectures.Add(lecture);
+            }
+            ModelState.Clear();
+
+            db.Courses.Add(course);
+            db.SaveChanges();*/
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

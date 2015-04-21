@@ -14,92 +14,92 @@
     <RegisteredVersion>1.0.0.0</RegisteredVersion>
   </PropertyGroup>
   <ItemGroup>
-    <AppXManifest Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\AppxManifest.xml">
+    <AppXManifest Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-04-19T19:52:16.126</Modified>
+      <Modified>2015-04-21T11:34:31.392</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe">
       <PackagePath>Client.exe</PackagePath>
-      <Modified>2015-04-19T19:52:15.931</Modified>
+      <Modified>2015-04-21T16:11:09.398</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\DataModel\SampleData.json">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\DataModel\SampleData.json">
       <PackagePath>DataModel\SampleData.json</PackagePath>
       <Modified>2015-04-13T13:31:48.491</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Logo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SmallLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SplashScreen.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SplashScreen.scale-100.png">
       <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\StoreLogo.scale-100.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\StoreLogo.scale-100.png">
       <PackagePath>Assets\StoreLogo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\LightGray.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\LightGray.png">
       <PackagePath>Assets\LightGray.png</PackagePath>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\MediumGray.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\MediumGray.png">
       <PackagePath>Assets\MediumGray.png</PackagePath>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\DarkGray.png">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\DarkGray.png">
       <PackagePath>Assets\DarkGray.png</PackagePath>
       <Modified>2013-07-23T05:01:02.000</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\App.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.538</Modified>
+      <Modified>2015-04-21T11:34:30.652</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
       <PackagePath>Courses.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.542</Modified>
+      <Modified>2015-04-21T16:11:09.115</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Grades.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Grades.xbf">
       <PackagePath>Grades.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.545</Modified>
+      <Modified>2015-04-21T16:11:09.119</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupedItemsPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupedItemsPage.xbf">
       <PackagePath>GroupedItemsPage.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.546</Modified>
+      <Modified>2015-04-21T11:34:30.660</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupDetailPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupDetailPage.xbf">
       <PackagePath>GroupDetailPage.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.551</Modified>
+      <Modified>2015-04-21T11:34:30.665</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ItemDetailPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ItemDetailPage.xbf">
       <PackagePath>ItemDetailPage.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.551</Modified>
+      <Modified>2015-04-21T11:34:30.666</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\MainPage.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.552</Modified>
+      <Modified>2015-04-21T11:34:30.667</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
       <PackagePath>Submissions.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.556</Modified>
+      <Modified>2015-04-21T11:34:30.671</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf">
       <PackagePath>WeekOverview.xbf</PackagePath>
-      <Modified>2015-04-19T19:52:15.558</Modified>
+      <Modified>2015-04-21T16:11:09.122</Modified>
     </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\resources.pri">
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-04-19T19:52:16.055</Modified>
+      <Modified>2015-04-21T11:34:31.211</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

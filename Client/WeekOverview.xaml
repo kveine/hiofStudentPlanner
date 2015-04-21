@@ -39,7 +39,7 @@
         </Grid.RowDefinitions>
 
         <!-- Horizontal scrolling grid -->
-        <!--<GridView
+        <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -49,7 +49,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="Course_Click" Margin="303,0,0,0">
+            ItemClick="Course_Click">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="250" Height="100">
@@ -85,23 +85,22 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </GridView.GroupStyle>
-    </GridView>-->
-        <GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
-            <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
+        </GridView>
+        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
+            <Button Content="{Binding FirstName}" Width="287" Height="52" Click="WeekOverview_Click"/>
             <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
             <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
             <Button Content="Submissions" Width="287" Height="52"/>
             <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
-        </GridView>
-        <Grid HorizontalAlignment="Left" Height="189" Margin="449,166,0,0" Grid.Row="1" VerticalAlignment="Top" Width="269"/>
-        <Grid HorizontalAlignment="Left" Height="608" Margin="303,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1063">
+        </GridView>-->
+        <!-- <Grid HorizontalAlignment="Left" Height="608" Margin="303,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1063">
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="18,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="411,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
             <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="806,153,-66,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
             <TextBlock Text="Monday" FontFamily="Segoe UI Symbol" Margin="18,94,929,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
             <TextBlock Text="Tuesday" FontFamily="Segoe UI Symbol" Margin="411,94,536,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
             <TextBlock Text="Wednesday" FontFamily="Segoe UI Symbol" Margin="806,94,94,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-        </Grid>
+        </Grid>-->
 
 
         <!-- Back button and page title -->
@@ -120,11 +119,11 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>-->
     </Grid>
-    <!--<Page.BottomAppBar>
+    <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
             <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
             <AppBarButton Label="Submissions" Icon="Document"/>
             <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
         </CommandBar>
-    </Page.BottomAppBar>-->
+    </Page.BottomAppBar>
 </Page>

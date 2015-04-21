@@ -77,6 +77,7 @@ namespace DataService.Controllers
             {
                 return BadRequest(ModelState);
             }*/
+
             var courses = student.Courses.ToList<Course>();
             student.Courses.Clear();
 

@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-                                           Margin="530,10,0,0">
+                                           Margin="232,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">
@@ -62,12 +62,13 @@
                             <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Value}"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <CheckBox x:ConnectionId='6'
+                            <CheckBox x:ConnectionId='3'
 	                            HorizontalAlignment="Left"
 	                            VerticalAlignment="Top"
                                                           
-	                                                          >
-                                <TextBlock x:Name="ValueChecked" Text="{Binding Value}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+	                                                          
+                                Content="{Binding Value}">
+                                <!--<TextBlock x:Name="ValueChecked" Text="{Binding Value}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>-->
                             </CheckBox>
                         </StackPanel>
                     </Grid>
@@ -86,35 +87,35 @@
                 <ColumnDefinition Width="120"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="-305,59,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
+                        AutomationProperties.ItemType="Navigation Button" Width="132"/>
             <TextBlock x:Name="pageTitle" Text="{Binding Value}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Margin="298,0,0,0" VerticalAlignment="Top" Width="227" Height="618" Grid.Row="1">
-            <TextBox x:Name="gradeInput" Height="35" Width="200" PlaceholderText="Grade" Margin="10"/>
-            <TextBox x:Name="courseIdInput" Height="35" Width="200" PlaceholderText="CourseID - numerical" Margin="10"/>
-            <TextBox x:Name="studentIdInput" Height="35" Width="200" PlaceholderText="StudentID - numerical" Margin="10"/>
-            <Button x:ConnectionId='5' Content="Add Grade"                       />
+        <GridView HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Height="618" Grid.Row="1">
+            <TextBox x:Name="gradeValue" Height="35" Width="200" PlaceholderText="Grade" Margin="10"/>
+            <TextBox x:Name="courseName" Height="35" Width="200" PlaceholderText="Course Name" Margin="10"/>
+            <TextBox x:Name="username" Height="35" Width="200" PlaceholderText="Username" Margin="10"/>
+            <Button x:ConnectionId='2' Content="Add Grade"                       />
         </GridView>
-        <GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
+        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
             <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
-            <Button x:ConnectionId='2' Content="Week Overview" Width="287" Height="52"                           />
-            <Button x:ConnectionId='3' Content="Courses" Width="287" Height="52"                      />
+            <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
+            <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
             <Button Content="Submissions" Width="287" Height="52"/>
-            <Button x:ConnectionId='4' Content="Grades" Width="287" Height="52"                     />
-        </GridView>
+            <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
+        </GridView>-->
     </Grid>
-    <!--<Page.BottomAppBar>
+    <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
+            <AppBarButton x:ConnectionId='4' Label="Courses" Icon="Library"                      />
             <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
+            <AppBarButton x:ConnectionId='5' Label="Grades" Icon="List"                     />
         </CommandBar>
-    </Page.BottomAppBar>-->
+    </Page.BottomAppBar>
 </Page>
 

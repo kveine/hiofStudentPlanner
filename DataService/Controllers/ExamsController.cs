@@ -79,7 +79,22 @@ namespace DataService.Controllers
             }
 
             db.Exams.Add(exam);
-            db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DbUpdateException)
+            {
+                if (ExamExists(exam.ExamId))
+                {
+                    return Conflict();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
             return CreatedAtRoute("DefaultApi", new { id = exam.ExamId }, exam);
         }

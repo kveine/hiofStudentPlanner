@@ -64,5 +64,3 @@ C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolutio
 C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\WeekOverview.xaml
 C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\WeekOverview.xbf
 C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf
-C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe.CodeAnalysisLog.xml
-C:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe.lastcodeanalysissucceeded

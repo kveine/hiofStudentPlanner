@@ -73,10 +73,21 @@ namespace DataService.Controllers
         [ResponseType(typeof(Submission))]
         public IHttpActionResult PostSubmission(Submission submission)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            db.Submissions.Add(submission);
+            db.SaveChanges();*/
+            var courseInSubmission = submission.Course;
+            Course course = db.Courses.Find(courseInSubmission.CourseId);
+            submission.Course = course;
+
+            var studentInSubmission = submission.Student;
+            Student student = db.Students.Find(studentInSubmission.StudentId);
+            submission.Student = student;
+            ModelState.Clear();
 
             db.Submissions.Add(submission);
             db.SaveChanges();
