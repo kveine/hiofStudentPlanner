@@ -163,6 +163,13 @@ namespace Client.DataModel
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Grade>));
 
                     ObservableCollection<Grade> grades = (ObservableCollection<Grade>)serializer.ReadObject(resultSTream);
+                    /*ObservableCollection<Grade> studentGrades = new ObservableCollection<Grade>();
+
+                    for(var grade in grades){
+                        if(grade.student.id == currentStudent){
+                            studentGrades.Add(grade);
+                        }
+                    }*/
 
                     return grades;
                 }
@@ -184,9 +191,9 @@ namespace Client.DataModel
                 var result = await client.GetAsync("api/Lectures");
                 result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
 
-                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffzz";
-                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>), jsonSerializerSettings);
+                //const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffzz";
+                //var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>));//, jsonSerializerSettings
                 var stream = await result.Content.ReadAsStreamAsync();
 
                 ObservableCollection<Lecture> lectures = (ObservableCollection<Lecture>)jsonSerializer.ReadObject(stream);
@@ -210,7 +217,7 @@ namespace Client.DataModel
             }
         }
 
-        public static async Task<ObservableCollection<Student>> GetStudentAsync()
+        public static async Task<ObservableCollection<Student>> GetStudentAsync(int id)
         {
             using (var client = new HttpClient())
             {
@@ -218,14 +225,16 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Students/1");
+                var result = await client.GetAsync("api/Students/" + id);
 
                 if (result.IsSuccessStatusCode)
                 {
                     var resultStream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Student>));
+                    var serializer = new DataContractJsonSerializer(typeof(Student));
+                    Student student1 = (Student)serializer.ReadObject(resultStream);
 
-                    ObservableCollection<Student> student = (ObservableCollection<Student>)serializer.ReadObject(resultStream);
+                    ObservableCollection<Student> student = new ObservableCollection<Student>();
+                    student.Add(student1);
 
                     return student;
                 }
@@ -252,6 +261,27 @@ namespace Client.DataModel
                 stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Students", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        public static async Task AddGradeAsync(String value, Course course, Student student)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                Grade newGrade = new Grade() { Course = course, Student = student, Value = value };
+                var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
+
+                var stream = new MemoryStream();
+                jsonSerializer.WriteObject(stream, newGrade);
+                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+                var response = await client.PostAsync("api/Grades", content);
 
                 response.EnsureSuccessStatusCode();
             }

@@ -34,6 +34,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -104,11 +105,11 @@ namespace Client
         private async void AddGrade_Click(Object sender, RoutedEventArgs e)
         {
             string courseTitle = courseName.Text;
-            string studentUserName = username.Text;
-            string grade = gradeValue.Text;
+            string grade = value.Text;
 
             ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
             ObservableCollection<Student> students = await DataSource.GetStudentsAsync();
+            //Student student = (Student)await DataSource.GetStudentAsync(currentStudent);
 
             Course course = new Course();
             Student student = new Student();
@@ -122,29 +123,13 @@ namespace Client
             }
             foreach (var entry in students)
             {
-                if (entry.UserName == studentUserName)
+                if (entry.StudentId == currentStudent)
                 {
                     student = entry;
                 }
             }
 
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:42015/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-                
-                Grade newGrade = new Grade() { Course = course, Student = student, Value = grade };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(Grade));
-
-                var stream = new MemoryStream();
-                jsonSerializer.WriteObject(stream, newGrade);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
-                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
-                var response = await client.PostAsync("api/Grades", content);
-
-                response.EnsureSuccessStatusCode();
-            }
+            await DataSource.AddGradeAsync(grade, course, student);
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -200,6 +185,10 @@ namespace Client
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter != null)
+            {
+                currentStudent = (int)e.Parameter;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 

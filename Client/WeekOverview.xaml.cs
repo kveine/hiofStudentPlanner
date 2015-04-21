@@ -3,6 +3,7 @@ using Client.Data;
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,6 +29,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -68,7 +70,9 @@ namespace Client
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             //this.Frame.Navigate(typeof(GroupDetailPage));
-            this.DefaultViewModel["Students"] = await DataSource.GetStudentsAsync();
+
+            var student = await DataSource.GetStudentAsync(currentStudent);
+            this.DefaultViewModel["Students"] = student;
         }
         void Student_Click(object sender, RoutedEventArgs e)
         {
@@ -99,7 +103,9 @@ namespace Client
         }
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Grades));
+            //var student = DataSource.GetStudentAsync();
+            //Debug.WriteLine(student);
+            this.Frame.Navigate(typeof(Grades), currentStudent);
         }
         private void WeekOverview_Click(Object sender, RoutedEventArgs e)
         {
@@ -127,6 +133,10 @@ namespace Client
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter != null)
+            {
+                currentStudent = (int)e.Parameter;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -136,6 +146,11 @@ namespace Client
         }
 
         #endregion
+
+        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
 
     }
 }

@@ -27,6 +27,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent { get; set; }
 
         /// <summary>
         /// NavigationHelper is used on each page to aid in navigation and 
@@ -169,14 +170,14 @@ namespace Client
 
             bool registered = false;
             var students = await DataSource.GetStudentsAsync();
-            int currentStudent;
+            //int currentStudent;
             foreach(var item in students)
             {
                 if (item.UserName == userName && item.Password == password)
                 {
                     registered = true;
                     currentStudent = item.StudentId;
-                    this.Frame.Navigate(typeof(WeekOverview));
+                    this.Frame.Navigate(typeof(WeekOverview), currentStudent);
                 }
             }
             if (!registered)
@@ -193,6 +194,7 @@ namespace Client
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
+
 
         #region NavigationHelper registration
 

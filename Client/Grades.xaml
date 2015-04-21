@@ -97,9 +97,8 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
         <GridView HorizontalAlignment="Left" VerticalAlignment="Top" Width="227" Height="618" Grid.Row="1">
-            <TextBox x:Name="gradeValue" Height="35" Width="200" PlaceholderText="Grade" Margin="10"/>
+            <TextBox x:Name="value" Height="35" Width="200" PlaceholderText="Grade" Margin="10"/>
             <TextBox x:Name="courseName" Height="35" Width="200" PlaceholderText="Course Name" Margin="10"/>
-            <TextBox x:Name="username" Height="35" Width="200" PlaceholderText="Username" Margin="10"/>
             <Button Content="Add Grade" Click="AddGrade_Click"/>
         </GridView>
         <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
