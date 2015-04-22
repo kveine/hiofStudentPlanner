@@ -74,7 +74,7 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            var grades = await DataSource.GetGradesAsync();
+            var grades = await DataSource.GetGradesAsync(currentStudent);
             this.DefaultViewModel["Grades"] = grades;
         }
          [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
@@ -102,30 +102,28 @@ namespace Client
         {
             this.Frame.Navigate(typeof(WeekOverview));
         }
+
+        /*private string OverAllGrade()
+        {
+            var grades = DataSource.GetGradesAsync(currentStudent);
+            
+        }*/
         private async void AddGrade_Click(Object sender, RoutedEventArgs e)
         {
-            string courseTitle = courseName.Text;
-            string grade = value.Text;
-
+            string courseTitle = CoursesComboBox.SelectedValue.ToString();
+            string grade = GradeComboBox.SelectedValue.ToString();
+          
             ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
-            ObservableCollection<Student> students = await DataSource.GetStudentsAsync();
-            //Student student = (Student)await DataSource.GetStudentAsync(currentStudent);
-
+  
             Course course = new Course();
-            Student student = new Student();
+            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
+            Student student = new Student() { StudentId = currentStudent };
 
-            foreach(var entry in courses)
+            foreach (var entry in courses)
             {
                 if (entry.Title == courseTitle)
                 {
                     course = entry;
-                }
-            }
-            foreach (var entry in students)
-            {
-                if (entry.StudentId == currentStudent)
-                {
-                    student = entry;
                 }
             }
 
@@ -161,6 +159,43 @@ namespace Client
                 //Debug.WriteLine(grade);
             }
         }
+
+        private void GradeComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> data = new List<String>();
+            data.Add("A");
+            data.Add("B");
+            data.Add("C");
+            data.Add("D");
+            data.Add("E");
+            data.Add("F");
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 0;
+        }
+
+        private async void CourseComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> data = new List<String>();
+            data.Clear();
+            ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
+            ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
+
+            foreach (var course in courseObs)
+            {
+                foreach(var student in course.Students){
+                    if (student.StudentId == currentStudent)
+                    {
+                        data.Add(course.Title);
+                    }
+                }
+               
+            }
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            comboBox.SelectedIndex = 0;
+        }
+
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page

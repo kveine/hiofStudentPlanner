@@ -124,7 +124,7 @@ namespace Client.Client_XamlTypeInfo
 
         private void InitTypeTables()
         {
-            _typeNameTable = new string[15];
+            _typeNameTable = new string[16];
             _typeNameTable[0] = "Client.Courses";
             _typeNameTable[1] = "Windows.UI.Xaml.Controls.Page";
             _typeNameTable[2] = "Windows.UI.Xaml.Controls.UserControl";
@@ -138,10 +138,11 @@ namespace Client.Client_XamlTypeInfo
             _typeNameTable[10] = "Client.GroupDetailPage";
             _typeNameTable[11] = "Client.ItemDetailPage";
             _typeNameTable[12] = "Client.MainPage";
-            _typeNameTable[13] = "Client.Submissions";
-            _typeNameTable[14] = "Client.WeekOverview";
+            _typeNameTable[13] = "Client.ProfilePage";
+            _typeNameTable[14] = "Client.Submissions";
+            _typeNameTable[15] = "Client.WeekOverview";
 
-            _typeTable = new global::System.Type[15];
+            _typeTable = new global::System.Type[16];
             _typeTable[0] = typeof(global::Client.Courses);
             _typeTable[1] = typeof(global::Windows.UI.Xaml.Controls.Page);
             _typeTable[2] = typeof(global::Windows.UI.Xaml.Controls.UserControl);
@@ -155,8 +156,9 @@ namespace Client.Client_XamlTypeInfo
             _typeTable[10] = typeof(global::Client.GroupDetailPage);
             _typeTable[11] = typeof(global::Client.ItemDetailPage);
             _typeTable[12] = typeof(global::Client.MainPage);
-            _typeTable[13] = typeof(global::Client.Submissions);
-            _typeTable[14] = typeof(global::Client.WeekOverview);
+            _typeTable[13] = typeof(global::Client.ProfilePage);
+            _typeTable[14] = typeof(global::Client.Submissions);
+            _typeTable[15] = typeof(global::Client.WeekOverview);
         }
 
         private int LookupTypeIndexByName(string typeName)
@@ -198,8 +200,9 @@ namespace Client.Client_XamlTypeInfo
         private object Activate_10_GroupDetailPage() { return new global::Client.GroupDetailPage(); }
         private object Activate_11_ItemDetailPage() { return new global::Client.ItemDetailPage(); }
         private object Activate_12_MainPage() { return new global::Client.MainPage(); }
-        private object Activate_13_Submissions() { return new global::Client.Submissions(); }
-        private object Activate_14_WeekOverview() { return new global::Client.WeekOverview(); }
+        private object Activate_13_ProfilePage() { return new global::Client.ProfilePage(); }
+        private object Activate_14_Submissions() { return new global::Client.Submissions(); }
+        private object Activate_15_WeekOverview() { return new global::Client.WeekOverview(); }
         private void MapAdd_3_ObservableDictionary(object instance, object key, object item)
         {
             var collection = (global::System.Collections.Generic.IDictionary<global::System.String, global::System.Object>)instance;
@@ -297,17 +300,25 @@ namespace Client.Client_XamlTypeInfo
                 xamlType = userType;
                 break;
 
-            case 13:   //  Client.Submissions
+            case 13:   //  Client.ProfilePage
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_13_Submissions;
+                userType.Activator = Activate_13_ProfilePage;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 xamlType = userType;
                 break;
 
-            case 14:   //  Client.WeekOverview
+            case 14:   //  Client.Submissions
                 userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
-                userType.Activator = Activate_14_WeekOverview;
+                userType.Activator = Activate_14_Submissions;
+                userType.AddMemberName("DefaultViewModel");
+                userType.AddMemberName("NavigationHelper");
+                xamlType = userType;
+                break;
+
+            case 15:   //  Client.WeekOverview
+                userType = new global::Client.Client_XamlTypeInfo.XamlUserType(this, typeName, type, GetXamlTypeByName("Windows.UI.Xaml.Controls.Page"));
+                userType.Activator = Activate_15_WeekOverview;
                 userType.AddMemberName("DefaultViewModel");
                 userType.AddMemberName("NavigationHelper");
                 xamlType = userType;
@@ -367,22 +378,32 @@ namespace Client.Client_XamlTypeInfo
             var that = (global::Client.ItemDetailPage)instance;
             return that.DefaultViewModel;
         }
-        private object get_10_Submissions_DefaultViewModel(object instance)
+        private object get_10_ProfilePage_DefaultViewModel(object instance)
+        {
+            var that = (global::Client.ProfilePage)instance;
+            return that.DefaultViewModel;
+        }
+        private object get_11_ProfilePage_NavigationHelper(object instance)
+        {
+            var that = (global::Client.ProfilePage)instance;
+            return that.NavigationHelper;
+        }
+        private object get_12_Submissions_DefaultViewModel(object instance)
         {
             var that = (global::Client.Submissions)instance;
             return that.DefaultViewModel;
         }
-        private object get_11_Submissions_NavigationHelper(object instance)
+        private object get_13_Submissions_NavigationHelper(object instance)
         {
             var that = (global::Client.Submissions)instance;
             return that.NavigationHelper;
         }
-        private object get_12_WeekOverview_DefaultViewModel(object instance)
+        private object get_14_WeekOverview_DefaultViewModel(object instance)
         {
             var that = (global::Client.WeekOverview)instance;
             return that.DefaultViewModel;
         }
-        private object get_13_WeekOverview_NavigationHelper(object instance)
+        private object get_15_WeekOverview_NavigationHelper(object instance)
         {
             var that = (global::Client.WeekOverview)instance;
             return that.NavigationHelper;
@@ -455,28 +476,40 @@ namespace Client.Client_XamlTypeInfo
                 xamlMember.Getter = get_9_ItemDetailPage_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
+            case "Client.ProfilePage.DefaultViewModel":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.ProfilePage");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
+                xamlMember.Getter = get_10_ProfilePage_DefaultViewModel;
+                xamlMember.SetIsReadOnly();
+                break;
+            case "Client.ProfilePage.NavigationHelper":
+                userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.ProfilePage");
+                xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
+                xamlMember.Getter = get_11_ProfilePage_NavigationHelper;
+                xamlMember.SetIsReadOnly();
+                break;
             case "Client.Submissions.DefaultViewModel":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Submissions");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
-                xamlMember.Getter = get_10_Submissions_DefaultViewModel;
+                xamlMember.Getter = get_12_Submissions_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.Submissions.NavigationHelper":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.Submissions");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
-                xamlMember.Getter = get_11_Submissions_NavigationHelper;
+                xamlMember.Getter = get_13_Submissions_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.WeekOverview.DefaultViewModel":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.WeekOverview");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "DefaultViewModel", "Client.Common.ObservableDictionary");
-                xamlMember.Getter = get_12_WeekOverview_DefaultViewModel;
+                xamlMember.Getter = get_14_WeekOverview_DefaultViewModel;
                 xamlMember.SetIsReadOnly();
                 break;
             case "Client.WeekOverview.NavigationHelper":
                 userType = (global::Client.Client_XamlTypeInfo.XamlUserType)GetXamlTypeByName("Client.WeekOverview");
                 xamlMember = new global::Client.Client_XamlTypeInfo.XamlMember(this, "NavigationHelper", "Client.Common.NavigationHelper");
-                xamlMember.Getter = get_13_WeekOverview_NavigationHelper;
+                xamlMember.Getter = get_15_WeekOverview_NavigationHelper;
                 xamlMember.SetIsReadOnly();
                 break;
             }

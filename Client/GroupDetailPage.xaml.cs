@@ -74,7 +74,7 @@ namespace Client
             //var student = (Student)e.NavigationParameter;
             //this.defaultViewModel["Student"] = student;
             //this.defaultViewModel["Courses"] = student.Courses;
-            this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync();
+            //this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync();
         }
 
         /// <summary>

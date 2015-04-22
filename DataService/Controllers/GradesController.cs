@@ -19,7 +19,7 @@ namespace DataService.Controllers
         // GET api/Grades
         public IQueryable<Grade> GetGrades()
         {
-            return db.Grades;
+            return db.Grades.Include(g => g.Student);
         }
 
         // GET api/Grades/5
@@ -82,8 +82,8 @@ namespace DataService.Controllers
             var studentInGrades = grade.Student;
             Course course = db.Courses.Find(courseInGrades.CourseId);
             Student student = db.Students.Find(studentInGrades.StudentId);
-            grade.Course = course;
             grade.Student = student;
+            grade.Course = course;
             ModelState.Clear();
 
             db.Grades.Add(grade);

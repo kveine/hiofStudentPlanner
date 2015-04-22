@@ -29,6 +29,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -78,7 +79,7 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            this.DefaultViewModel["Lectures"] = await DataSource.GetLecturesAsync();
+            this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync(currentStudent);
         }
 
         //Har prøvd å fjerne ubrukte parameter, men da får jeg feil melding. Aner derfor ikke hvordan jeg skal gjøre det. Er mange warnings på dette, skriver bare begrunnelsen her.
@@ -121,7 +122,18 @@ namespace Client
             ObservableCollection<Course> obsColl = await DataSource.GetCoursesAsync();
             
             foreach(var course in obsColl){
-                data.Add(course.Title);
+                if (course.Students.Count == 0)
+                {
+                    data.Add(course.Title);
+                }
+                foreach (var student in course.Students)
+                {
+                    if (student.StudentId != currentStudent)
+                    {
+                        data.Add(course.Title);
+                        break;
+                    }
+                }
             }
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
@@ -150,6 +162,10 @@ namespace Client
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter != null)
+            {
+                currentStudent = (int)e.Parameter;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 

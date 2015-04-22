@@ -93,7 +93,7 @@ namespace Client
 
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(Courses));
+            this.Frame.Navigate(typeof(Courses), currentStudent);
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
@@ -111,6 +111,16 @@ namespace Client
         {
             this.Frame.Navigate(typeof(WeekOverview));
         }
+
+        private void Profile_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(ProfilePage), currentStudent);
+        }
+        private void LogOut_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(GroupedItemsPage));
+        }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {

@@ -25,7 +25,7 @@ namespace Client.DataModel
         public ObservableCollection<Student> Student { get; set; }
         public ObservableCollection<Course> StudentCourses { get; set; }
         
-        public static async Task<ObservableCollection<Course>> GetStudentCoursesAsync()
+        public static async Task<ObservableCollection<Course>> GetStudentCoursesAsync(int currentStudent)
         {
             using (var client = new HttpClient())
             {
@@ -33,21 +33,24 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Students/1");
+                var result = await client.GetAsync("api/Courses");
 
                 if (result.IsSuccessStatusCode)
                 {
                     var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Student>));
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>));
 
-                    ObservableCollection<Student> students = (ObservableCollection<Student>)serializer.ReadObject(resultSTream);
+                    ObservableCollection<Course> courses = (ObservableCollection<Course>)serializer.ReadObject(resultSTream);
+                   
                     ObservableCollection<Course> studentCourses = new ObservableCollection<Course>();
-                    foreach (var entry in students)
+                    foreach (var entry in courses)
                     {
-                        foreach (var course in entry.Courses)
+                        foreach (var student in entry.Students)
                         {
-                            studentCourses.Add(course);
-                            Debug.WriteLine(course.Title);
+                            if (student.StudentId == currentStudent)
+                            {
+                                studentCourses.Add(entry);
+                            }
                         }
                     }
                     return studentCourses;
@@ -147,7 +150,7 @@ namespace Client.DataModel
             }
         }*/
 
-        public static async Task<ObservableCollection<Grade>> GetGradesAsync()
+        public static async Task<ObservableCollection<Grade>> GetGradesAsync(int currentStudent)
         {
             using (var client = new HttpClient())
             {
@@ -163,15 +166,15 @@ namespace Client.DataModel
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Grade>));
 
                     ObservableCollection<Grade> grades = (ObservableCollection<Grade>)serializer.ReadObject(resultSTream);
-                    /*ObservableCollection<Grade> studentGrades = new ObservableCollection<Grade>();
+                    ObservableCollection<Grade> studentGrades = new ObservableCollection<Grade>();
 
-                    for(var grade in grades){
-                        if(grade.student.id == currentStudent){
+                    foreach(var grade in grades){
+                        if(grade.Student.StudentId == currentStudent){
                             studentGrades.Add(grade);
                         }
-                    }*/
+                    }
 
-                    return grades;
+                    return studentGrades;
                 }
                 else
                 {
@@ -179,6 +182,23 @@ namespace Client.DataModel
                 }
             }
         }
+
+        /*
+        public static async Task<ObservableCollection<Grade>> GetStudentGradeAsync()
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.GetAsync("api/Grades");
+ 
+                if(){
+
+                }
+            }
+        }*/
 
         public static async Task<ObservableCollection<Lecture>> GetLecturesAsync()
         {
