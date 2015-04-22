@@ -39,7 +39,7 @@
 
         <!-- Horizontal scrolling grid -->
 
-        <GridView x:ConnectionId='1'
+        <GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Items In Group"
@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-                                           Margin="275,10,-5,0">
+            Margin="275,10,-5,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">
@@ -62,7 +62,7 @@
                             <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Value}"/>
                         </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <CheckBox x:ConnectionId='5'
+                            <CheckBox x:ConnectionId='4'
 	                            HorizontalAlignment="Left"
 	                            VerticalAlignment="Top"
                                                           
@@ -98,9 +98,9 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
         <GridView HorizontalAlignment="Left" VerticalAlignment="Top" Width="242" Height="618" Grid.Row="1" Margin="28,0,0,0">
-            <ComboBox x:ConnectionId='2' x:Name="GradeComboBox"                               HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
-            <ComboBox x:ConnectionId='3' x:Name="CoursesComboBox"                                HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
-            <Button x:ConnectionId='4' Content="Add Grade"                       />
+            <ComboBox x:ConnectionId='1' x:Name="GradeComboBox"                               HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
+            <ComboBox x:ConnectionId='2' x:Name="CoursesComboBox"                                HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
+            <Button x:ConnectionId='3' Content="Add Grade"                       />
         </GridView>
 
     </Grid>

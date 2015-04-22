@@ -37,9 +37,12 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <Grid.DataContext>
+            <Binding Source="{StaticResource profilePageViewSource}"/>
+        </Grid.DataContext>
 
         <!-- Horizontal scrolling grid -->
-        <GridView
+        <!--<GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -75,8 +78,10 @@
                                     <TextBox Text="{Binding LastName}" Margin="10,0,0,10" TextWrapping="Wrap" IsReadOnly="True"/>
                                 </StackPanel>
                                 <StackPanel Margin="0,120,0,0" Orientation="Horizontal">
-                                    
+                                    <TextBlock Text="Username" />
                                     <TextBox Text="{Binding UserName}" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
+                                </StackPanel>
+                                <StackPanel Margin="30,180,0,30" Orientation="Horizontal">
                                     <TextBox PlaceholderText="Old Password" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
                                     <TextBox PlaceholderText="New Password" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
                                     <Button Content="Update" Margin="10,0,0,10"/>
@@ -86,8 +91,32 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </GridView.GroupStyle>
-        </GridView>
+        </GridView>-->
+        <Grid Margin="10,0,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="120"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+                        Style="{StaticResource NavigationBackButtonNormalStyle}"
+                        VerticalAlignment="Top"
+                        AutomationProperties.Name="Back"
+                        AutomationProperties.AutomationId="BackButton"
+                        AutomationProperties.ItemType="Navigation Button"/>
+            <TextBlock x:Name="pageTitle" Text="Profile" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+        </Grid>
+        <TextBlock HorizontalAlignment="Left" Margin="494,82,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Firstname:" VerticalAlignment="Top" Width="125" FontSize="20"/>
+        <TextBox x:Name="firstNameInput" HorizontalAlignment="Left" Margin="646,79,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="192"/>
+        <TextBlock HorizontalAlignment="Left" Margin="494,139,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="125" FontSize="20"/>
+        <TextBox x:Name="lastNameInput" HorizontalAlignment="Left" Margin="646,136,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="192"/>
+        <TextBlock HorizontalAlignment="Left" Margin="494,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="UserName:" VerticalAlignment="Top" Width="125" FontSize="20"/>
+        <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="646,198,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName}" VerticalAlignment="Top" Width="192"/>
+        <TextBox x:Name="oldPasswordInput" HorizontalAlignment="Left" Margin="645,281,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Old password" VerticalAlignment="Top" Width="193"/>
+        <TextBox x:Name="newPasswordInput" HorizontalAlignment="Left" Margin="646,335,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="New password" VerticalAlignment="Top" Width="192"/>
+        <Button Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top"/>
     </Grid>
+
     <!--<Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
             <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>

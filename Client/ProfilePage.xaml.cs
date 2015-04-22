@@ -2,11 +2,13 @@
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -76,6 +78,33 @@ namespace Client
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
+        }
+
+        private async void UpdateProfile_Click(Object sender, ItemClickEventArgs e)
+        {
+            string firstName = firstNameInput.Text;
+            string lastName = lastNameInput.Text;
+            string oldPassword = oldPasswordInput.Text;
+            string newPassword = newPasswordInput.Text;
+            ObservableCollection<Course> courseObs = new ObservableCollection<Course>();
+            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
+
+            foreach (var student in studentObs)
+            {
+                if (student.Password == oldPassword)
+                {
+                    courseObs = student.Courses;
+                    Student updateStudent = new Student() { StudentId = currentStudent, FirstName = firstName, LastName = lastName, Courses = courseObs, Password = newPassword };
+                    await DataSource.UpdateStudentAync(updateStudent);
+                    MessageDialog md = new MessageDialog("Profile information is updated");
+                    await md.ShowAsync();
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Old password is incorrect");
+                    await md.ShowAsync();
+                }
+            }
         }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {

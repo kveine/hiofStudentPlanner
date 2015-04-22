@@ -21,6 +21,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using System.Collections.ObjectModel;
+using Windows.UI.Popups;
 
 // The Items Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234233
 
@@ -126,8 +127,11 @@ namespace Client
                     course = entry;
                 }
             }
-
+           
+            //this.Frame.Refresh();
             await DataSource.AddGradeAsync(grade, course, student);
+            MessageDialog md = new MessageDialog("Course " + courseTitle + " is added.");
+            await md.ShowAsync();
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
@@ -213,7 +217,10 @@ namespace Client
             }
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
-            comboBox.SelectedIndex = 0;
+            if(data.Count != 0){
+                comboBox.SelectedIndex = 0;
+            }
+            
         }
 
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
@@ -226,6 +233,12 @@ namespace Client
 
             /*var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);*/
+        }
+
+        void GradeView_GradeClick(Object sender, ItemClickEventArgs e)
+        {
+            Grade grade = (Grade)e.ClickedItem;
+            this.Frame.Navigate(typeof(GradeDetailPage), grade);
         }
         #region NavigationHelper registration
 

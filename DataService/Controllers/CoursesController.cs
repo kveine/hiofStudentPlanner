@@ -19,7 +19,7 @@ namespace DataService.Controllers
         // GET api/Courses
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses.Include(b => b.Students); // Fix Three - loads related objects (but not cycles)
+            return db.Courses.Include(c => c.Students); // Fix Three - loads related objects (but not cycles)
         }
 
         // GET api/Courses/5

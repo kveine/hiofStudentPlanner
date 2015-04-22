@@ -115,6 +115,9 @@
     <Compile Include="DataModel\DataModelRelay.cs" />
     <Compile Include="DataModel\DataSource.cs" />
     <Compile Include="GlobalSuppressions.cs" />
+    <Compile Include="GradeDetailPage.xaml.cs">
+      <DependentUpon>GradeDetailPage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Grades.xaml.cs">
       <DependentUpon>Grades.xaml</DependentUpon>
     </Compile>
@@ -170,6 +173,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Page Include="Courses.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="GradeDetailPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

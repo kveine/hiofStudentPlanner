@@ -98,7 +98,7 @@ namespace Client.DataModel
                 var result = await client.GetAsync("api/Courses");
                 result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
 
-                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffK";
+                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
                 var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
                 var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>), jsonSerializerSettings);
                 var stream = await result.Content.ReadAsStreamAsync();
@@ -179,9 +179,9 @@ namespace Client.DataModel
                 var result = await client.GetAsync("api/Lectures");
                 result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
 
-                //const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss.fffffffzz";
-                //var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>));//, jsonSerializerSettings
+                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
+                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>), jsonSerializerSettings);
                 var stream = await result.Content.ReadAsStreamAsync();
 
                 ObservableCollection<Lecture> lectures = (ObservableCollection<Lecture>)jsonSerializer.ReadObject(stream);
@@ -249,6 +249,27 @@ namespace Client.DataModel
                 stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Students", content);
+
+                response.EnsureSuccessStatusCode();
+            }
+        }
+
+        public static async Task UpdateStudentAync(Student updatedStudent)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+
+                var jsonSerializer = new DataContractJsonSerializer(typeof(Course));
+
+                var stream = new MemoryStream();
+                jsonSerializer.WriteObject(stream, updatedStudent);
+                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
+
+                var response = await client.PutAsync("api/Students/" + updatedStudent.StudentId, content);
 
                 response.EnsureSuccessStatusCode();
             }

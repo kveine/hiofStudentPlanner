@@ -69,3 +69,8 @@ C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolutio
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ProfilePage.xbf
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\ProfilePage.xaml
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\ProfilePage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.g.i.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.g.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.xaml
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GradeDetailPage.xbf

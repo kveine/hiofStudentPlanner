@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick" Margin="275,10,-5,0">
+            Margin="275,10,-5,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">

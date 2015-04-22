@@ -28,7 +28,7 @@ namespace DataModel
         [StringLength(20)]
         public string Password { get; set; }
 
-        public ICollection<Course> Courses { get; private set; }
+        public ICollection<Course> Courses { get; set; }
 
     }
 

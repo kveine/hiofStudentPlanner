@@ -137,7 +137,10 @@ namespace Client
             }
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
-            comboBox.SelectedIndex = 0;
+            if (data.Count != 0)
+            {
+                comboBox.SelectedIndex = 0;
+            }
         }
 
         //Har ikke jobbet med denne enda, skal implementeres ordentlig senere
