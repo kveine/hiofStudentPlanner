@@ -19,7 +19,7 @@ namespace DataService.Controllers
         // GET api/Grades
         public IQueryable<Grade> GetGrades()
         {
-            return db.Grades.Include(g => g.Student);
+            return db.Grades.Include(g => g.Student).Include(g => g.Course);
         }
 
         // GET api/Grades/5

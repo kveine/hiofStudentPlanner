@@ -72,6 +72,16 @@ namespace Client
             this.DefaultViewModel["Students"] = student;
         }
 
+        private void Course_Click(Object sender, ItemClickEventArgs e)
+        {
+            var course = (Course)e.ClickedItem;
+            this.Frame.Navigate(typeof(ItemDetailPage), course);
+        }
+        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
         /// <summary>
         /// Preserves state associated with this page in case the application is suspended or the
         /// page is discarded from the navigation cache.  Values must conform to the serialization

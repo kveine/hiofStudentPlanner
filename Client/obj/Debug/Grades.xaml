@@ -67,9 +67,10 @@
 	                            VerticalAlignment="Top"
                                                           
 	                                                          
-                                Content="{Binding Value}">
+                                Content="{Binding Course.Title}">
                                 <!--<TextBlock x:Name="ValueChecked" Text="{Binding Value}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>-->
                             </CheckBox>
+                            <TextBlock Text="{Binding Value}"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

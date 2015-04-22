@@ -146,16 +146,21 @@ namespace Client
 
         //Har ikke jobbet med denne metoden enda, skal implementeres ordentlig senere
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic")]
-        void Handle(CheckBox checkBox, Object grade)
+        async void Handle(CheckBox checkBox, Object grade)
         {
             // Use IsChecked.
             bool flag = checkBox.IsChecked.Value;
-            Debug.WriteLine(checkBox.IsChecked.Value);
             Debug.WriteLine(checkBox.Content);
-
+            String content = checkBox.Content.ToString();
+           ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
             if (flag)
             {
-                
+                foreach(var entry in gradeObs){
+                    if (entry.Course.Title == content)
+                    {
+                        await DataSource.DeleteGradeAsync(entry.GradeId);
+                    }
+                }
                 //Debug.WriteLine(grade);
             }
         }
@@ -177,19 +182,34 @@ namespace Client
         private async void CourseComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<String> data = new List<String>();
-            data.Clear();
+            //data.Clear();
             ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
             ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
 
-            foreach (var course in courseObs)
+            /*foreach(var grade in gradeObs)
             {
-                foreach(var student in course.Students){
+                foreach(var course in courseObs){
+                    if(grade.Student.StudentId == currentStudent && grade.Course.CourseId ==)
+                }
+                
+                /*foreach(var student in cour){
                     if (student.StudentId == currentStudent)
                     {
                         data.Add(course.Title);
                     }
                 }
                
+            }*/
+
+            foreach(var course in courseObs)
+            {
+                foreach (var student in course.Students)
+                {
+                    if (student.StudentId == currentStudent)
+                    {
+                        data.Add(course.Title);
+                    }
+                }
             }
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;

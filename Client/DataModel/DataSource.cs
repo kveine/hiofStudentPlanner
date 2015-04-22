@@ -106,21 +106,6 @@ namespace Client.DataModel
                 ObservableCollection<Course> courses = (ObservableCollection<Course>)jsonSerializer.ReadObject(stream);
 
                 return courses;
-                //return (Course)jsonSerializer.ReadObject(stream);
-                /*
-                if (result.IsSuccessStatusCode)
-                {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>));
-
-                    ObservableCollection<Course> courses = (ObservableCollection<Course>)serializer.ReadObject(resultSTream);
-
-                    return courses;
-                }
-                else
-                {
-                    return null;
-                }*/
             }
         }
 
@@ -182,23 +167,6 @@ namespace Client.DataModel
                 }
             }
         }
-
-        /*
-        public static async Task<ObservableCollection<Grade>> GetStudentGradeAsync()
-        {
-            using (var client = new HttpClient())
-            {
-                client.BaseAddress = new Uri("http://localhost:42015/");
-                client.DefaultRequestHeaders.Accept.Clear();
-                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
-
-                var result = await client.GetAsync("api/Grades");
- 
-                if(){
-
-                }
-            }
-        }*/
 
         public static async Task<ObservableCollection<Lecture>> GetLecturesAsync()
         {
@@ -304,6 +272,22 @@ namespace Client.DataModel
                 var response = await client.PostAsync("api/Grades", content);
 
                 response.EnsureSuccessStatusCode();
+            }
+        }
+
+        public static async Task DeleteGradeAsync(int id)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+
+                var result = await client.DeleteAsync("api/Grades/" + id);
+
+                result.EnsureSuccessStatusCode();
+
+
             }
         }
 
