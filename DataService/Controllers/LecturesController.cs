@@ -19,7 +19,7 @@ namespace DataService.Controllers
         // GET api/Lectures
         public IQueryable<Lecture> GetLectures()
         {
-            return db.Lectures;
+            return db.Lectures.Include(l => l.Course);
         }
 
         // GET api/Lectures/5

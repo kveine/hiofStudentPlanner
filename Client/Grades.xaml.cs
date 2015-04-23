@@ -127,11 +127,11 @@ namespace Client
                     course = entry;
                 }
             }
-           
-            //this.Frame.Refresh();
+
+
             await DataSource.AddGradeAsync(grade, course, student);
-            MessageDialog md = new MessageDialog("Course " + courseTitle + " is added.");
-            await md.ShowAsync();
+            var grades = await DataSource.GetGradesAsync(currentStudent);
+            this.DefaultViewModel["Grades"] = grades;
         }
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {

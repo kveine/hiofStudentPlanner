@@ -71,7 +71,7 @@ namespace Client
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
             var student = await DataSource.GetStudentAsync(currentStudent);
-            this.DefaultViewModel["Students"] = student;
+            this.DefaultViewModel["Student"] = student;
         }
 
         private void Course_Click(Object sender, ItemClickEventArgs e)
@@ -80,10 +80,11 @@ namespace Client
             this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
 
-        private async void UpdateProfile_Click(Object sender, ItemClickEventArgs e)
+       private async void UpdateProfile_Click(Object sender, RoutedEventArgs e)
         {
             string firstName = firstNameInput.Text;
             string lastName = lastNameInput.Text;
+            string userName = userNameInput.Text;
             string oldPassword = oldPasswordInput.Text;
             string newPassword = newPasswordInput.Text;
             ObservableCollection<Course> courseObs = new ObservableCollection<Course>();
@@ -94,8 +95,8 @@ namespace Client
                 if (student.Password == oldPassword)
                 {
                     courseObs = student.Courses;
-                    Student updateStudent = new Student() { StudentId = currentStudent, FirstName = firstName, LastName = lastName, Courses = courseObs, Password = newPassword };
-                    await DataSource.UpdateStudentAync(updateStudent);
+                    Student updateStudent = new Student() { StudentId = currentStudent, FirstName = firstName, LastName = lastName, UserName= userName, Courses = courseObs, Password = newPassword };
+                    await DataSource.UpdateStudentAync(updateStudent, currentStudent);
                     MessageDialog md = new MessageDialog("Profile information is updated");
                     await md.ShowAsync();
                 }

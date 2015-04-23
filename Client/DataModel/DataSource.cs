@@ -254,7 +254,7 @@ namespace Client.DataModel
             }
         }
 
-        public static async Task UpdateStudentAync(Student updatedStudent)
+        public static async Task UpdateStudentAync(Student updatedStudent, int currentStudent)
         {
             using (var client = new HttpClient())
             {
@@ -262,14 +262,14 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
-                var jsonSerializer = new DataContractJsonSerializer(typeof(Course));
+                var jsonSerializer = new DataContractJsonSerializer(typeof(Student));
 
                 var stream = new MemoryStream();
                 jsonSerializer.WriteObject(stream, updatedStudent);
                 stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
 
-                var response = await client.PutAsync("api/Students/" + updatedStudent.StudentId, content);
+                var response = await client.PutAsync("api/Students" + currentStudent, content);
 
                 response.EnsureSuccessStatusCode();
             }

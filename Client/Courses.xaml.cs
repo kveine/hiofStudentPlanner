@@ -116,6 +116,39 @@ namespace Client
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
 
+        private async void AddCourse_Click(Object sender, RoutedEventArgs e)
+        {
+            var comboBox = sender as ComboBox;
+            String selectedCourse = comboBox.SelectedItem.ToString();
+
+            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
+            ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
+            ObservableCollection<Course> updatedCourse = new ObservableCollection<Course>();
+
+            String firstname, lastname, username, password;
+            foreach (var course in courseObs)
+            {
+                if (selectedCourse == course.Title)
+                {
+                    updatedCourse.Add(course);
+                }
+            }
+            foreach (var student in studentObs)
+            {
+                firstname = student.FirstName;
+                lastname = student.LastName;
+                username = student.UserName;
+                password = student.Password;
+
+                foreach (var course in student.Courses)
+                {
+                    updatedCourse.Add(course);
+
+                }
+                Student updatedStudentCourses = new Student() {StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse}
+            }
+
+        }
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<String> data = new List<String>();
@@ -142,6 +175,7 @@ namespace Client
                 comboBox.SelectedIndex = 0;
             }
         }
+
 
         //Har ikke jobbet med denne enda, skal implementeres ordentlig senere
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Performance", "CA1822:MarkMembersAsStatic"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]

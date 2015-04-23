@@ -13,13 +13,6 @@
 
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-
-        <CollectionViewSource
-            x:Name="profilePageViewSource"
-            Source="{Binding Students}"
-            IsSourceGrouped="true"
-            ItemsPath="Courses"
-            d:Source="{Binding Students, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
     </Page.Resources>
 
     <!--
@@ -37,10 +30,6 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Grid.DataContext>
-            <Binding Source="{StaticResource profilePageViewSource}"/>
-        </Grid.DataContext>
-
         <!-- Horizontal scrolling grid -->
         <!--<GridView
             x:Name="itemGridView"
@@ -106,6 +95,7 @@
             <TextBlock x:Name="pageTitle" Text="Profile" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
         </Grid>
+        <Grid Grid.Row="1" DataContext="{Binding Student}">
         <TextBlock HorizontalAlignment="Left" Margin="494,82,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Firstname:" VerticalAlignment="Top" Width="125" FontSize="20"/>
         <TextBox x:Name="firstNameInput" HorizontalAlignment="Left" Margin="646,79,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding FirstName}" VerticalAlignment="Top" Width="192"/>
         <TextBlock HorizontalAlignment="Left" Margin="494,139,0,0" Grid.Row="1" TextWrapping="Wrap" Text="Last name:" VerticalAlignment="Top" Width="125" FontSize="20"/>
@@ -114,7 +104,8 @@
         <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="646,198,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName}" VerticalAlignment="Top" Width="192"/>
         <TextBox x:Name="oldPasswordInput" HorizontalAlignment="Left" Margin="645,281,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Old password" VerticalAlignment="Top" Width="193"/>
         <TextBox x:Name="newPasswordInput" HorizontalAlignment="Left" Margin="646,335,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="New password" VerticalAlignment="Top" Width="192"/>
-        <Button Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:ConnectionId='0' Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top"                            />
+        </Grid>
     </Grid>
 
     <!--<Page.BottomAppBar>
