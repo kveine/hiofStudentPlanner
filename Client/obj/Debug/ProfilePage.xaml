@@ -104,7 +104,7 @@
         <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="646,198,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName}" VerticalAlignment="Top" Width="192"/>
         <TextBox x:Name="oldPasswordInput" HorizontalAlignment="Left" Margin="645,281,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Old password" VerticalAlignment="Top" Width="193"/>
         <TextBox x:Name="newPasswordInput" HorizontalAlignment="Left" Margin="646,335,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="New password" VerticalAlignment="Top" Width="192"/>
-        <Button x:ConnectionId='0' Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top"                            />
+        <Button x:ConnectionId='1' Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top"                            />
         </Grid>
     </Grid>
 

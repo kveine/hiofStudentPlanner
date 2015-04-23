@@ -72,6 +72,7 @@ namespace Client
         {
             var student = await DataSource.GetStudentAsync(currentStudent);
             this.DefaultViewModel["Student"] = student;
+            //this.DefaultViewModel["Student"] = student.ElementAt(0);
         }
 
         private void Course_Click(Object sender, ItemClickEventArgs e)
@@ -88,23 +89,20 @@ namespace Client
             string oldPassword = oldPasswordInput.Text;
             string newPassword = newPasswordInput.Text;
             ObservableCollection<Course> courseObs = new ObservableCollection<Course>();
-            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
+            Student student = await DataSource.GetStudentAsync(currentStudent);
 
-            foreach (var student in studentObs)
+            if (student.Password == oldPassword)
             {
-                if (student.Password == oldPassword)
-                {
-                    courseObs = student.Courses;
-                    Student updateStudent = new Student() { StudentId = currentStudent, FirstName = firstName, LastName = lastName, UserName= userName, Courses = courseObs, Password = newPassword };
-                    await DataSource.UpdateStudentAync(updateStudent, currentStudent);
-                    MessageDialog md = new MessageDialog("Profile information is updated");
-                    await md.ShowAsync();
-                }
-                else
-                {
-                    MessageDialog md = new MessageDialog("Old password is incorrect");
-                    await md.ShowAsync();
-                }
+                courseObs = student.Courses;
+                Student updateStudent = new Student() { StudentId = student.StudentId, FirstName = firstName, LastName = lastName, UserName = userName, Courses = courseObs, Password = newPassword };
+                await DataSource.UpdateStudentAync(updateStudent, student.StudentId);
+                MessageDialog md = new MessageDialog("Profile information is updated");
+                await md.ShowAsync();
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Old password is incorrect");
+                await md.ShowAsync();
             }
         }
         private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)

@@ -9,12 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DataModel;
+using DataAccess;
+using DataModel.DataModel;
 
 namespace DataService.Controllers
 {
     public class GradesController : ApiController
     {
-        private SchoolEntities db = new SchoolEntities();
+        private DataContext db = new DataContext();
 
         // GET api/Grades
         public IQueryable<Grade> GetGrades()

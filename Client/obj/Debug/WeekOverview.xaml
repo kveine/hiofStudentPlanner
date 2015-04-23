@@ -15,18 +15,13 @@
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
 
         <CollectionViewSource
-            x:Name="groupedItemsViewSource"
-            Source="{Binding Students}"
+            x:Name="mondayViewSource"
+            Source="{Binding Monday}"
             IsSourceGrouped="true"
             ItemsPath="Courses"
             d:Source="{Binding Students, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
     </Page.Resources>
-
-    <!--
-        This grid acts as a root panel for the page that defines two rows:
-        * Row 0 contains the back button and page title
-        * Row 1 contains the rest of the page layout
-    -->
+    
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -38,13 +33,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!-- Horizontal scrolling grid -->
         <GridView x:ConnectionId='1'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
             Padding="116,137,40,46"
-            ItemsSource="{Binding Source={StaticResource groupedItemsViewSource}}"
+            ItemsSource="{Binding Source={StaticResource mondayViewSource}}"
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
@@ -54,8 +48,8 @@
                     <Grid HorizontalAlignment="Left" Width="250" Height="100">
                         <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
                             <TextBlock Text="Courses" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding CourseId}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                            <TextBlock Text="{Binding Title}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            <TextBlock Text="{Binding Time}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            <TextBlock Text="{Binding Room}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -75,8 +69,8 @@
                                                          
                                     Style="{StaticResource TextBlockButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding FirstName}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                        <TextBlock Text="{Binding LastName}" FontFamily="Segoe UI Symbol" Margin="0,-11,0,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+                                        <TextBlock Text="{Binding Time}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
+                                        <TextBlock Text="{Binding Room}" FontFamily="Segoe UI Symbol" Margin="0,-11,0,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
                                     </StackPanel>
                                 </Button>
                             </Grid>
@@ -94,16 +88,6 @@
             <Button Content="Submissions" Width="287" Height="52"/>
             <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
         </GridView>-->
-        <!-- <Grid HorizontalAlignment="Left" Height="608" Margin="303,10,0,0" Grid.Row="1" VerticalAlignment="Top" Width="1063">
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="18,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="411,153,0,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
-            <Rectangle Fill="#FFF4F4F5" HorizontalAlignment="Left" Height="230" Margin="806,153,-66,0" Stroke="Black" VerticalAlignment="Top" Width="323"/>
-            <TextBlock Text="Monday" FontFamily="Segoe UI Symbol" Margin="18,94,929,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-            <TextBlock Text="Tuesday" FontFamily="Segoe UI Symbol" Margin="411,94,536,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-            <TextBlock Text="Wednesday" FontFamily="Segoe UI Symbol" Margin="806,94,94,460" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-        </Grid>-->
-
-
         <!-- Back button and page title -->
         <!--<Grid>
             <Grid.ColumnDefinitions>
@@ -123,9 +107,9 @@
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
             <AppBarButton x:ConnectionId='4' Label="Courses" Icon="Library"                      />
-            <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton x:ConnectionId='5' Label="Grades" Icon="List"                     />
-            <AppBarButton x:ConnectionId='6' Label="Profile" Icon="Contact"                      />
+            <AppBarButton x:ConnectionId='5' Label="Submissions" Icon="Document"                          />
+            <AppBarButton x:ConnectionId='6' Label="Grades" Icon="List"                     />
+            <AppBarButton x:ConnectionId='7' Label="Profile" Icon="Contact"                      />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

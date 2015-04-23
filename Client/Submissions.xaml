@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick" Margin="419,10,0,0">
+            ItemClick="ItemView_ItemClick" Margin="298,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="480" Margin="10">
@@ -64,7 +64,8 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top"/>
+	                            VerticalAlignment="Top"
+                                />
                             <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                         </StackPanel>
                     </Grid>
@@ -78,33 +79,45 @@
         </GridView>
 
         <!-- Back button and page title -->
-        <Grid>
+        <Grid Margin="298,0,0,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="22*"/>
+                <RowDefinition Height="13*"/>
+            </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="120"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="97"/>
+                <ColumnDefinition/>
             </Grid.ColumnDefinitions>
-            <Button x:Name="backButton" Margin="39,59,39,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
+            <Button x:Name="backButton" Margin="-295,59,0,0" Command="{Binding NavigationHelper.GoBackCommand, ElementName=pageRoot}"
                         Style="{StaticResource NavigationBackButtonNormalStyle}"
                         VerticalAlignment="Top"
                         AutomationProperties.Name="Back"
                         AutomationProperties.AutomationId="BackButton"
-                        AutomationProperties.ItemType="Navigation Button"/>
-            <TextBlock x:Name="pageTitle" Text="{Binding Title}" Style="{StaticResource HeaderTextBlockStyle}" Grid.Column="1" 
-                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="0,0,30,40"/>
+                        AutomationProperties.ItemType="Navigation Button" Grid.RowSpan="2" Width="118" Height="41"/>
+            <TextBlock x:Name="pageTitle" Text="Submissions" Style="{StaticResource HeaderTextBlockStyle}" 
+                        IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="-172,0,30,40" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Margin="0,5,0,0" Grid.Row="1" VerticalAlignment="Top" Width="587" Height="613" Background="Aqua">
-            <TextBlock>Name</TextBlock>
-            <Button Content="Add submission" Width="116"/>
+        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
+            <TextBox x:Name="titleInput" PlaceholderText="Title" Width="200"/>
+            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200"/>
+            <TextBox x:Name="dueDateInput" PlaceholderText="Due date dd/mm" Width="200"/>
+            <ComboBox x:Name="CoursesComboBox" Loaded="ComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
+            </ComboBox>
+            <Button Content="Add submission" Click="AddSubmission_Click"/>
         </GridView>
+        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
+            <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
+            <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
+            <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
+            <Button Content="Submissions" Width="287" Height="52"/>
+            <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
+        </GridView>-->
     </Grid>
-    <Page.BottomAppBar>
+    <!--<Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton FlowDirection="LeftToRight" Label="Edit" Icon="Edit"/>
-            <AppBarButton Label="Remove" Icon="Remove"/>
-            <AppBarButton Label="Add" Icon="Add"/>
-            <AppBarButton Label="Courses" Icon="Library"/>
+            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
             <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List"/>
+            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
         </CommandBar>
-    </Page.BottomAppBar>
+    </Page.BottomAppBar>-->
 </Page>

@@ -113,11 +113,33 @@ namespace Client
         {
             string courseTitle = CoursesComboBox.SelectedValue.ToString();
             string grade = GradeComboBox.SelectedValue.ToString();
+            GradeValue gradeValue = GradeValue.F;
+            
+            switch (grade)
+            {
+                case "A":
+                    gradeValue = GradeValue.A;
+                    break;
+                case "B":
+                     gradeValue = GradeValue.B;
+                    break;
+                case "C":
+                     gradeValue = GradeValue.C;
+                    break;
+                case "D":
+                    gradeValue = GradeValue.D;
+                    break;
+                case "E":
+                    gradeValue = GradeValue.E;
+                    break;
+                case "F":
+                    gradeValue = GradeValue.F;
+                    break;
+            }
           
             ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
   
             Course course = new Course();
-            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
             Student student = new Student() { StudentId = currentStudent };
 
             foreach (var entry in courses)
@@ -129,7 +151,7 @@ namespace Client
             }
 
 
-            await DataSource.AddGradeAsync(grade, course, student);
+            await DataSource.AddGradeAsync(gradeValue, course, student);
             var grades = await DataSource.GetGradesAsync(currentStudent);
             this.DefaultViewModel["Grades"] = grades;
         }
@@ -156,13 +178,15 @@ namespace Client
             bool flag = checkBox.IsChecked.Value;
             Debug.WriteLine(checkBox.Content);
             String content = checkBox.Content.ToString();
-           ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
+            ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
             if (flag)
             {
                 foreach(var entry in gradeObs){
                     if (entry.Course.Title == content)
                     {
                         await DataSource.DeleteGradeAsync(entry.GradeId);
+                        var grades = await DataSource.GetGradesAsync(currentStudent);
+                        this.DefaultViewModel["Grades"] = grades;
                     }
                 }
                 //Debug.WriteLine(grade);
@@ -172,12 +196,12 @@ namespace Client
         private void GradeComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<String> data = new List<String>();
-            data.Add("A");
-            data.Add("B");
-            data.Add("C");
-            data.Add("D");
-            data.Add("E");
-            data.Add("F");
+            data.Add(GradeValue.A.ToString());
+            data.Add(GradeValue.B.ToString());
+            data.Add(GradeValue.C.ToString());
+            data.Add(GradeValue.D.ToString());
+            data.Add(GradeValue.E.ToString());
+            data.Add(GradeValue.F.ToString());
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
             comboBox.SelectedIndex = 0;

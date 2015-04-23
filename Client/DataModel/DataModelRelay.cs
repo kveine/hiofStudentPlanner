@@ -18,7 +18,6 @@ namespace Client.DataModel
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
-
         public ObservableCollection<Course> Courses { get; set; }
 
     }
@@ -33,17 +32,23 @@ namespace Client.DataModel
         public int CourseId { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public int Semester { get; set; }
+        public Semester Semester { get; set; }
         public Exam Exam { get; set; }
         public ObservableCollection<Lecture> Lectures { get; set; }
         public ObservableCollection<Student> Students { get; set; }
     }
 
+    public enum Semester
+    {
+        Fall = 0,
+        Spring
+    }
+
     public class Lecture
     {
         public int LectureId { get; set; }
-        public int DayOfWeek { get; set; }
-        public DateTime Time { get; set; }
+        public DayOfWeek DayOfWeek { get; set; }
+        public string Time { get; set; }
         public Course Course { get; set; }
         public string Room { get; set; }
     }
@@ -54,8 +59,8 @@ namespace Client.DataModel
         public Student Student { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
-        public DateTime DueDate { get; set; }
-        public DateTime CompletionDate { get; set; }
+        public bool Completed { get; set; }
+        public string DueDate { get; set; }
     }
 
     public class Exam
@@ -73,7 +78,16 @@ namespace Client.DataModel
         public int GradeId { get; set; }
         public Course Course { get; set; }
         public Student Student { get; set; }
-        public string Value { get; set; }
+        public GradeValue Value { get; set; }
 
+    }
+    public enum GradeValue
+    {
+        A = 0,
+        B,
+        C,
+        D,
+        E,
+        F
     }
 }

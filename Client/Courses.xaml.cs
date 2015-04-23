@@ -118,14 +118,17 @@ namespace Client
 
         private async void AddCourse_Click(Object sender, RoutedEventArgs e)
         {
-            var comboBox = sender as ComboBox;
-            String selectedCourse = comboBox.SelectedItem.ToString();
+            string selectedCourse = CoursesComboBox.SelectedValue.ToString();
 
-            ObservableCollection<Student> studentObs = await DataSource.GetStudentAsync(currentStudent);
+            Student studentObs = await DataSource.GetStudentAsync(currentStudent);
             ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
             ObservableCollection<Course> updatedCourse = new ObservableCollection<Course>();
 
-            String firstname, lastname, username, password;
+            string firstname = studentObs.FirstName;
+            string lastname = studentObs.LastName;
+            string username = studentObs.UserName;
+            string password = studentObs.Password;
+
             foreach (var course in courseObs)
             {
                 if (selectedCourse == course.Title)
@@ -133,7 +136,13 @@ namespace Client
                     updatedCourse.Add(course);
                 }
             }
-            foreach (var student in studentObs)
+            foreach (var course in studentObs.Courses)
+            {
+                updatedCourse.Add(course);
+            }
+            Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse };
+            await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
+            /*foreach (var student in studentObs)
             {
                 firstname = student.FirstName;
                 lastname = student.LastName;
@@ -145,8 +154,9 @@ namespace Client
                     updatedCourse.Add(course);
 
                 }
-                Student updatedStudentCourses = new Student() {StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse}
-            }
+                Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse };
+                await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
+            }*/
 
         }
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)

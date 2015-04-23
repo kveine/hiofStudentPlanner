@@ -3,6 +3,7 @@ using Client.Data;
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
@@ -28,6 +29,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -68,7 +70,37 @@ namespace Client
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             //this.DefaultViewModel["Submissions"] = await DataSource.GetSubmissionsAsync();
+            var submissions = await DataSource.GetSubmissionsAsync();
+            this.DefaultViewModel["Submissions"] = submissions;
+
         }
+
+        private async void AddSubmission_Click(Object sender, RoutedEventArgs e)
+        {
+            string title = titleInput.Text;
+            string description = desciptionInput.Text;
+            string dueDate = dueDateInput.Text;
+            string courseTitle = CoursesComboBox.SelectedValue.ToString();
+
+            ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
+
+            Course course = new Course();
+            Student student = new Student() { StudentId = currentStudent };
+
+            foreach (var entry in courses)
+            {
+                if (entry.Title == courseTitle)
+                {
+                    course = entry;
+                }
+            }
+
+
+            await DataSource.AddSubmissionAsync(title, course, student, description, dueDate);
+            var submissions = await DataSource.GetSubmissionsAsync();
+            this.DefaultViewModel["Submissions"] = submissions;
+        }
+
          [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
          private void Course_Click(Object sender, ItemClickEventArgs e)
         {
@@ -92,6 +124,30 @@ namespace Client
         {
             this.Frame.Navigate(typeof(Grades));
         }
+
+        private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
+        {
+            List<String> data = new List<String>();
+            ObservableCollection<Course> obsColl = await DataSource.GetCoursesAsync();
+            
+            foreach(var course in obsColl){
+                foreach (var student in course.Students)
+                {
+                    if (student.StudentId != currentStudent)
+                    {
+                        data.Add(course.Title);
+                        break;
+                    }
+                }
+            }
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            if (data.Count != 0)
+            {
+                comboBox.SelectedIndex = 0;
+            }
+        }
+
         #region NavigationHelper registration
 
         /// The methods provided in this section are simply used to allow
@@ -105,6 +161,10 @@ namespace Client
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
+            if (e.Parameter != null)
+            {
+                currentStudent = (int)e.Parameter;
+            }
             navigationHelper.OnNavigatedTo(e);
         }
 
@@ -121,5 +181,6 @@ namespace Client
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
+
     }
 }

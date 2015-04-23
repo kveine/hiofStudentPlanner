@@ -9,17 +9,19 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DataModel;
+using DataAccess;
+using DataModel.DataModel;
 
 namespace DataService.Controllers
 {
     public class SubmissionsController : ApiController
     {
-        private SchoolEntities db = new SchoolEntities();
+        private DataContext db = new DataContext();
 
         // GET api/Submissions
         public IQueryable<Submission> GetSubmissions()
         {
-            return db.Submissions;
+            return db.Submissions.Include(s => s.Course).Include(s => s.Student);
         }
 
         // GET api/Submissions/5
@@ -76,17 +78,14 @@ namespace DataService.Controllers
             /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }*/
 
-            db.Submissions.Add(submission);
-            db.SaveChanges();*/
             var courseInSubmission = submission.Course;
-            Course course = db.Courses.Find(courseInSubmission.CourseId);
-            submission.Course = course;
-
             var studentInSubmission = submission.Student;
+            Course course = db.Courses.Find(courseInSubmission.CourseId);
             Student student = db.Students.Find(studentInSubmission.StudentId);
             submission.Student = student;
+            submission.Course = course;
             ModelState.Clear();
 
             db.Submissions.Add(submission);

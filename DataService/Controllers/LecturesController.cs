@@ -9,12 +9,14 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DataModel;
+using DataAccess;
+using DataModel.DataModel;
 
 namespace DataService.Controllers
 {
     public class LecturesController : ApiController
     {
-        private SchoolEntities db = new SchoolEntities();
+        private DataContext db = new DataContext();
 
         // GET api/Lectures
         public IQueryable<Lecture> GetLectures()
@@ -77,6 +79,7 @@ namespace DataService.Controllers
             {
                 return BadRequest(ModelState);
             }*/
+
             var courseInLecture = lecture.Course;
             Course course = db.Courses.Find(courseInLecture.CourseId);
             lecture.Course = course;

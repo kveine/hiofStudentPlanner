@@ -9,17 +9,19 @@ using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Description;
 using DataModel;
+using DataAccess;
+using DataModel.DataModel;
 
 namespace DataService.Controllers
 {
     public class StudentsController : ApiController
     {
-        private SchoolEntities db = new SchoolEntities();
+        private DataContext db = new DataContext();
 
         // GET api/Students
         public IQueryable<Student> GetStudents()
         {
-            return db.Students.Include(b => b.Courses); // Fix Three - loads related objects (but not cycles)
+            return db.Students.Include(b => b.Courses);
         }
 
         // GET api/Students/5
@@ -31,7 +33,7 @@ namespace DataService.Controllers
             {
                 return NotFound();
             }
-            db.Entry(student).Collection(b => b.Courses).Load(); // Fix Three - loads related objects (but not cycles)
+
             return Ok(student);
         }
 

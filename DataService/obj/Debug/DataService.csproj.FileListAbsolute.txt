@@ -36,3 +36,5 @@ c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolutio
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataService\bin\Antlr3.Runtime.pdb
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataService\obj\Debug\DataService.dll
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataService\obj\Debug\DataService.pdb
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataService\bin\DataAccess.dll
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataService\bin\DataAccess.pdb

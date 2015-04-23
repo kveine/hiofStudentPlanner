@@ -25,7 +25,7 @@
         * Row 1 contains the rest of the page layout
     -->
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}"
-        DataContext="{Binding Lectures}"
+        DataContext="{Binding Courses}"
         d:DataContext="{Binding Courses, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}">
         <Grid.ChildrenTransitions>
             <TransitionCollection>
@@ -100,7 +100,7 @@
         <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
             <ComboBox x:Name="CoursesComboBox" Loaded="ComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
             </ComboBox>
-            <Button Content="Add course"/>
+            <Button Content="Add course" Click="AddCourse_Click"/>
         </GridView>
         <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
             <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
