@@ -50,23 +50,23 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick" Margin="298,10,0,0">
+            ItemClick="SubmissionView_SubmissionClick" Margin="298,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="110" Width="480" Margin="10">
+                    <Grid Height="110" Width="250" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top"
-                                />
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+	                            VerticalAlignment="Top">
+                                <TextBlock x:Name="title" Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="20" FontWeight="Bold"/>
+                            </CheckBox>
+                            <TextBlock Text="{Binding Course.Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding Description}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+                            <TextBlock Text="{Binding DueDate}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontWeight="ExtraBold"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -99,7 +99,7 @@
         </Grid>
         <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
             <TextBox x:Name="titleInput" PlaceholderText="Title" Width="200"/>
-            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200"/>
+            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap"/>
             <TextBox x:Name="dueDateInput" PlaceholderText="Due date dd/mm" Width="200"/>
             <ComboBox x:Name="CoursesComboBox" Loaded="ComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
             </ComboBox>

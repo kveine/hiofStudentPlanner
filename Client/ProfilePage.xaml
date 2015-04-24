@@ -102,8 +102,8 @@
         <TextBox x:Name="lastNameInput" HorizontalAlignment="Left" Margin="646,136,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding LastName}" VerticalAlignment="Top" Width="192"/>
         <TextBlock HorizontalAlignment="Left" Margin="494,201,0,0" Grid.Row="1" TextWrapping="Wrap" Text="UserName:" VerticalAlignment="Top" Width="125" FontSize="20"/>
         <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="646,198,0,0" Grid.Row="1" TextWrapping="Wrap" Text="{Binding UserName}" VerticalAlignment="Top" Width="192"/>
-        <TextBox x:Name="oldPasswordInput" HorizontalAlignment="Left" Margin="645,281,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="Old password" VerticalAlignment="Top" Width="193"/>
-        <TextBox x:Name="newPasswordInput" HorizontalAlignment="Left" Margin="646,335,0,0" Grid.Row="1" TextWrapping="Wrap" PlaceholderText="New password" VerticalAlignment="Top" Width="192"/>
+        <PasswordBox x:Name="oldPasswordInput" HorizontalAlignment="Left" Margin="645,281,0,0" Grid.Row="1" PlaceholderText="Old password" VerticalAlignment="Top" Width="193"/>
+        <PasswordBox x:Name="newPasswordInput" HorizontalAlignment="Left" Margin="646,335,0,0" Grid.Row="1" PlaceholderText="New password" VerticalAlignment="Top" Width="192"/>
         <Button Content="Update user information" HorizontalAlignment="Left" Margin="643,392,0,0" Grid.Row="1" VerticalAlignment="Top" Click="UpdateProfile_Click"/>
         </Grid>
     </Grid>

@@ -12,6 +12,7 @@ Assets\SmallLogo.scale-100.png
 Assets\SplashScreen.scale-100.png
 Assets\StoreLogo.scale-100.png
 App.xbf
+CourseDetailPage.xbf
 Courses.xbf
 GradeDetailPage.xbf
 Grades.xbf
@@ -20,6 +21,7 @@ GroupedItemsPage.xbf
 ItemDetailPage.xbf
 MainPage.xbf
 ProfilePage.xbf
+SubmissionDetailPage.xbf
 Submissions.xbf
 WeekOverview.xbf
 DataModel\SampleData.json

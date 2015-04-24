@@ -39,7 +39,7 @@
 
         <!-- Horizontal scrolling grid -->
 
-        <GridView x:ConnectionId='1'
+        <GridView x:ConnectionId='0'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Items In Group"
@@ -50,23 +50,20 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-                                           Margin="298,10,0,0">
+                                               Margin="298,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="110" Width="480" Margin="10">
+                    <Grid Height="110" Width="400" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top"
-                                />
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+	                            VerticalAlignment="Top">
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="15" FontWeight="Bold"/>
+                            </CheckBox>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -98,9 +95,9 @@
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="-172,0,30,40" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40"/>
         </Grid>
         <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
-            <ComboBox x:ConnectionId='2' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
+            <ComboBox x:ConnectionId='0' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
             </ComboBox>
-            <Button x:ConnectionId='3' Content="Add course"                        />
+            <Button x:ConnectionId='0' Content="Add course"                        />
         </GridView>
         <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
             <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>

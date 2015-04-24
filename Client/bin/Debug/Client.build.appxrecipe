@@ -35,16 +35,16 @@
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Grades\f.png">
       <PackagePath>Assets\Grades\f.png</PackagePath>
     </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SplashScreen.scale-100.png">
+      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
+      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
+    </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Logo.scale-100.png">
       <PackagePath>Assets\Logo.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SmallLogo.scale-100.png">
       <PackagePath>Assets\SmallLogo.scale-100.png</PackagePath>
-      <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-    </AppxPackagedFile>
-    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\SplashScreen.scale-100.png">
-      <PackagePath>Assets\SplashScreen.scale-100.png</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\StoreLogo.scale-100.png">
@@ -65,6 +65,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\CourseDetailPage.xbf">
+      <PackagePath>CourseDetailPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
       <PackagePath>Courses.xbf</PackagePath>
@@ -89,6 +92,9 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ProfilePage.xbf">
       <PackagePath>ProfilePage.xbf</PackagePath>
+    </AppxPackagedFile>
+    <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\SubmissionDetailPage.xbf">
+      <PackagePath>SubmissionDetailPage.xbf</PackagePath>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
       <PackagePath>Submissions.xbf</PackagePath>

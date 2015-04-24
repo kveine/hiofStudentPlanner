@@ -82,9 +82,15 @@ namespace Client
             this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync(currentStudent);
         }
 
+        private void CourseView_CourseClick(Object sender, ItemClickEventArgs e)
+        {
+            var course = (Course)e.ClickedItem;
+            this.Frame.Navigate(typeof(CourseDetailPage), course);
+        }
+
         //Har prøvd å fjerne ubrukte parameter, men da får jeg feil melding. Aner derfor ikke hvordan jeg skal gjøre det. Er mange warnings på dette, skriver bare begrunnelsen her.
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        private void Course_Click(Object sender, ItemClickEventArgs e)
+        /*private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
             this.Frame.Navigate(typeof(ItemDetailPage), course);
@@ -114,7 +120,7 @@ namespace Client
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
-        }
+        }*/
 
         private async void AddCourse_Click(Object sender, RoutedEventArgs e)
         {

@@ -101,7 +101,7 @@ namespace Client
             this.DefaultViewModel["Submissions"] = submissions;
         }
 
-         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
+         /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
          private void Course_Click(Object sender, ItemClickEventArgs e)
         {
             var course = (Course)e.ClickedItem;
@@ -123,7 +123,7 @@ namespace Client
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades));
-        }
+        }*/
 
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
@@ -180,6 +180,12 @@ namespace Client
             // by passing required information as a navigation parameter
             var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
             this.Frame.Navigate(typeof(ItemDetailPage), itemId);
+        }
+
+        void SubmissionView_SubmissionClick(object sender, ItemClickEventArgs e)
+        {
+            var submission = (Submission)e.ClickedItem;
+            this.Frame.Navigate(typeof(SubmissionDetailPage), submission);
         }
 
     }

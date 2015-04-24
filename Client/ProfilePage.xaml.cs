@@ -86,8 +86,8 @@ namespace Client
             string firstName = firstNameInput.Text;
             string lastName = lastNameInput.Text;
             string userName = userNameInput.Text;
-            string oldPassword = oldPasswordInput.Text;
-            string newPassword = newPasswordInput.Text;
+            string oldPassword = oldPasswordInput.Password;
+            string newPassword = newPasswordInput.Password;
             ObservableCollection<Course> courseObs = new ObservableCollection<Course>();
             Student student = await DataSource.GetStudentAsync(currentStudent);
 

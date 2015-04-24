@@ -74,3 +74,13 @@ C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolutio
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.xaml
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\GradeDetailPage.xbf
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GradeDetailPage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\CourseDetailPage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\CourseDetailPage.g.i.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\CourseDetailPage.g.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\CourseDetailPage.xaml
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\CourseDetailPage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\SubmissionDetailPage.xbf
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.g.i.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.g.cs
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.xaml
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.xbf

@@ -50,23 +50,20 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-            ItemClick="ItemView_ItemClick" Margin="298,10,0,0">
+            ItemClick="CourseView_CourseClick" Margin="298,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Height="110" Width="480" Margin="10">
+                    <Grid Height="110" Width="400" Margin="10">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="Auto"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Background="{ThemeResource ListViewItemPlaceholderBackgroundThemeBrush}" Width="110" Height="110">
-                            <Image Source="{Binding ImagePath}" Stretch="UniformToFill" AutomationProperties.Name="{Binding Title}"/>
-                        </Border>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top"
-                                />
-                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
+	                            VerticalAlignment="Top">
+                                <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="15" FontWeight="Bold"/>
+                            </CheckBox>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

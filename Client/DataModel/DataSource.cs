@@ -246,8 +246,6 @@ namespace Client.DataModel
                 var result = await client.DeleteAsync("api/Grades/" + id);
 
                 result.EnsureSuccessStatusCode();
-
-
             }
         }
 
