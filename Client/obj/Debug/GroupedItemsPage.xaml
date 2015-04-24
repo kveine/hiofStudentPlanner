@@ -119,10 +119,10 @@
             <TextBox x:Name="firstNameInput" HorizontalAlignment="Left" Margin="147,59,0,0" TextWrapping="Wrap" PlaceholderText="Firstname" VerticalAlignment="Top" Width="187"/>
             <TextBox x:Name="lastNameInput" HorizontalAlignment="Left" Margin="147,118,0,0" TextWrapping="Wrap" PlaceholderText="Lastname" VerticalAlignment="Top" Width="187"/>
             <TextBox x:Name="userNameInput" HorizontalAlignment="Left" Margin="147,178,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="187"/>
-            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="147,236,0,0" TextWrapping="Wrap" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
+            <PasswordBox x:Name="passwordInput" HorizontalAlignment="Left" Margin="147,236,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
             <Button x:ConnectionId='1' Content="Register" HorizontalAlignment="Left" Margin="144,293,0,0" VerticalAlignment="Top" Width="113"                       />
             <TextBox x:Name="usernameLogIn" HorizontalAlignment="Left" Margin="588,59,0,0" TextWrapping="Wrap" PlaceholderText="Username" VerticalAlignment="Top" Width="187"/>
-            <TextBox x:Name="PasswordLogIn" HorizontalAlignment="Left" Margin="588,118,0,0" TextWrapping="Wrap" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
+            <PasswordBox x:Name="PasswordLogIn" HorizontalAlignment="Left" Margin="588,118,0,0" PlaceholderText="Password" VerticalAlignment="Top" Width="187"/>
             <Button x:ConnectionId='2' Content="Log in" HorizontalAlignment="Left" Margin="585,293,0,0" VerticalAlignment="Top" Width="113"                    />
         </Grid>
     </Grid>

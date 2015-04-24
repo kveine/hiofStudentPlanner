@@ -16,5 +16,6 @@ namespace DataModel
         [Required]
         public Student Student { get; set; }
         public GradeValue Value { get; set; }
+        public string ImagePath { get; set; }
     }
 }

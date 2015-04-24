@@ -155,6 +155,12 @@
     </AppxManifest>
     <None Include="Common\ReadMe.txt" />
     <None Include="Client_TemporaryKey.pfx" />
+    <Content Include="Assets\Grades\a.png" />
+    <Content Include="Assets\Grades\b.png" />
+    <Content Include="Assets\Grades\c.png" />
+    <Content Include="Assets\Grades\d.png" />
+    <Content Include="Assets\Grades\e.png" />
+    <Content Include="Assets\Grades\f.png" />
     <Content Include="DataModel\SampleData.json" />
     <None Include="DataModel\DesignSampleData.json" />
     <None Include="packages.config" />

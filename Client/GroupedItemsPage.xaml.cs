@@ -3,6 +3,7 @@ using Client.Data;
 using Client.DataModel;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using Windows.Foundation;
@@ -140,14 +141,25 @@ namespace Client
             string firstName = firstNameInput.Text;
             string lastName = lastNameInput.Text;
             string userName = userNameInput.Text;
-            string password = passwordInput.Text;
+            string password = passwordInput.Password;
+            ObservableCollection<Student> studentsObs = await DataSource.GetStudentsAsync();
+            bool userNameTaken = false;
 
+            foreach (var student in studentsObs)
+            {
+                if (student.UserName == userName)
+                {
+                    userNameTaken = true;
+                    MessageDialog md = new MessageDialog("Username is already taken!");
+                    await md.ShowAsync();
+                }
+            }
             if (firstName == "" || lastName == "" || userName == "" || password == "")
             {
                 MessageDialog md = new MessageDialog("All fields must be filled out!");
                 await md.ShowAsync();
             }
-            else
+            else if(!userNameTaken)
             {
                 await DataSource.AddStudentAsync(firstName, lastName, userName, password);
                 //this.Frame.Navigate(typeof(WeekOverview));   
@@ -160,7 +172,7 @@ namespace Client
         private async void LogIn_Click(Object sender, RoutedEventArgs e)
         {
             string userName = usernameLogIn.Text;
-            string password = PasswordLogIn.Text;
+            string password = PasswordLogIn.Password;
 
             if (userName == "" || password == "")
             {

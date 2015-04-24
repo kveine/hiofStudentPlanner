@@ -70,7 +70,7 @@ namespace Client
         {
             // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             //this.DefaultViewModel["Submissions"] = await DataSource.GetSubmissionsAsync();
-            var submissions = await DataSource.GetSubmissionsAsync();
+            var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
             this.DefaultViewModel["Submissions"] = submissions;
 
         }
@@ -97,7 +97,7 @@ namespace Client
 
 
             await DataSource.AddSubmissionAsync(title, course, student, description, dueDate);
-            var submissions = await DataSource.GetSubmissionsAsync();
+            var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
             this.DefaultViewModel["Submissions"] = submissions;
         }
 

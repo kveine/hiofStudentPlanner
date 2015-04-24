@@ -79,6 +79,7 @@ namespace Client.DataModel
         public Course Course { get; set; }
         public Student Student { get; set; }
         public GradeValue Value { get; set; }
+        public string ImagePath { get; set; }
 
     }
     public enum GradeValue

@@ -114,26 +114,33 @@ namespace Client
             string courseTitle = CoursesComboBox.SelectedValue.ToString();
             string grade = GradeComboBox.SelectedValue.ToString();
             GradeValue gradeValue = GradeValue.F;
+            string imagePath = "";
             
             switch (grade)
             {
                 case "A":
                     gradeValue = GradeValue.A;
+                    imagePath = "Assets/Grades/a.png";
                     break;
                 case "B":
                      gradeValue = GradeValue.B;
+                     imagePath = "Assets/Grades/b.png";
                     break;
                 case "C":
                      gradeValue = GradeValue.C;
+                     imagePath = "Assets/Grades/c.png";
                     break;
                 case "D":
                     gradeValue = GradeValue.D;
+                    imagePath = "Assets/Grades/d.png";
                     break;
                 case "E":
                     gradeValue = GradeValue.E;
+                    imagePath = "Assets/Grades/e.png";
                     break;
                 case "F":
                     gradeValue = GradeValue.F;
+                    imagePath = "Assets/Grades/f.png";
                     break;
             }
           
@@ -151,7 +158,7 @@ namespace Client
             }
 
 
-            await DataSource.AddGradeAsync(gradeValue, course, student);
+            await DataSource.AddGradeAsync(gradeValue, course, student, imagePath);
             var grades = await DataSource.GetGradesAsync(currentStudent);
             this.DefaultViewModel["Grades"] = grades;
         }

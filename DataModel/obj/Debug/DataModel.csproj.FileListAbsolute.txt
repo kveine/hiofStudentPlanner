@@ -7,3 +7,4 @@ c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolutio
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\bin\Debug\EntityFramework.SqlServer.xml
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\obj\Debug\DataModel.dll
 c:\users\kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\obj\Debug\DataModel.pdb
+C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\DataModel\obj\Debug\DataModel.csprojResolveAssemblyReference.cache
