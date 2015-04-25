@@ -129,6 +129,7 @@ namespace Client
             Student studentObs = await DataSource.GetStudentAsync(currentStudent);
             ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
             ObservableCollection<Course> updatedCourse = new ObservableCollection<Course>();
+            updatedCourse = studentObs.Courses;
 
             string firstname = studentObs.FirstName;
             string lastname = studentObs.LastName;
@@ -140,30 +141,12 @@ namespace Client
                 if (selectedCourse == course.Title)
                 {
                     updatedCourse.Add(course);
+                    break;
                 }
             }
-            foreach (var course in studentObs.Courses)
-            {
-                updatedCourse.Add(course);
-            }
-            Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse };
+            
+            Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, UserName=username, Password = password, Courses = updatedCourse };
             await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
-            /*foreach (var student in studentObs)
-            {
-                firstname = student.FirstName;
-                lastname = student.LastName;
-                username = student.UserName;
-                password = student.Password;
-
-                foreach (var course in student.Courses)
-                {
-                    updatedCourse.Add(course);
-
-                }
-                Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, Password = password, Courses = updatedCourse };
-                await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
-            }*/
-
         }
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {

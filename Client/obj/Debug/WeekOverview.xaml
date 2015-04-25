@@ -20,6 +20,12 @@
             IsSourceGrouped="true"
             ItemsPath="Courses"
             d:Source="{Binding Students, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
+        <CollectionViewSource
+            x:Name="tuesdayViewSource"
+            Source="{Binding Tuesday}"
+            IsSourceGrouped="true"
+            ItemsPath="Courses"/>
+ 
     </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -33,7 +39,17 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <GridView x:ConnectionId='1'
+        <!--<Grid Grid.Row="1" Grid.Column="1" x:Name="contentRegion"  DataContext="{Binding Monday}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150"/>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}" Margin="5,5,5,60">
+                <TextBlock Text="{Binding Time}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
+                <TextBlock Text="{Binding Room}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
+                <TextBlock Text="{Binding Course.Title}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
+            </StackPanel>
+        </Grid>-->
+        <!--<GridView
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Grouped Items"
@@ -42,7 +58,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-                                                                                      Margin="0,50,0,0" Grid.RowSpan="2">
+            ItemClick="Course_Click" SelectionChanged="itemGridView_SelectionChanged" Margin="0,50,0,0" Grid.RowSpan="2">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid HorizontalAlignment="Left" Width="250" Height="100">
@@ -50,6 +66,7 @@
                             <TextBlock Text="Courses" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
                             <TextBlock Text="{Binding Time}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                             <TextBlock Text="{Binding Room}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
+                            <TextBlock Text="{Binding Course.Title}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
@@ -64,9 +81,9 @@
                     <GroupStyle.HeaderTemplate>
                         <DataTemplate>
                             <Grid Margin="0,0,0,2">
-                                <Button x:ConnectionId='3' Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
+                                <Button Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
                                     AutomationProperties.Name="Group Title"
-                                                         
+                                    Click="Student_Click"
                                     Style="{StaticResource TextBlockButtonStyle}" >
                                     <StackPanel Orientation="Horizontal">
                                         <TextBlock Text="{Binding Time}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
@@ -78,16 +95,71 @@
                     </GroupStyle.HeaderTemplate>
                 </GroupStyle>
             </GridView.GroupStyle>
-        </GridView>
-        <TextBox Text="{Binding userName}" HorizontalAlignment="Left" Margin="1099,4,0,0" VerticalAlignment="Top" Height="41" Width="111"/>
-        <Button x:ConnectionId='2' Content="Log out"                      HorizontalAlignment="Left" Margin="1235,7,0,0" VerticalAlignment="Top" Height="41" Width="111"/>
-        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
-            <Button Content="{Binding FirstName}" Width="287" Height="52" Click="WeekOverview_Click"/>
-            <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
-            <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
-            <Button Content="Submissions" Width="287" Height="52"/>
-            <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
         </GridView>-->
+        
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="auto" />
+            </Grid.ColumnDefinitions>
+            <StackPanel Grid.Column="0">
+                <TextBlock Text="Monday" FontSize="30" />
+                <ListView ItemsSource="{Binding Monday}">
+                    <TextBlock Text="Monday"/>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Time}"/>
+                                <TextBlock Text="{Binding Course.Title}"/>
+                                <TextBlock Text="{Binding Room}"/>
+                            </StackPanel>
+
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackPanel>
+            
+
+            <ListView Grid.Column="1" ItemsSource="{Binding Tuesday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding LectureId}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView Grid.Column="2" ItemsSource="{Binding Wednesday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding LectureId}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView Grid.Column="3" ItemsSource="{Binding Thursday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding LectureId}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <ListView Grid.Column="4" ItemsSource="{Binding Friday}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <Button Content="{Binding LectureId}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        
+        
+        <Button x:ConnectionId='1' Content="Log out"                      HorizontalAlignment="Left" Margin="1235,7,0,0" VerticalAlignment="Top" Height="41" Width="111"/>
+        
         <!-- Back button and page title -->
         <!--<Grid>
             <Grid.ColumnDefinitions>
@@ -106,10 +178,10 @@
     </Grid>
     <Page.BottomAppBar>
         <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton x:ConnectionId='4' Label="Courses" Icon="Library"                      />
-            <AppBarButton x:ConnectionId='5' Label="Submissions" Icon="Document"                          />
-            <AppBarButton x:ConnectionId='6' Label="Grades" Icon="List"                     />
-            <AppBarButton x:ConnectionId='7' Label="Profile" Icon="Contact"                      />
+            <AppBarButton x:ConnectionId='2' Label="Courses" Icon="Library"                      />
+            <AppBarButton x:ConnectionId='3' Label="Submissions" Icon="Document"                          />
+            <AppBarButton x:ConnectionId='4' Label="Grades" Icon="List"                     />
+            <AppBarButton x:ConnectionId='5' Label="Profile" Icon="Contact"                      />
         </CommandBar>
     </Page.BottomAppBar>
 </Page>

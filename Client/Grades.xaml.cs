@@ -216,12 +216,50 @@ namespace Client
 
         private async void CourseComboBox_Loaded(object sender, RoutedEventArgs e)
         {
-            List<String> data = new List<String>();
+            List<string> data = new List<string>();
+            ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
+            ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
+
+            foreach (var course in studentCoursesObs)
+            {
+                foreach (var grade in gradeObs)
+                {
+                    if (course.CourseId != grade.Course.CourseId)
+                    {
+                        foreach (var entry in data)
+                        {
+                            if (entry.Count() != 0l)
+                            {
+                                data.Add(course.Title);
+                            }
+                        }
+                    }
+                }
+            }
+            //foreach (var grade in gradeObs)
+            //{
+            //    foreach (var course in studentCoursesObs)
+            //    {
+            //        if (course.CourseId != grade.Course.CourseId)
+            //        {
+            //            data.Add(course.Title);
+            //        }
+            //    }
+            //}
+
+            var comboBox = sender as ComboBox;
+            comboBox.ItemsSource = data;
+            if (data.Count != 0)
+            {
+                comboBox.SelectedIndex = 0;
+            }
+            
+            /*List<String> data = new List<String>();
             //data.Clear();
             ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
             ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
 
-            /*foreach(var grade in gradeObs)
+            foreach(var grade in gradeObs)
             {
                 foreach(var course in courseObs){
                     if(grade.Student.StudentId == currentStudent && grade.Course.CourseId ==)
@@ -234,7 +272,7 @@ namespace Client
                     }
                 }
                
-            }*/
+            }
 
             foreach(var course in courseObs)
             {
@@ -242,15 +280,22 @@ namespace Client
                 {
                     if (student.StudentId == currentStudent)
                     {
-                        data.Add(course.Title);
+                        foreach (var grade in gradeObs)
+                        {
+                            if (grade.Course.CourseId != course.CourseId)
+                            {
+                                data.Add(course.Title);
+                            }
+                        }
                     }
                 }
             }
+
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
             if(data.Count != 0){
                 comboBox.SelectedIndex = 0;
-            }
+            }*/
             
         }
 

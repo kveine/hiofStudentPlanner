@@ -39,7 +39,7 @@
 
         <!-- Horizontal scrolling grid -->
 
-        <GridView x:ConnectionId='0'
+        <GridView x:ConnectionId='1'
             x:Name="itemGridView"
             AutomationProperties.AutomationId="ItemGridView"
             AutomationProperties.Name="Items In Group"
@@ -97,13 +97,13 @@
             <TextBlock x:Name="pageTitle" Text="Submissions" Style="{StaticResource HeaderTextBlockStyle}" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="-172,0,30,40" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
+        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0" Padding="0,0,0,0">
             <TextBox x:Name="titleInput" PlaceholderText="Title" Width="200"/>
-            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap"/>
+            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap" Height="46"/>
             <TextBox x:Name="dueDateInput" PlaceholderText="Due date dd/mm" Width="200"/>
-            <ComboBox x:ConnectionId='0' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
+            <ComboBox x:ConnectionId='2' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
             </ComboBox>
-            <Button x:ConnectionId='0' Content="Add submission"                            />
+            <Button x:ConnectionId='3' Content="Add submission"                            />
         </GridView>
         <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
             <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>

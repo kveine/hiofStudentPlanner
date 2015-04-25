@@ -112,7 +112,7 @@ namespace Client.DataModel
                 stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
 
-                var response = await client.PutAsync("api/Students" + updatedStudent.StudentId, content);
+                var response = await client.PutAsync("api/Students/" + updatedStudent.StudentId, content);
 
                 response.EnsureSuccessStatusCode();
             }

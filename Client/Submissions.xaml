@@ -97,9 +97,9 @@
             <TextBlock x:Name="pageTitle" Text="Submissions" Style="{StaticResource HeaderTextBlockStyle}" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="-172,0,30,40" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0">
+        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0" Padding="0,0,0,0">
             <TextBox x:Name="titleInput" PlaceholderText="Title" Width="200"/>
-            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap"/>
+            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap" Height="46"/>
             <TextBox x:Name="dueDateInput" PlaceholderText="Due date dd/mm" Width="200"/>
             <ComboBox x:Name="CoursesComboBox" Loaded="ComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
             </ComboBox>

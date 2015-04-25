@@ -70,16 +70,15 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            //this.Frame.Navigate(typeof(GroupDetailPage));
-
             //var student = await DataSource.GetStudentAsync(currentStudent);
             //this.DefaultViewModel["Students"] = student;
-            //this.DefaultViewModel["Monday"] = await SortLectureWeekOverview(DayOfWeek.Monday);
-            //this.DefaultViewModel["Tuesday"] = await SortLectureWeekOverview(DayOfWeek.Tuesday);
-            //this.DefaultViewModel["Wednesday"] = await SortLectureWeekOverview(DayOfWeek.Wednesday);
-            //this.DefaultViewModel["Thursday"] = await SortLectureWeekOverview(DayOfWeek.Thursday);
-            //this.DefaultViewModel["Friday"] = await SortLectureWeekOverview(DayOfWeek.Friday);
+            var test = await DataSource.GetLecturesAsync();
+
+            this.DefaultViewModel["Monday"] = await SortLectureWeekOverview(DayOfWeek.Monday);
+            this.DefaultViewModel["Tuesday"] = await SortLectureWeekOverview(DayOfWeek.Tuesday);
+            this.DefaultViewModel["Wednesday"] = await SortLectureWeekOverview(DayOfWeek.Wednesday);
+            this.DefaultViewModel["Thursday"] = await SortLectureWeekOverview(DayOfWeek.Thursday);
+            this.DefaultViewModel["Friday"] = await SortLectureWeekOverview(DayOfWeek.Friday);
         }
         void Student_Click(object sender, RoutedEventArgs e)
         {
@@ -103,7 +102,7 @@ namespace Client
             this.Frame.Navigate(typeof(Courses), currentStudent);
         }
 
-        /*private async Task<ObservableCollection<Lecture>> SortLectureWeekOverview(DayOfWeek dayOfWeek)
+        private async Task<ObservableCollection<Lecture>> SortLectureWeekOverview(DayOfWeek dayOfWeek)
         {
             ObservableCollection<Lecture> dayObs = new ObservableCollection<Lecture>();
             ObservableCollection<Lecture> lectureObs = await DataSource.GetLecturesAsync();
@@ -117,7 +116,7 @@ namespace Client
                 {
                     if (lecture.Course.CourseId == course.CourseId)
                     {
-                        if (lecture.Time.DayOfWeek == day)
+                        if (lecture.DayOfWeek == day)
                         {
                             dayObs.Add(lecture);
                         }
@@ -162,7 +161,7 @@ namespace Client
             //        }
             //    }
             //}
-        }*/
+        }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
         private void Submissions_Click(Object sender, RoutedEventArgs e)

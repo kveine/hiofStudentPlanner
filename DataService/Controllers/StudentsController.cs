@@ -33,24 +33,39 @@ namespace DataService.Controllers
             {
                 return NotFound();
             }
-
+            db.Entry(student).Collection(s => s.Courses).Load();
             return Ok(student);
         }
 
         // PUT api/Students/5
         public IHttpActionResult PutStudent(int id, Student student)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
+            }*/
+
+            var student2 = db.Students.Find(student.StudentId);
+            db.Entry(student2).Collection(s => s.Courses).Load();
+
+            var courses = student.Courses.ToList<Course>();
+            student2.Courses.Clear();
+
+            foreach (var a in courses)
+            {
+                Course course = db.Courses.Find(a.CourseId);
+                student2.Courses.Add(course);
             }
+
+            student2.UserName = student.UserName;
+            student2.Password = student.Password;
 
             if (id != student.StudentId)
             {
                 return BadRequest();
             }
 
-            db.Entry(student).State = EntityState.Modified;
+            db.Entry(student2).State = EntityState.Modified;
 
             try
             {
