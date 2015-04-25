@@ -228,7 +228,7 @@ namespace Client
                     {
                         foreach (var entry in data)
                         {
-                            if (entry.Count() != 0l)
+                            if (entry.Count() != 0)
                             {
                                 data.Add(course.Title);
                             }

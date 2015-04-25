@@ -124,43 +124,6 @@ namespace Client
                 }
             }
             return dayObs;
-
-            //ObservableCollection<Lecture> monday = new ObservableCollection<Lecture>();
-            //ObservableCollection<Lecture> tuesday = new ObservableCollection<Lecture>();
-            //ObservableCollection<Lecture> wednesday = new ObservableCollection<Lecture>();
-            //ObservableCollection<Lecture> thursday = new ObservableCollection<Lecture>();
-            //ObservableCollection<Lecture> friday = new ObservableCollection<Lecture>();
-            //var lectures = DataSource.GetLecturesAsync();
-            //ObservableCollection<Lecture> lectureObs = new ObservableCollection<Lecture>();
-            //Student studentObs = await DataSource.GetStudentAsync(currentStudent);
-
-            //foreach (var lecture in lectureObs)
-            //{
-            //    foreach (var course in studentObs.Courses)
-            //    {
-            //        if (lecture.Course.CourseId == course.CourseId)
-            //        {
-            //            DayOfWeek lectureDay = lecture.Time.DayOfWeek;
-            //            switch(lectureDay){
-            //                case DayOfWeek.Monday:
-            //                    monday.Add(lecture);
-            //                    break;
-            //                case DayOfWeek.Tuesday:
-            //                    tuesday.Add(lecture);
-            //                    break;
-            //                case DayOfWeek.Wednesday:
-            //                    wednesday.Add(lecture);
-            //                    break;
-            //                case DayOfWeek.Thursday:
-            //                    thursday.Add(lecture);
-            //                    break;
-            //                case DayOfWeek.Friday:
-            //                    friday.Add(lecture);
-            //                    break;
-            //            }
-            //        }
-            //    }
-            //}
         }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
