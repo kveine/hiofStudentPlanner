@@ -101,6 +101,8 @@
             <ComboBox x:Name="GradeComboBox" Loaded="GradeComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
             <ComboBox x:Name="CoursesComboBox" Loaded="CourseComboBox_Loaded" HorizontalAlignment="Left" VerticalAlignment="Top" Width="221"/>
             <Button Content="Add Grade" Click="AddGrade_Click"/>
+            <TextBlock Text="Your overall grade: "/>
+            <TextBlock x:Name="overallGrade" FontWeight="Bold"/>
         </GridView>
 
     </Grid>

@@ -145,25 +145,32 @@ namespace Client
             ObservableCollection<Student> studentsObs = await DataSource.GetStudentsAsync();
             bool userNameTaken = false;
 
-            foreach (var student in studentsObs)
+            if (studentsObs != null)
             {
-                if (student.UserName == userName)
+                foreach (var student in studentsObs)
                 {
-                    userNameTaken = true;
-                    MessageDialog md = new MessageDialog("Username is already taken!");
+                    if (student.UserName == userName)
+                    {
+                        userNameTaken = true;
+                        MessageDialog md = new MessageDialog("Username is already taken!");
+                        await md.ShowAsync();
+                    }
+                }
+                if (firstName == "" || lastName == "" || userName == "" || password == "")
+                {
+                    MessageDialog md = new MessageDialog("All fields must be filled out!");
+                    await md.ShowAsync();
+                }
+                else if (!userNameTaken)
+                {
+                    await DataSource.AddStudentAsync(firstName, lastName, userName, password);
+                    MessageDialog md = new MessageDialog("User " + userName + " is created");
                     await md.ShowAsync();
                 }
             }
-            if (firstName == "" || lastName == "" || userName == "" || password == "")
+            else
             {
-                MessageDialog md = new MessageDialog("All fields must be filled out!");
-                await md.ShowAsync();
-            }
-            else if(!userNameTaken)
-            {
-                await DataSource.AddStudentAsync(firstName, lastName, userName, password);
-                //this.Frame.Navigate(typeof(WeekOverview));   
-                MessageDialog md = new MessageDialog("User " + userName + " is created");
+                MessageDialog md = new MessageDialog("User not created, check your internet connection and try again");
                 await md.ShowAsync();
             }
         }
@@ -182,23 +189,31 @@ namespace Client
 
             bool registered = false;
             var students = await DataSource.GetStudentsAsync();
-            //int currentStudent;
-            foreach(var item in students)
+
+            if (students != null)
             {
-                if (item.UserName == userName && item.Password == password)
+                foreach (var item in students)
                 {
-                    registered = true;
-                    currentStudent = item.StudentId;
-                    this.Frame.Navigate(typeof(WeekOverview), currentStudent);
+                    if (item.UserName == userName && item.Password == password)
+                    {
+                        registered = true;
+                        currentStudent = item.StudentId;
+                        this.Frame.Navigate(typeof(WeekOverview), currentStudent);
+                    }
+                }
+                if (!registered)
+                {
+                    MessageDialog md = new MessageDialog("Username or password is incorrect!");
+                    await md.ShowAsync();
                 }
             }
-            if (!registered)
+            else
             {
-                MessageDialog md = new MessageDialog("Username or password is incorrect!");
+                MessageDialog md = new MessageDialog("Unable to log in, check your internet connection and try again");
                 await md.ShowAsync();
             }
         }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
+        
         void ItemView_ItemClick(object sender, ItemClickEventArgs e)
         {
             // Navigate to the appropriate destination page, configuring the new page

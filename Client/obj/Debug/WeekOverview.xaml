@@ -13,19 +13,6 @@
 
     <Page.Resources>
         <x:String x:Key="ChevronGlyph">&#xE26B;</x:String>
-
-        <CollectionViewSource
-            x:Name="mondayViewSource"
-            Source="{Binding Monday}"
-            IsSourceGrouped="true"
-            ItemsPath="Courses"
-            d:Source="{Binding Students, Source={d:DesignData Source=/DataModel/DesignSampleData.json, Type=data:DataSource}}" />
-        <CollectionViewSource
-            x:Name="tuesdayViewSource"
-            Source="{Binding Tuesday}"
-            IsSourceGrouped="true"
-            ItemsPath="Courses"/>
- 
     </Page.Resources>
     
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
@@ -39,64 +26,6 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--<Grid Grid.Row="1" Grid.Column="1" x:Name="contentRegion"  DataContext="{Binding Monday}">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="150"/>
-            </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}" Margin="5,5,5,60">
-                <TextBlock Text="{Binding Time}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
-                <TextBlock Text="{Binding Room}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
-                <TextBlock Text="{Binding Course.Title}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
-            </StackPanel>
-        </Grid>-->
-        <!--<GridView
-            x:Name="itemGridView"
-            AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Grouped Items"
-            Padding="116,137,40,46"
-            ItemsSource="{Binding Source={StaticResource mondayViewSource}}"
-            SelectionMode="None"
-            IsSwipeEnabled="false"
-            IsItemClickEnabled="True"
-            ItemClick="Course_Click" SelectionChanged="itemGridView_SelectionChanged" Margin="0,50,0,0" Grid.RowSpan="2">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Width="250" Height="100">
-                        <StackPanel VerticalAlignment="Bottom" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}">
-                            <TextBlock Text="Courses" Foreground="{ThemeResource ListViewItemOverlayForegroundThemeBrush}" Style="{StaticResource TitleTextBlockStyle}" Height="60" Margin="15,0,15,0"/>
-                            <TextBlock Text="{Binding Time}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                            <TextBlock Text="{Binding Room}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                            <TextBlock Text="{Binding Course.Title}" Foreground="{ThemeResource ListViewItemOverlaySecondaryForegroundThemeBrush}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" Margin="15,0,15,10"/>
-                        </StackPanel>
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid GroupPadding="0,0,70,0"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,2">
-                                <Button Foreground="{ThemeResource ApplicationHeaderForegroundThemeBrush}"
-                                    AutomationProperties.Name="Group Title"
-                                    Click="Student_Click"
-                                    Style="{StaticResource TextBlockButtonStyle}" >
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="{Binding Time}" Margin="0,-11,10,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                        <TextBlock Text="{Binding Room}" FontFamily="Segoe UI Symbol" Margin="0,-11,0,10" Style="{StaticResource SubheaderTextBlockStyle}" TextWrapping="NoWrap" />
-                                    </StackPanel>
-                                </Button>
-                            </Grid>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>-->
-        
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="auto" />

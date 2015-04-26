@@ -61,11 +61,14 @@
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
                             <CheckBox
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top">
-                                <TextBlock x:Name="title" Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="20" FontWeight="Bold"/>
+	                            VerticalAlignment="Top"
+                                Checked="CheckBox_Checked"
+	                            Unchecked="CheckBox_Unchecked"
+                                Content="{Binding SubmissionId}">
+                                <!--<TextBlock x:Name="title" Text="{Binding SubmissionId}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>-->
                             </CheckBox>
+                            <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="20" FontWeight="Bold"/>
                             <TextBlock Text="{Binding Course.Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
-                            <TextBlock Text="{Binding Description}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>
                             <TextBlock Text="{Binding DueDate}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontWeight="ExtraBold"/>
                         </StackPanel>
                     </Grid>

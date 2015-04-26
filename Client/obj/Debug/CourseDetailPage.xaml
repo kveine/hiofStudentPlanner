@@ -35,9 +35,9 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="150"/>
             </Grid.RowDefinitions>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Background="{ThemeResource ListViewItemOverlayBackgroundThemeBrush}" Margin="5,5,5,60">
-                <TextBlock Text="{Binding Title}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
-                <TextBlock Text="{Binding Description}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30"/>
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Margin="5,5,5,60" Height="auto">
+                <TextBlock Text="{Binding Description}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="20" TextWrapping="NoWrap" Height="auto"/>
+                <TextBlock Text="{Binding Exam.Room}" TextAlignment="Center" VerticalAlignment="Bottom" Margin="15,0,15,5" FontSize="30" TextWrapping="Wrap" Height="auto"/>
             </StackPanel>
         </Grid>
 

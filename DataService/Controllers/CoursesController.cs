@@ -20,7 +20,7 @@ namespace DataService.Controllers
         // GET api/Courses
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses.Include(c => c.Students);
+            return db.Courses.Include(c => c.Students).Include(c => c.Exam);
         }
 
         // GET api/Courses/5

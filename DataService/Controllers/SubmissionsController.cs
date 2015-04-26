@@ -33,17 +33,19 @@ namespace DataService.Controllers
             {
                 return NotFound();
             }
-
+          
+            db.Entry(submission).Reference(s => s.Course).Load();
+            db.Entry(submission).Reference(s => s.Student).Load();
             return Ok(submission);
         }
 
         // PUT api/Submissions/5
         public IHttpActionResult PutSubmission(int id, Submission submission)
         {
-            if (!ModelState.IsValid)
+            /*if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
-            }
+            }*/
 
             if (id != submission.SubmissionId)
             {

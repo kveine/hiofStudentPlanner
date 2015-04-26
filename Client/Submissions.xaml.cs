@@ -9,6 +9,7 @@ using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -68,11 +69,15 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
-            //this.DefaultViewModel["Submissions"] = await DataSource.GetSubmissionsAsync();
             var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
             this.DefaultViewModel["Submissions"] = submissions;
 
+        }
+
+        private void SubmissionView_SubmissionClick(object sender, ItemClickEventArgs e)
+        {
+            var submission = (Submission)e.ClickedItem;
+            this.Frame.Navigate(typeof(SubmissionDetailPage), submission);
         }
 
         private async void AddSubmission_Click(Object sender, RoutedEventArgs e)
@@ -82,6 +87,10 @@ namespace Client
             string dueDate = dueDateInput.Text;
             string courseTitle = CoursesComboBox.SelectedValue.ToString();
 
+            if(title == "" || dueDate == "" || courseTitle == ""){
+                MessageDialog md = new MessageDialog("");
+                await md.ShowAsync();
+            }
             ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
 
             Course course = new Course();
@@ -95,35 +104,10 @@ namespace Client
                 }
             }
 
-
             await DataSource.AddSubmissionAsync(title, course, student, description, dueDate);
             var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
             this.DefaultViewModel["Submissions"] = submissions;
         }
-
-         /*[System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-         private void Course_Click(Object sender, ItemClickEventArgs e)
-        {
-            var course = (Course)e.ClickedItem;
-            this.Frame.Navigate(typeof(ItemDetailPage), course);
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        private void Courses_Click(Object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Courses));
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        private void Submissions_Click(Object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Submissions));
-        }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        private void Grades_Click(Object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Grades));
-        }*/
 
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
@@ -145,6 +129,44 @@ namespace Client
             if (data.Count != 0)
             {
                 comboBox.SelectedIndex = 0;
+            }
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var submission = e.OriginalSource;
+            Handle(sender as CheckBox, submission);
+
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var submission = e.OriginalSource;
+            Handle(sender as CheckBox, submission);
+        }
+
+        async void Handle(CheckBox checkBox, Object submission)
+        {
+            bool flag = checkBox.IsChecked.Value;
+            String content = checkBox.Content.ToString();
+            int submissionId = int.Parse(content);
+            Submission currentSubmission = await DataSource.GetSubmissionAsync(submissionId);
+
+            
+            if (flag)
+            {
+                Submission updatedSubmission = new Submission()
+                {
+                    Title = currentSubmission.Title,
+                    SubmissionId = currentSubmission.SubmissionId,
+                    Completed = true,
+                    Course = currentSubmission.Course,
+                    Student = currentSubmission.Student,
+                    Description = currentSubmission.Description,
+                    DueDate = currentSubmission.DueDate
+                };
+
+                await DataSource.UpdateSubmissionAync(updatedSubmission);
             }
         }
 
@@ -174,19 +196,5 @@ namespace Client
         }
 
         #endregion
-        void ItemView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // Navigate to the appropriate destination page, configuring the new page
-            // by passing required information as a navigation parameter
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
-        }
-
-        void SubmissionView_SubmissionClick(object sender, ItemClickEventArgs e)
-        {
-            var submission = (Submission)e.ClickedItem;
-            this.Frame.Navigate(typeof(SubmissionDetailPage), submission);
-        }
-
     }
 }

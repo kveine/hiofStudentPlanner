@@ -57,6 +57,8 @@ namespace DataService.Controllers
                 student2.Courses.Add(course);
             }
 
+            student2.FirstName = student.FirstName;
+            student2.LastName = student.LastName;
             student2.UserName = student.UserName;
             student2.Password = student.Password;
 

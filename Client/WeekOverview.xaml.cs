@@ -70,37 +70,23 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            //var student = await DataSource.GetStudentAsync(currentStudent);
-            //this.DefaultViewModel["Students"] = student;
-            var test = await DataSource.GetLecturesAsync();
-
             this.DefaultViewModel["Monday"] = await SortLectureWeekOverview(DayOfWeek.Monday);
             this.DefaultViewModel["Tuesday"] = await SortLectureWeekOverview(DayOfWeek.Tuesday);
             this.DefaultViewModel["Wednesday"] = await SortLectureWeekOverview(DayOfWeek.Wednesday);
             this.DefaultViewModel["Thursday"] = await SortLectureWeekOverview(DayOfWeek.Thursday);
             this.DefaultViewModel["Friday"] = await SortLectureWeekOverview(DayOfWeek.Friday);
         }
-        void Student_Click(object sender, RoutedEventArgs e)
-        {
-            // Determine what group the Button instance represents
-            var student = (sender as FrameworkElement).DataContext;
 
-            // Navigate to the appropriate destination page, configuring the new page
-            // by passing required information as a navigation parameter
-            this.Frame.Navigate(typeof(GroupDetailPage), ((Student)student));
-        }
+        //private void CheckCurrentDay(DayOfWeek day)
+        //{
+        //    switch (day)
+        //    {
+        //        case DayOfWeek.Monday:
+        //            monday.Foreground = Brushes.Navy;
+        //            break;
+        //    }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        private void Course_Click(Object sender, ItemClickEventArgs e)
-        {
-            var course = (Course)e.ClickedItem;
-            this.Frame.Navigate(typeof(ItemDetailPage), course);
-        }
-
-        private void Courses_Click(Object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(Courses), currentStudent);
-        }
+        //}
 
         private async Task<ObservableCollection<Lecture>> SortLectureWeekOverview(DayOfWeek dayOfWeek)
         {
@@ -126,20 +112,19 @@ namespace Client
             return dayObs;
         }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender"), System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "e")]
+        private void Courses_Click(Object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(Courses), currentStudent);
+        }
+
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions), currentStudent);
         }
+
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
-            //var student = DataSource.GetStudentAsync();
-            //Debug.WriteLine(student);
             this.Frame.Navigate(typeof(Grades), currentStudent);
-        }
-        private void WeekOverview_Click(Object sender, RoutedEventArgs e)
-        {
-            this.Frame.Navigate(typeof(WeekOverview));
         }
 
         private void Profile_Click(Object sender, RoutedEventArgs e)
@@ -149,15 +134,6 @@ namespace Client
         private void LogOut_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(GroupedItemsPage));
-        }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA1801:ReviewUnusedParameters", MessageId = "sender")]
-        void ItemView_ItemClick(object sender, ItemClickEventArgs e)
-        {
-            // Navigate to the appropriate destination page, configuring the new page
-            // by passing required information as a navigation parameter
-            var itemId = ((SampleDataItem)e.ClickedItem).UniqueId;
-            this.Frame.Navigate(typeof(ItemDetailPage), itemId);
         }
 
         #region NavigationHelper registration
@@ -186,11 +162,6 @@ namespace Client
         }
 
         #endregion
-
-        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
 
     }
 }

@@ -59,11 +59,15 @@
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="1" VerticalAlignment="Top" Margin="10,0,0,0">
-                            <CheckBox
+                            <CheckBox x:ConnectionId='4'
 	                            HorizontalAlignment="Left"
-	                            VerticalAlignment="Top">
-                                <TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="15" FontWeight="Bold"/>
+	                            VerticalAlignment="Top"
+                                Content="{Binding CourseId}"
+                                                          
+	                                                          >
+                                <!--<TextBlock Text="{Binding Title}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap" FontSize="15" FontWeight="Bold"/>-->
                             </CheckBox>
+                            <TextBlock Text="{Binding Title}" FontSize="15" FontWeight="Bold"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>
