@@ -74,6 +74,11 @@ namespace Client
         {
             var grades = await DataSource.GetGradesAsync(currentStudent);
             this.DefaultViewModel["Grades"] = grades;
+            if (grades == null)
+            {
+                MessageDialog md = new MessageDialog("Could not load your grades, check your internet connection and try again.");
+                await md.ShowAsync();
+            }
             OverAllGrade();
         }
 

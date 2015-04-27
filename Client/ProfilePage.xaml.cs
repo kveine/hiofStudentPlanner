@@ -72,13 +72,6 @@ namespace Client
         {
             var student = await DataSource.GetStudentAsync(currentStudent);
             this.DefaultViewModel["Student"] = student;
-            //this.DefaultViewModel["Student"] = student.ElementAt(0);
-        }
-
-        private void Course_Click(Object sender, ItemClickEventArgs e)
-        {
-            var course = (Course)e.ClickedItem;
-            this.Frame.Navigate(typeof(ItemDetailPage), course);
         }
 
        private async void UpdateProfile_Click(Object sender, RoutedEventArgs e)
@@ -90,24 +83,26 @@ namespace Client
             string newPassword = newPasswordInput.Password;
             ObservableCollection<Course> courseObs = new ObservableCollection<Course>();
             Student student = await DataSource.GetStudentAsync(currentStudent);
-
-            if (student.Password == oldPassword)
-            {
-                courseObs = student.Courses;
-                Student updateStudent = new Student() { StudentId = student.StudentId, FirstName = firstName, LastName = lastName, UserName = userName, Courses = courseObs, Password = newPassword };
-                await DataSource.UpdateStudentAync(updateStudent, student.StudentId);
-                MessageDialog md = new MessageDialog("Profile information is updated");
-                await md.ShowAsync();
+            if(student != null){
+                if (student.Password == oldPassword)
+                {
+                    courseObs = student.Courses;
+                    Student updateStudent = new Student() { StudentId = student.StudentId, FirstName = firstName, LastName = lastName, UserName = userName, Courses = courseObs, Password = newPassword };
+                    await DataSource.UpdateStudentAync(updateStudent, student.StudentId);
+                    MessageDialog md = new MessageDialog("Profile information is updated");
+                    await md.ShowAsync();
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Old password is incorrect");
+                    await md.ShowAsync();
+                }
             }
             else
             {
-                MessageDialog md = new MessageDialog("Old password is incorrect");
+                MessageDialog md = new MessageDialog("Could not load user information, check your internet connection and try again.");
                 await md.ShowAsync();
             }
-        }
-        private void itemGridView_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
         }
 
         /// <summary>

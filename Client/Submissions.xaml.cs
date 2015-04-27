@@ -84,7 +84,8 @@ namespace Client
         {
             string title = titleInput.Text;
             string description = desciptionInput.Text;
-            string dueDate = dueDateInput.Text;
+            //string dueDate = dueDateInput.Text;
+            string dueDate = dueDateDatePicker.Date.ToString("MM-dd");
             if (CoursesComboBox.SelectedValue != null)
             {
                 string courseTitle = CoursesComboBox.SelectedValue.ToString();

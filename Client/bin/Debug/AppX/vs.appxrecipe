@@ -23,7 +23,7 @@
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe">
       <PackagePath>Client.exe</PackagePath>
-      <Modified>2015-04-27T12:04:06.945</Modified>
+      <Modified>2015-04-27T12:31:02.960</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Grades\a.png">
       <PackagePath>Assets\Grades\a.png</PackagePath>
@@ -91,7 +91,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\CourseDetailPage.xbf">
       <PackagePath>CourseDetailPage.xbf</PackagePath>
-      <Modified>2015-04-27T12:02:23.389</Modified>
+      <Modified>2015-04-27T12:18:00.131</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
       <PackagePath>Courses.xbf</PackagePath>
@@ -131,7 +131,7 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
       <PackagePath>Submissions.xbf</PackagePath>
-      <Modified>2015-04-27T12:04:06.561</Modified>
+      <Modified>2015-04-27T12:18:00.137</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf">
       <PackagePath>WeekOverview.xbf</PackagePath>

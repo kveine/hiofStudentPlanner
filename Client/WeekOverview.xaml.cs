@@ -76,6 +76,14 @@ namespace Client
             this.DefaultViewModel["Wednesday"] = await SortLectureWeekOverview(DayOfWeek.Wednesday);
             this.DefaultViewModel["Thursday"] = await SortLectureWeekOverview(DayOfWeek.Thursday);
             this.DefaultViewModel["Friday"] = await SortLectureWeekOverview(DayOfWeek.Friday);
+
+            //DayOfWeek monday = await SortLectureWeekOverview(DayOfWeek.Monday);
+            //DayOfWeek tuesday = await SortLectureWeekOverview(DayOfWeek.Monday);
+            //DayOfWeek wednesday = DayOfWeek.Monday;
+            //DayOfWeek thursday = DayOfWeek.Monday;
+            //DayOfWeek friday = DayOfWeek.Monday;
+            //MessageDialog md = new MessageDialog("Could not load lectures, check your internet connection and try again.");
+            //await md.ShowAsync();
         }
 
         //private void CheckCurrentDay(DayOfWeek day)
@@ -116,8 +124,6 @@ namespace Client
             }
             else
             {
-                MessageDialog md = new MessageDialog("Could not load lectures, check your internet connection and try again.");
-                await md.ShowAsync();
                 return null;
             }
             
