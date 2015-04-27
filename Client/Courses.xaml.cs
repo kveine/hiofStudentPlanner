@@ -71,12 +71,19 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            // TODO: Assign a bindable collection of items to this.DefaultViewModel["Items"]
             Student student = await DataSource.GetStudentAsync(currentStudent);
             ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-            studentCoursesObs = student.Courses;
+            if (student != null)
+            {
+                studentCoursesObs = student.Courses;
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
+                await md.ShowAsync();
+            }
+            
             this.DefaultViewModel["Courses"] = studentCoursesObs;
-            //this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync(currentStudent);
         }
 
         /// <summary>
@@ -130,7 +137,6 @@ namespace Client
                     Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, UserName = username, Password = password, Courses = updatedCourse };
                     await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
 
-                    //this.DefaultViewModel["Courses"] = await DataSource.GetStudentCoursesAsync(currentStudent);
                     Student student1 = await DataSource.GetStudentAsync(currentStudent);
                     ObservableCollection<Course> studentCoursesObs1 = new ObservableCollection<Course>();
                     studentCoursesObs1 = student1.Courses;
@@ -154,22 +160,31 @@ namespace Client
             List<String> data = new List<String>();
             ObservableCollection<Course> coursesObs = await DataSource.GetCoursesAsync();
             Student student = await DataSource.GetStudentAsync(currentStudent);
-            ObservableCollection<Course> studentCoursesObs = student.Courses;
-            //ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
 
-            var response = coursesObs.Where(p => !studentCoursesObs.Any(p2 => p2.CourseId == p.CourseId));
-
-            foreach (var course in response)
+            if (coursesObs != null && student != null)
             {
-                data.Add(course.Title);
+                ObservableCollection<Course> studentCoursesObs = student.Courses;
+
+                var response = coursesObs.Where(p => !studentCoursesObs.Any(p2 => p2.CourseId == p.CourseId));
+
+                foreach (var course in response)
+                {
+                    data.Add(course.Title);
+                }
+
+                var comboBox = sender as ComboBox;
+                comboBox.ItemsSource = data;
+                if (data.Count != 0)
+                {
+                    comboBox.SelectedIndex = 0;
+                }
             }
+            //else
+            //{
+            //    MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
+            //    await md.ShowAsync();
+            //}
             
-            var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = data;
-            if (data.Count != 0)
-            {
-                comboBox.SelectedIndex = 0;
-            }
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -190,20 +205,15 @@ namespace Client
             bool flag = checkBox.IsChecked.Value;
             String content = checkBox.Content.ToString();
             int courseId = int.Parse(content);
-            //ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
 
             if (flag)
             {
                 Course selectedCourse = await DataSource.GetCourseAsync(courseId);
                 Student student = await DataSource.GetStudentAsync(currentStudent);
-                //ObservableCollection<Grade> gradesObs = await DataSource.GetGradesAsync(currentStudent);
-                //ObservableCollection<Course> courseInGradesObs = new ObservableCollection<Course>();
                 ObservableCollection<Course> updatedCoursesObs = student.Courses;
-                //updatedCoursesObs.Remove();
-                var query = updatedCoursesObs.Where(x => x.CourseId == selectedCourse.CourseId);
-                //Debug.WriteLine(eljhr.ToString());
-                //updatedCoursesObs.Remove(query);
 
+                updatedCoursesObs.Remove(updatedCoursesObs.Where(x => x.CourseId == selectedCourse.CourseId).Single());
+                
                 Student updatedStudent = new Student()
                 {
                     StudentId = student.StudentId,
@@ -214,7 +224,11 @@ namespace Client
                     UserName = student.UserName
                 };
                 await DataSource.UpdateStudentAync(updatedStudent, currentStudent);
-                int jkhde = 0;
+                Student newStudent = await DataSource.GetStudentAsync(currentStudent);
+                ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
+                studentCoursesObs = newStudent.Courses;
+                this.DefaultViewModel["Courses"] = studentCoursesObs;
+
                 //foreach (var entry in gradesObs)
                 //{
                 //    courseInGradesObs.Add(entry.Course);

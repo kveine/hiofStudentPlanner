@@ -33,6 +33,7 @@ namespace DataService.Controllers
                 return NotFound();
             }
             db.Entry(course).Collection(b => b.Lectures).Load();
+            db.Entry(course).Reference(b => b.Exam).Load();
             return Ok(course);
         }
 

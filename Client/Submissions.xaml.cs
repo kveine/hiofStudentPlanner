@@ -85,51 +85,75 @@ namespace Client
             string title = titleInput.Text;
             string description = desciptionInput.Text;
             string dueDate = dueDateInput.Text;
-            string courseTitle = CoursesComboBox.SelectedValue.ToString();
-
-            if(title == "" || dueDate == "" || courseTitle == ""){
-                MessageDialog md = new MessageDialog("");
-                await md.ShowAsync();
-            }
-            ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
-
-            Course course = new Course();
-            Student student = new Student() { StudentId = currentStudent };
-
-            foreach (var entry in courses)
+            if (CoursesComboBox.SelectedValue != null)
             {
-                if (entry.Title == courseTitle)
+                string courseTitle = CoursesComboBox.SelectedValue.ToString();
+                if (title == "" || dueDate == "")
                 {
-                    course = entry;
+                    MessageDialog md = new MessageDialog("Title, due date and course are required fields");
+                    await md.ShowAsync();
+                }
+                else
+                {
+                    ObservableCollection<Course> courses = await DataSource.GetCoursesAsync();
+                    if (courses != null)
+                    {
+                        Course course = new Course();
+                        Student student = new Student() { StudentId = currentStudent };
+
+                        foreach (var entry in courses)
+                        {
+                            if (entry.Title == courseTitle)
+                            {
+                                course = entry;
+                            }
+                        }
+
+                        await DataSource.AddSubmissionAsync(title, course, student, description, dueDate);
+                        var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
+                        this.DefaultViewModel["Submissions"] = submissions;
+                    }
                 }
             }
-
-            await DataSource.AddSubmissionAsync(title, course, student, description, dueDate);
-            var submissions = await DataSource.GetSubmissionsAsync(currentStudent);
-            this.DefaultViewModel["Submissions"] = submissions;
+            else
+            {
+                MessageDialog md = new MessageDialog("Could not add submission! Check your internet connection and try again.");
+                await md.ShowAsync();
+            }
+           
         }
 
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<String> data = new List<String>();
-            ObservableCollection<Course> obsColl = await DataSource.GetCoursesAsync();
-            
-            foreach(var course in obsColl){
-                foreach (var student in course.Students)
+            ObservableCollection<Course> coursesObs = await DataSource.GetCoursesAsync();
+
+            if (coursesObs != null)
+            {
+                foreach (var course in coursesObs)
                 {
-                    if (student.StudentId != currentStudent)
+                    foreach (var student in course.Students)
                     {
-                        data.Add(course.Title);
-                        break;
+                        if (student.StudentId != currentStudent)
+                        {
+                            data.Add(course.Title);
+                            break;
+                        }
                     }
                 }
+                var comboBox = sender as ComboBox;
+                comboBox.ItemsSource = data;
+                if (data.Count != 0)
+                {
+                    comboBox.SelectedIndex = 0;
+                }
             }
-            var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = data;
-            if (data.Count != 0)
+            else
             {
-                comboBox.SelectedIndex = 0;
+                MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
+                await md.ShowAsync();
             }
+            
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -152,21 +176,28 @@ namespace Client
             int submissionId = int.Parse(content);
             Submission currentSubmission = await DataSource.GetSubmissionAsync(submissionId);
 
-            
-            if (flag)
+            if (currentSubmission != null)
             {
-                Submission updatedSubmission = new Submission()
+                if (flag)
                 {
-                    Title = currentSubmission.Title,
-                    SubmissionId = currentSubmission.SubmissionId,
-                    Completed = true,
-                    Course = currentSubmission.Course,
-                    Student = currentSubmission.Student,
-                    Description = currentSubmission.Description,
-                    DueDate = currentSubmission.DueDate
-                };
+                    Submission updatedSubmission = new Submission()
+                    {
+                        Title = currentSubmission.Title,
+                        SubmissionId = currentSubmission.SubmissionId,
+                        Completed = true,
+                        Course = currentSubmission.Course,
+                        Student = currentSubmission.Student,
+                        Description = currentSubmission.Description,
+                        DueDate = currentSubmission.DueDate
+                    };
 
-                await DataSource.UpdateSubmissionAync(updatedSubmission);
+                    await DataSource.UpdateSubmissionAync(updatedSubmission);
+                }
+            }
+            else
+            {
+                MessageDialog md = new MessageDialog("Could not update submission, check your internet connection and try again.");
+                await md.ShowAsync();
             }
         }
 

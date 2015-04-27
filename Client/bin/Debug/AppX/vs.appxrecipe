@@ -17,13 +17,13 @@
     <AppXManifest Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\AppxManifest.xml">
       <PackagePath>AppxManifest.xml</PackagePath>
       <ReRegisterAppIfChanged>true</ReRegisterAppIfChanged>
-      <Modified>2015-04-26T18:52:52.034</Modified>
+      <Modified>2015-04-27T08:05:37.495</Modified>
     </AppXManifest>
   </ItemGroup>
   <ItemGroup>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe">
       <PackagePath>Client.exe</PackagePath>
-      <Modified>2015-04-26T20:49:34.545</Modified>
+      <Modified>2015-04-27T12:04:06.945</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\Assets\Grades\a.png">
       <PackagePath>Assets\Grades\a.png</PackagePath>
@@ -87,59 +87,59 @@
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\App.xbf">
       <PackagePath>App.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.291</Modified>
+      <Modified>2015-04-27T08:05:36.670</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\CourseDetailPage.xbf">
       <PackagePath>CourseDetailPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.294</Modified>
+      <Modified>2015-04-27T12:02:23.389</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Courses.xbf">
       <PackagePath>Courses.xbf</PackagePath>
-      <Modified>2015-04-26T18:55:41.983</Modified>
+      <Modified>2015-04-27T08:05:36.677</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GradeDetailPage.xbf">
       <PackagePath>GradeDetailPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.298</Modified>
+      <Modified>2015-04-27T08:05:36.677</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Grades.xbf">
       <PackagePath>Grades.xbf</PackagePath>
-      <Modified>2015-04-26T18:55:41.986</Modified>
+      <Modified>2015-04-27T08:05:36.681</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupedItemsPage.xbf">
       <PackagePath>GroupedItemsPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.302</Modified>
+      <Modified>2015-04-27T08:05:36.682</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\GroupDetailPage.xbf">
       <PackagePath>GroupDetailPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.306</Modified>
+      <Modified>2015-04-27T08:05:36.687</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ItemDetailPage.xbf">
       <PackagePath>ItemDetailPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.310</Modified>
+      <Modified>2015-04-27T08:05:36.687</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\MainPage.xbf">
       <PackagePath>MainPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.313</Modified>
+      <Modified>2015-04-27T08:05:36.688</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\ProfilePage.xbf">
       <PackagePath>ProfilePage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.316</Modified>
+      <Modified>2015-04-27T08:05:36.691</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\SubmissionDetailPage.xbf">
       <PackagePath>SubmissionDetailPage.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.319</Modified>
+      <Modified>2015-04-27T08:05:36.695</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Submissions.xbf">
       <PackagePath>Submissions.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.323</Modified>
+      <Modified>2015-04-27T12:04:06.561</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\WeekOverview.xbf">
       <PackagePath>WeekOverview.xbf</PackagePath>
-      <Modified>2015-04-26T18:52:51.327</Modified>
+      <Modified>2015-04-27T08:05:36.702</Modified>
     </AppxPackagedFile>
     <AppxPackagedFile Include="C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\resources.pri">
       <PackagePath>resources.pri</PackagePath>
-      <Modified>2015-04-26T18:52:51.854</Modified>
+      <Modified>2015-04-27T08:05:37.318</Modified>
     </AppxPackagedFile>
   </ItemGroup>
   <ItemGroup>

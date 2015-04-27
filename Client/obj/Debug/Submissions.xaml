@@ -50,7 +50,7 @@
             SelectionMode="None"
             IsSwipeEnabled="false"
             IsItemClickEnabled="True"
-                                                       Margin="298,10,0,0">
+                                                       Margin="431,10,0,0">
             <GridView.ItemTemplate>
                 <DataTemplate>
                     <Grid Height="110" Width="250" Margin="10">
@@ -100,11 +100,12 @@
             <TextBlock x:Name="pageTitle" Text="Submissions" Style="{StaticResource HeaderTextBlockStyle}" 
                         IsHitTestVisible="false" TextWrapping="NoWrap" VerticalAlignment="Bottom" Margin="-172,0,30,40" Grid.RowSpan="2" Grid.ColumnSpan="2" Height="40"/>
         </Grid>
-        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="268" Height="613" Margin="25,0,0,0" Padding="0,0,0,0">
-            <TextBox x:Name="titleInput" PlaceholderText="Title" Width="200"/>
-            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="200" TextWrapping="Wrap" Height="46"/>
+        <GridView HorizontalAlignment="Left" Grid.Row="1" VerticalAlignment="Top" Width="331" Height="613" Margin="25,0,0,0" Padding="0,0,0,0">
+            <TextBox x:Name="titleInput" PlaceholderText="Title" Width="275"/>
+            <TextBox x:Name="desciptionInput" PlaceholderText="Description" Width="278" TextWrapping="Wrap" Height="46"/>
+            <DatePicker x:Name="dueDateDatePicker"/>
             <TextBox x:Name="dueDateInput" PlaceholderText="Due date dd/mm" Width="200"/>
-            <ComboBox x:ConnectionId='2' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="248">
+            <ComboBox x:ConnectionId='2' x:Name="CoursesComboBox"                          HorizontalAlignment="Left" VerticalAlignment="Top" Width="276">
             </ComboBox>
             <Button x:ConnectionId='3' Content="Add submission"                            />
         </GridView>

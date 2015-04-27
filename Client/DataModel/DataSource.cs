@@ -32,11 +32,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Students");
+                var response = await client.GetAsync("api/Students");
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var resultSTream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Student>));
 
                     ObservableCollection<Student> students = (ObservableCollection<Student>)serializer.ReadObject(resultSTream);
@@ -58,11 +58,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Students/" + id);
+                var response = await client.GetAsync("api/Students/" + id);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var resultStream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(Student));
                     Student student = (Student)serializer.ReadObject(resultStream);
 
@@ -94,7 +94,7 @@ namespace Client.DataModel
 
                 if (!response.IsSuccessStatusCode)
                 {
-                    MessageDialog md = new MessageDialog("User not created, check your internet connection and try again");
+                    MessageDialog md = new MessageDialog("User not created! Check your internet connection and try again.");
                     await md.ShowAsync();
                 }
             }
@@ -117,7 +117,11 @@ namespace Client.DataModel
 
                 var response = await client.PutAsync("api/Students/" + updatedStudent.StudentId, content);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Could not update, check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
             }
         }
 
@@ -170,17 +174,25 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Courses");
-                result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
+                var response = await client.GetAsync("api/Courses");
+                
+                if (response.IsSuccessStatusCode)
+                {
+                    const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
+                    var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                    var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>), jsonSerializerSettings);
+                    var stream = await response.Content.ReadAsStreamAsync();
 
-                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
-                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>), jsonSerializerSettings);
-                var stream = await result.Content.ReadAsStreamAsync();
+                    ObservableCollection<Course> courses = (ObservableCollection<Course>)jsonSerializer.ReadObject(stream);
 
-                ObservableCollection<Course> courses = (ObservableCollection<Course>)jsonSerializer.ReadObject(stream);
+                    return courses;
+                }
+                else
+                {
+                    return null;
+                }
 
-                return courses;
+                
             }
         }
 
@@ -192,11 +204,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Courses/" + courseId);
+                var response = await client.GetAsync("api/Courses/" + courseId);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var resultStream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(Course));
                     Course course = (Course)serializer.ReadObject(resultStream);
 
@@ -217,11 +229,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Grades");
+                var response = await client.GetAsync("api/Grades");
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var resultSTream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Grade>));
 
                     ObservableCollection<Grade> grades = (ObservableCollection<Grade>)serializer.ReadObject(resultSTream);
@@ -259,7 +271,11 @@ namespace Client.DataModel
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Grades", content);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Grade not added! Check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
             }
         }
 
@@ -271,9 +287,12 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.DeleteAsync("api/Grades/" + id);
+                var response = await client.DeleteAsync("api/Grades/" + id);
 
-                result.EnsureSuccessStatusCode();
+                if(!response.IsSuccessStatusCode){
+                    MessageDialog md = new MessageDialog("Grade not deleted! Check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
             }
         }
 
@@ -285,17 +304,22 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Lectures");
-                result.EnsureSuccessStatusCode(); // Throw an exception if something went wrong
+                var response = await client.GetAsync("api/Lectures");
+               
+                if(response.IsSuccessStatusCode){
+                    const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
+                    var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
+                    var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>), jsonSerializerSettings);
+                    var stream = await response.Content.ReadAsStreamAsync();
 
-                const string dateTimeFormat = "yyyy-MM-ddTHH:mm:ss";
-                var jsonSerializerSettings = new DataContractJsonSerializerSettings { DateTimeFormat = new DateTimeFormat(dateTimeFormat) };
-                var jsonSerializer = new DataContractJsonSerializer(typeof(ObservableCollection<Lecture>), jsonSerializerSettings);
-                var stream = await result.Content.ReadAsStreamAsync();
+                    ObservableCollection<Lecture> lectures = (ObservableCollection<Lecture>)jsonSerializer.ReadObject(stream);
 
-                ObservableCollection<Lecture> lectures = (ObservableCollection<Lecture>)jsonSerializer.ReadObject(stream);
-
-                return lectures;
+                    return lectures;
+                }
+                else
+                {
+                    return null;
+                }
             }
         }
 
@@ -307,11 +331,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Submissions");
+                var response = await client.GetAsync("api/Submissions");
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultSTream = await result.Content.ReadAsStreamAsync();
+                    var resultSTream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Submission>));
 
                     ObservableCollection<Submission> submissions = (ObservableCollection<Submission>)serializer.ReadObject(resultSTream);
@@ -342,11 +366,11 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var result = await client.GetAsync("api/Submissions/" + submissionId);
+                var response = await client.GetAsync("api/Submissions/" + submissionId);
 
-                if (result.IsSuccessStatusCode)
+                if (response.IsSuccessStatusCode)
                 {
-                    var resultStream = await result.Content.ReadAsStreamAsync();
+                    var resultStream = await response.Content.ReadAsStreamAsync();
                     var serializer = new DataContractJsonSerializer(typeof(Submission));
                     Submission submission = (Submission)serializer.ReadObject(resultStream);
 
@@ -376,7 +400,11 @@ namespace Client.DataModel
 
                 var response = await client.PutAsync("api/Submissions/" + updatedSubmission.SubmissionId, content);
 
-                response.EnsureSuccessStatusCode();
+                if (!response.IsSuccessStatusCode)
+                {
+                    MessageDialog md = new MessageDialog("Submission not updated! Check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
             }
         }
 
@@ -398,7 +426,10 @@ namespace Client.DataModel
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
                 var response = await client.PostAsync("api/Submissions", content);
 
-                response.EnsureSuccessStatusCode();
+                if(!response.IsSuccessStatusCode){
+                    MessageDialog md = new MessageDialog("Submission not added! Check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
             }
         }
     }

@@ -11,6 +11,7 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Threading.Tasks;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI.Popups;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -94,22 +95,32 @@ namespace Client
             ObservableCollection<Lecture> lectureObs = await DataSource.GetLecturesAsync();
             Student studentObs = await DataSource.GetStudentAsync(currentStudent);
 
-            DayOfWeek day = dayOfWeek;
-
-            foreach (var lecture in lectureObs)
+            if (lectureObs != null && studentObs != null)
             {
-                foreach (var course in studentObs.Courses)
+                DayOfWeek day = dayOfWeek;
+
+                foreach (var lecture in lectureObs)
                 {
-                    if (lecture.Course.CourseId == course.CourseId)
+                    foreach (var course in studentObs.Courses)
                     {
-                        if (lecture.DayOfWeek == day)
+                        if (lecture.Course.CourseId == course.CourseId)
                         {
-                            dayObs.Add(lecture);
+                            if (lecture.DayOfWeek == day)
+                            {
+                                dayObs.Add(lecture);
+                            }
                         }
                     }
                 }
+                return dayObs;
             }
-            return dayObs;
+            else
+            {
+                MessageDialog md = new MessageDialog("Could not load lectures, check your internet connection and try again.");
+                await md.ShowAsync();
+                return null;
+            }
+            
         }
 
         private void Courses_Click(Object sender, RoutedEventArgs e)

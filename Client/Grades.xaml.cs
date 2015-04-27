@@ -85,41 +85,44 @@ namespace Client
             int count = 0;
             int gradesValue = 0;
             ObservableCollection<Grade> grades = await DataSource.GetGradesAsync(currentStudent);
-            foreach(var grade in grades){
-                switch (grade.Value)
+            if (grades != null)
+            {
+                foreach (var grade in grades)
                 {
-                    case GradeValue.A:
-                        gradesValue += 6;
-                        count++;
-                        break;
-                    case GradeValue.B:
-                        gradesValue += 5;
-                        count++;
-                        break;
-                    case GradeValue.C:
-                        gradesValue += 4;
-                        count++;
-                        break;
-                    case GradeValue.D:
-                        gradesValue += 3;
-                        count++;
-                        break;
-                    case GradeValue.E:
-                        gradesValue += 2;
-                        count++;
-                        break;
-                    case GradeValue.F:
-                       gradesValue += 1;
-                        count++;
-                        break;
+                    switch (grade.Value)
+                    {
+                        case GradeValue.A:
+                            gradesValue += 6;
+                            count++;
+                            break;
+                        case GradeValue.B:
+                            gradesValue += 5;
+                            count++;
+                            break;
+                        case GradeValue.C:
+                            gradesValue += 4;
+                            count++;
+                            break;
+                        case GradeValue.D:
+                            gradesValue += 3;
+                            count++;
+                            break;
+                        case GradeValue.E:
+                            gradesValue += 2;
+                            count++;
+                            break;
+                        case GradeValue.F:
+                            gradesValue += 1;
+                            count++;
+                            break;
+                    }
                 }
+
+                double overallGrade1 = gradesValue / count;
+
+                string overAllGradeOutput = overallGrade1.ToString();
+                overallGrade.Text = overAllGradeOutput;
             }
-
-            double overallGrade1 = gradesValue / count;
-
-            string overAllGradeOutput = overallGrade1.ToString();
-            overallGrade.Text = overAllGradeOutput;
-            
         }
 
         /// <summary>
@@ -242,18 +245,24 @@ namespace Client
             bool flag = checkBox.IsChecked.Value;
             String content = checkBox.Content.ToString();
             ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
-            if (flag)
+
+            if (gradeObs != null)
             {
-                foreach(var entry in gradeObs){
-                    if (entry.Course.Title == content)
+                if (flag)
+                {
+                    foreach (var entry in gradeObs)
                     {
-                        await DataSource.DeleteGradeAsync(entry.GradeId);
-                        var grades = await DataSource.GetGradesAsync(currentStudent);
-                        this.DefaultViewModel["Grades"] = grades;
+                        if (entry.Course.Title == content)
+                        {
+                            await DataSource.DeleteGradeAsync(entry.GradeId);
+                            var grades = await DataSource.GetGradesAsync(currentStudent);
+                            this.DefaultViewModel["Grades"] = grades;
+                        }
                     }
+                    OverAllGrade();
                 }
-                OverAllGrade();
             }
+            
         }
 
         /// <summary>
@@ -272,7 +281,10 @@ namespace Client
             data.Add(GradeValue.F.ToString());
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
-            comboBox.SelectedIndex = 0;
+            if (data != null)
+            {
+                comboBox.SelectedIndex = 0;
+            }
         }
 
         /// <summary>
@@ -285,32 +297,35 @@ namespace Client
 
             List<string> data = new List<string>();
             Student student = await DataSource.GetStudentAsync(currentStudent);
-            ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-            studentCoursesObs = student.Courses;
-            //ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
             ObservableCollection<Grade> gradeObs = await DataSource.GetGradesAsync(currentStudent);
             ObservableCollection<Course> courseInGradeObs = new ObservableCollection<Course>();
-
-            foreach (var entry in gradeObs)
+            if (student != null)
             {
-                courseInGradeObs.Add(entry.Course);
-            }
-            
+                ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
+                studentCoursesObs = student.Courses;
 
-            var response = studentCoursesObs.Where(p => !courseInGradeObs.Any(p2 => p2.CourseId == p.CourseId));
+                if (gradeObs != null)
+                {
+                    foreach (var entry in gradeObs)
+                    {
+                        courseInGradeObs.Add(entry.Course);
+                    }
 
-            foreach (var course in response)
-            {
-                data.Add(course.Title);
+
+                    var response = studentCoursesObs.Where(p => !courseInGradeObs.Any(p2 => p2.CourseId == p.CourseId));
+                    foreach (var course in response)
+                    {
+                        data.Add(course.Title);
+                    }
+
+                    var comboBox = sender as ComboBox;
+                    comboBox.ItemsSource = data;
+                    if (data.Count != 0)
+                    {
+                        comboBox.SelectedIndex = 0;
+                    }
+                }
             }
-           
-            var comboBox = sender as ComboBox;
-            comboBox.ItemsSource = data;
-            if (data.Count != 0)
-            {
-                comboBox.SelectedIndex = 0;
-            }
-           
         }
 
         #region NavigationHelper registration
