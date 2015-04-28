@@ -27,6 +27,8 @@ namespace DataModel
         [Required]
         [StringLength(20)]
         public string Password { get; set; }
+        //Courses can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ICollection<Course> Courses { get; set; }
 
     }

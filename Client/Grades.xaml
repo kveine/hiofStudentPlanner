@@ -67,10 +67,8 @@
 	                            VerticalAlignment="Top"
                                 Checked="CheckBox_Checked"
 	                            Unchecked="CheckBox_Unchecked"
-                                Content="{Binding Course.Title}">
-                                <!--<TextBlock x:Name="ValueChecked" Text="{Binding Value}" Style="{StaticResource CaptionTextBlockStyle}" TextWrapping="NoWrap"/>-->
+                                Content="{Binding Course.Title}" FontSize="15" FontWeight="Bold">
                             </CheckBox>
-                            <TextBlock Text="{Binding Course.Title}" FontSize="15" FontWeight="Bold"/>
                         </StackPanel>
                     </Grid>
                 </DataTemplate>

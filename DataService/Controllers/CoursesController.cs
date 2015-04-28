@@ -20,7 +20,7 @@ namespace DataService.Controllers
         // GET api/Courses
         public IQueryable<Course> GetCourses()
         {
-            return db.Courses.Include(c => c.Students).Include(c => c.Exam);
+            return db.Courses.Include(c => c.Students).Include(c => c.Exam).Include(c => c.Lectures);
         }
 
         // GET api/Courses/5
@@ -32,8 +32,8 @@ namespace DataService.Controllers
             {
                 return NotFound();
             }
-            db.Entry(course).Collection(b => b.Lectures).Load();
-            db.Entry(course).Reference(b => b.Exam).Load();
+            //db.Entry(course).Collection(b => b.Lectures).Load();
+            db.Entry(course).Reference(c => c.Exam).Load();
             return Ok(course);
         }
 
@@ -56,7 +56,7 @@ namespace DataService.Controllers
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DataException)
             {
                 if (!CourseExists(id))
                 {
@@ -64,9 +64,20 @@ namespace DataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
+            //catch(NotSupportedException){
+            //    return BadRequest();
+            //}
+            //catch (ObjectDisposedException)
+            //{
+            //    return BadRequest();
+            //}
+            //catch (InvalidOperationException)
+            //{
+            //    return BadRequest();
+            //}
 
             return StatusCode(HttpStatusCode.NoContent);
         }
@@ -97,8 +108,23 @@ namespace DataService.Controllers
             }
 
             db.Courses.Remove(course);
-            db.SaveChanges();
+            //db.SaveChanges();
 
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+                if (!CourseExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    return BadRequest();
+                }
+            }
             return Ok(course);
         }
 

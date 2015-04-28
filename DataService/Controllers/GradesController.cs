@@ -75,11 +75,6 @@ namespace DataService.Controllers
         [ResponseType(typeof(Grade))]
         public IHttpActionResult PostGrade(Grade grade)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
-
             var courseInGrades = grade.Course;
             var studentInGrades = grade.Student;
             Course course = db.Courses.Find(courseInGrades.CourseId);

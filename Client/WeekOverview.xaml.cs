@@ -76,27 +76,13 @@ namespace Client
             this.DefaultViewModel["Wednesday"] = await SortLectureWeekOverview(DayOfWeek.Wednesday);
             this.DefaultViewModel["Thursday"] = await SortLectureWeekOverview(DayOfWeek.Thursday);
             this.DefaultViewModel["Friday"] = await SortLectureWeekOverview(DayOfWeek.Friday);
-
-            //DayOfWeek monday = await SortLectureWeekOverview(DayOfWeek.Monday);
-            //DayOfWeek tuesday = await SortLectureWeekOverview(DayOfWeek.Monday);
-            //DayOfWeek wednesday = DayOfWeek.Monday;
-            //DayOfWeek thursday = DayOfWeek.Monday;
-            //DayOfWeek friday = DayOfWeek.Monday;
-            //MessageDialog md = new MessageDialog("Could not load lectures, check your internet connection and try again.");
-            //await md.ShowAsync();
         }
 
-        //private void CheckCurrentDay(DayOfWeek day)
-        //{
-        //    switch (day)
-        //    {
-        //        case DayOfWeek.Monday:
-        //            monday.Foreground = Brushes.Navy;
-        //            break;
-        //    }
-
-        //}
-
+        /// <summary>
+        /// Sorts the lecture for the week overview.
+        /// </summary>
+        /// <param name="dayOfWeek">The day of week.</param>
+        /// <returns></returns>
         private async Task<ObservableCollection<Lecture>> SortLectureWeekOverview(DayOfWeek dayOfWeek)
         {
             ObservableCollection<Lecture> dayObs = new ObservableCollection<Lecture>();
@@ -129,25 +115,50 @@ namespace Client
             
         }
 
+        /// <summary>
+        /// Handles the Click event of the Courses control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Courses_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Courses), currentStudent);
         }
 
+        /// <summary>
+        /// Handles the Click event of the Submissions control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Submissions_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Submissions), currentStudent);
         }
 
+        /// <summary>
+        /// Handles the Click event of the Grades control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Grades_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(Grades), currentStudent);
         }
 
+        /// <summary>
+        /// Handles the Click event of the Profile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void Profile_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(ProfilePage), currentStudent);
         }
+        /// <summary>
+        /// Handles the Click event of the LogOut control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void LogOut_Click(Object sender, RoutedEventArgs e)
         {
             this.Frame.Navigate(typeof(GroupedItemsPage));
@@ -155,13 +166,16 @@ namespace Client
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -173,6 +187,10 @@ namespace Client
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);

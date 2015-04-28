@@ -22,8 +22,12 @@ namespace Client.DataModel
         //public ObservableCollection<Submission> Submissions { get; set; }
         //public ObservableCollection<Grade> Grades { get; set; }
         //public ObservableCollection<Course> StudentCourses { get; set; }
-        
-        
+
+
+        /// <summary>
+        /// Gets the students asynchronous.
+        /// </summary>
+        /// <returns><ObservableCollection of the students/returns>
         public static async Task<ObservableCollection<Student>> GetStudentsAsync()
         {
             using (var client = new HttpClient())
@@ -50,6 +54,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the student asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns>The specified student</returns>
         public static async Task<Student> GetStudentAsync(int id)
         {
             using (var client = new HttpClient())
@@ -75,6 +84,14 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Adds the student asynchronous.
+        /// </summary>
+        /// <param name="firstname">The firstname.</param>
+        /// <param name="lastname">The lastname.</param>
+        /// <param name="username">The username.</param>
+        /// <param name="password">The password.</param>
+        /// <returns></returns>
         public static async Task AddStudentAsync(string firstname, string lastname, string username, string password)
         {
             using (var client = new HttpClient())
@@ -100,6 +117,12 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Updates the student aync.
+        /// </summary>
+        /// <param name="updatedStudent">The updated student.</param>
+        /// <param name="currentStudent">The current student.</param>
+        /// <returns></returns>
         public static async Task UpdateStudentAync(Student updatedStudent, int currentStudent)
         {
             using (var client = new HttpClient())
@@ -125,42 +148,47 @@ namespace Client.DataModel
             }
         }
 
-        //public static async Task<ObservableCollection<Course>> GetStudentCoursesAsync(int currentStudent)
-        //{
-        //    using (var client = new HttpClient())
-        //    {
-        //        client.BaseAddress = new Uri("http://localhost:42015/");
-        //        client.DefaultRequestHeaders.Accept.Clear();
-        //        client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+        /// <summary>
+        /// Gets the student courses asynchronous.
+        /// </summary>
+        /// <param name="currentStudent">The current student.</param>
+        /// <returns>ObservableCollection of the current student's courses</returns>
+        public static async Task<ObservableCollection<Course>> GetStudentCoursesAsync(int currentStudent)
+        {
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri("http://localhost:42015/");
+                client.DefaultRequestHeaders.Accept.Clear();
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-        //        var result = await client.GetAsync("api/Courses");
+                var response = await client.GetAsync("api/Courses");
 
-        //        if (result.IsSuccessStatusCode)
-        //        {
-        //            var resultSTream = await result.Content.ReadAsStreamAsync();
-        //            var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>));
+                if (response.IsSuccessStatusCode)
+                {
+                    var resultSTream = await response.Content.ReadAsStreamAsync();
+                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Course>));
 
-        //            ObservableCollection<Course> courses = (ObservableCollection<Course>)serializer.ReadObject(resultSTream);
+                    ObservableCollection<Course> courses = (ObservableCollection<Course>)serializer.ReadObject(resultSTream);
 
-        //            ObservableCollection<Course> studentCourses = new ObservableCollection<Course>();
-        //            foreach (var entry in courses)
-        //            {
-        //                foreach (var student in entry.Students)
-        //                {
-        //                    if (student.StudentId == currentStudent)
-        //                    {
-        //                        studentCourses.Add(entry);
-        //                    }
-        //                }
-        //            }
-        //            return studentCourses;
-        //        }
-        //        else
-        //        {
-        //            return null;
-        //        }
-        //    }
-        //}
+                    ObservableCollection<Course> studentCourses = new ObservableCollection<Course>();
+                    foreach (var entry in courses)
+                    {
+                        foreach (var student in entry.Students)
+                        {
+                            if (student.StudentId == currentStudent)
+                            {
+                                studentCourses.Add(entry);
+                            }
+                        }
+                    }
+                    return studentCourses;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         /// <summary>
         /// Gets the courses asynchronous.
@@ -196,6 +224,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the course asynchronous.
+        /// </summary>
+        /// <param name="courseId">The course identifier.</param>
+        /// <returns>The specified course</returns>
         public static async Task<Course> GetCourseAsync(int courseId)
         {
             using (var client = new HttpClient())
@@ -221,6 +254,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the current student's grades asynchronous.
+        /// </summary>
+        /// <param name="currentStudent">The current student.</param>
+        /// <returns>ObservableCollection of type Grade</returns>
         public static async Task<ObservableCollection<Grade>> GetGradesAsync(int currentStudent)
         {
             using (var client = new HttpClient())
@@ -254,6 +292,14 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Adds the grade asynchronous.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        /// <param name="course">The course.</param>
+        /// <param name="student">The student.</param>
+        /// <param name="imagePath">The image path.</param>
+        /// <returns></returns>
         public static async Task AddGradeAsync(GradeValue value, Course course, Student student, string imagePath)
         {
             using (var client = new HttpClient())
@@ -279,6 +325,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Deletes the grade asynchronous.
+        /// </summary>
+        /// <param name="id">The identifier.</param>
+        /// <returns></returns>
         public static async Task DeleteGradeAsync(int id)
         {
             using (var client = new HttpClient())
@@ -296,6 +347,10 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the lectures asynchronous.
+        /// </summary>
+        /// <returns>Observable collection of type Lecture</returns>
         public static async Task<ObservableCollection<Lecture>> GetLecturesAsync()
         {
             using (var client = new HttpClient())
@@ -323,6 +378,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the submissions asynchronous.
+        /// </summary>
+        /// <param name="currentStudent">The current student.</param>
+        /// <returns>ObservableCollection with the current student's submissions</returns>
         public static async Task<ObservableCollection<Submission>> GetSubmissionsAsync(int currentStudent)
         {
             using (var client = new HttpClient())
@@ -358,6 +418,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Gets the submission asynchronous.
+        /// </summary>
+        /// <param name="submissionId">The submission identifier.</param>
+        /// <returns>The specified submission</returns>
         public static async Task<Submission> GetSubmissionAsync(int submissionId)
         {
             using (var client = new HttpClient())
@@ -383,6 +448,11 @@ namespace Client.DataModel
             }
         }
 
+        /// <summary>
+        /// Updates the submission aync.
+        /// </summary>
+        /// <param name="updatedSubmission">The updated submission.</param>
+        /// <returns></returns>
         public static async Task UpdateSubmissionAync(Submission updatedSubmission)
         {
             using (var client = new HttpClient())
@@ -409,6 +479,15 @@ namespace Client.DataModel
         }
 
 
+        /// <summary>
+        /// Adds the submission asynchronous.
+        /// </summary>
+        /// <param name="title">The title.</param>
+        /// <param name="course">The course.</param>
+        /// <param name="student">The student.</param>
+        /// <param name="description">The description.</param>
+        /// <param name="dueDate">The due date.</param>
+        /// <returns></returns>
         public static async Task AddSubmissionAsync(string title, Course course, Student student, string description, string dueDate)
         {
             using (var client = new HttpClient())

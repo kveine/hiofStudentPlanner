@@ -74,18 +74,27 @@ namespace Client
 
         }
 
+        /// <summary>
+        /// Handles the SubmissionClick event of the SubmissionView control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="ItemClickEventArgs"/> instance containing the event data.</param>
         private void SubmissionView_SubmissionClick(object sender, ItemClickEventArgs e)
         {
             var submission = (Submission)e.ClickedItem;
             this.Frame.Navigate(typeof(SubmissionDetailPage), submission);
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddSubmission control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void AddSubmission_Click(Object sender, RoutedEventArgs e)
         {
             string title = titleInput.Text;
             string description = desciptionInput.Text;
-            //string dueDate = dueDateInput.Text;
-            string dueDate = dueDateDatePicker.Date.ToString("MM-dd");
+            string dueDate = dueDateDatePicker.Date.ToString("dd-MM");
             if (CoursesComboBox.SelectedValue != null)
             {
                 string courseTitle = CoursesComboBox.SelectedValue.ToString();
@@ -124,24 +133,24 @@ namespace Client
            
         }
 
+        /// <summary>
+        /// Handles the Loaded event of the ComboBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
-            List<String> data = new List<String>();
-            ObservableCollection<Course> coursesObs = await DataSource.GetCoursesAsync();
+            List<string> data = new List<string>();
+            Student student = await DataSource.GetStudentAsync(currentStudent);
+            ObservableCollection<Course> studentCourseObs = student.Courses;
 
-            if (coursesObs != null)
+            if (studentCourseObs != null)
             {
-                foreach (var course in coursesObs)
+                foreach (var course in studentCourseObs)
                 {
-                    foreach (var student in course.Students)
-                    {
-                        if (student.StudentId != currentStudent)
-                        {
-                            data.Add(course.Title);
-                            break;
-                        }
-                    }
+                    data.Add(course.Title);
                 }
+
                 var comboBox = sender as ComboBox;
                 comboBox.ItemsSource = data;
                 if (data.Count != 0)
@@ -154,9 +163,42 @@ namespace Client
                 MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
                 await md.ShowAsync();
             }
+            //List<String> data = new List<String>();
+            //ObservableCollection<Course> coursesObs = await DataSource.GetCoursesAsync();
+
+            //if (coursesObs != null)
+            //{
+            //    foreach (var course in coursesObs)
+            //    {
+            //        foreach (var student in course.Students)
+            //        {
+            //            if (student.StudentId != currentStudent)
+            //            {
+            //                data.Add(course.Title);
+            //                break;
+            //            }
+            //        }
+            //    }
+            //    var comboBox = sender as ComboBox;
+            //    comboBox.ItemsSource = data;
+            //    if (data.Count != 0)
+            //    {
+            //        comboBox.SelectedIndex = 0;
+            //    }
+            //}
+            //else
+            //{
+            //    MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
+            //    await md.ShowAsync();
+            //}
             
         }
 
+        /// <summary>
+        /// Handles the Checked event of the CheckBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var submission = e.OriginalSource;
@@ -164,12 +206,22 @@ namespace Client
 
         }
 
+        /// <summary>
+        /// Handles the Unchecked event of the CheckBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             var submission = e.OriginalSource;
             Handle(sender as CheckBox, submission);
         }
 
+        /// <summary>
+        /// Handles the specified check box.
+        /// </summary>
+        /// <param name="checkBox">The check box.</param>
+        /// <param name="submission">The submission.</param>
         async void Handle(CheckBox checkBox, Object submission)
         {
             bool flag = checkBox.IsChecked.Value;
@@ -204,13 +256,16 @@ namespace Client
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -222,6 +277,10 @@ namespace Client
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);

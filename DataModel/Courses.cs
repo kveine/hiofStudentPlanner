@@ -31,7 +31,11 @@ namespace DataModel
             [Required]
             public Semester Semester { get; set; }
             public Exam Exam { get; set; }
+            //Lectures can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
             public ICollection<Lecture> Lectures { get; set; }
+            //Students can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+            [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
             public ICollection<Student> Students { get; set; }
         }
     }

@@ -10,6 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Description;
 using DataModel;
 using DataAccess;
+using DataModel.DataModel;
 
 namespace DataService.Controllers
 {
@@ -74,26 +75,27 @@ namespace DataService.Controllers
         [ResponseType(typeof(Exam))]
         public IHttpActionResult PostExam(Exam exam)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var courseInExam = exam.Course;
+            Course course = db.Courses.Find(courseInExam.CourseId);
+            exam.Course = course;
+            ModelState.Clear();
 
             db.Exams.Add(exam);
+            //db.SaveChanges();
 
             try
             {
                 db.SaveChanges();
             }
-            catch (DbUpdateException)
+            catch (DataException)
             {
-                if (ExamExists(exam.ExamId))
+                if (!ExamExists(exam.ExamId))
                 {
                     return Conflict();
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
 
@@ -111,7 +113,16 @@ namespace DataService.Controllers
             }
 
             db.Exams.Remove(exam);
-            db.SaveChanges();
+            //db.SaveChanges();
+
+            try
+            {
+                db.SaveChanges();
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
 
             return Ok(exam);
         }

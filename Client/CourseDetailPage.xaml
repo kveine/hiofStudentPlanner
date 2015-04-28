@@ -27,27 +27,29 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <!--
-            TODO: Content should be placed within the following grid 
-                  to show details for the current item
-        -->
+        
         <Grid Grid.Row="1" Grid.Column="1" x:Name="contentRegion" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="2*" />
             </Grid.ColumnDefinitions>
-            <StackPanel Grid.Column="0" Background="Red">
+            <StackPanel Grid.Column="0" Background="Gray">
                 <TextBlock Text="Course Description: " TextAlignment="Left" Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto"/>
                 <TextBlock Text="{Binding Description}" TextAlignment="Left" Margin="15,40,15,5" FontSize="20" TextWrapping="Wrap" Height="auto"/>
             </StackPanel>
-            <StackPanel Grid.Column="1" Background="Green">
-                <TextBlock Text="{Binding Title}" TextAlignment="Left"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
-                <TextBlock Text="{Binding Title}" TextAlignment="Left"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+            <StackPanel Grid.Column="1" >
+                <TextBlock Text="Lecture Information:" TextAlignment="Left"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[0].DayOfWeek}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[0].Time}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[0].Room}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[1].DayOfWeek}" TextAlignment="Left"  Margin="15,20,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[1].Time}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Lectures[1].Room}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="Exam Information:" TextAlignment="Left"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Exam.Description}" TextAlignment="Left"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Exam.Date}" TextAlignment="Left"  Margin="15,40,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="{Binding Exam.Room}" TextAlignment="Left"  Margin="15,40,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
             </StackPanel>
-            
-            <!--<StackPanel Orientation="Vertical" HorizontalAlignment="Center"  Margin="5,5,5,60" Height="auto">
-                
-            </StackPanel>-->
         </Grid>
 
         <!-- Back button and page title -->

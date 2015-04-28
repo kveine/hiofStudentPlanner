@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Client.DataModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,6 +19,8 @@ namespace Client.DataModel
         public string LastName { get; set; }
         public string UserName { get; set; }
         public string Password { get; set; }
+        //Courses can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ObservableCollection<Course> Courses { get; set; }
 
     }
@@ -34,7 +37,11 @@ namespace Client.DataModel
         public string Description { get; set; }
         public Semester Semester { get; set; }
         public Exam Exam { get; set; }
+        //Lectures can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ObservableCollection<Lecture> Lectures { get; set; }
+        //Students can not be read only because I need to update the list. I have tried to use a private setter, but this gives me an error
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public ObservableCollection<Student> Students { get; set; }
     }
 
@@ -68,9 +75,16 @@ namespace Client.DataModel
         public int ExamId { get; set; }
         public Course Course { get; set; }
         public string Description { get; set; }
-        public DateTime Date { get; set; }
+        public ExamMethod Method { get; set; }
+        public string Date { get; set; }
         public string Room { get; set; }
 
+    }
+
+    public enum ExamMethod
+    {
+        Project = 0,
+        Handwritten
     }
 
     public class Grade
@@ -84,11 +98,18 @@ namespace Client.DataModel
     }
     public enum GradeValue
     {
+        //Naming is correct in my case
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "A")]
         A = 0,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "B")]
         B,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "C")]
         C,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "D")]
         D,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "E")]
         E,
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Naming", "CA1704:IdentifiersShouldBeSpelledCorrectly", MessageId = "F")]
         F
     }
 }

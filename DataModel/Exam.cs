@@ -15,9 +15,9 @@ namespace DataModel
         public Course Course { get; set; }
         [StringLength(1000)]
         public string Description { get; set; }
+        public ExamMethod Method { get; set; }
         [Required]
-        public DateTime Date { get; set; }
-        [Required]
+        public string Date { get; set; }
         public string Room { get; set; }
     }
 }

@@ -74,6 +74,11 @@ namespace Client
             this.DefaultViewModel["Student"] = student;
         }
 
+        /// <summary>
+        /// Handles the Click event of the UpdateProfile control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
        private async void UpdateProfile_Click(Object sender, RoutedEventArgs e)
         {
             string firstName = firstNameInput.Text;

@@ -122,11 +122,14 @@ namespace Client
                             break;
                     }
                 }
+                if (gradesValue > 0)
+                {
+                    double overallGrade1 = gradesValue / count;
 
-                double overallGrade1 = gradesValue / count;
-
-                string overAllGradeOutput = overallGrade1.ToString();
-                overallGrade.Text = overAllGradeOutput;
+                    string overAllGradeOutput = overallGrade1.ToString();
+                    overallGrade.Text = overAllGradeOutput;
+                }
+                
             }
         }
 
@@ -286,10 +289,7 @@ namespace Client
             data.Add(GradeValue.F.ToString());
             var comboBox = sender as ComboBox;
             comboBox.ItemsSource = data;
-            if (data != null)
-            {
-                comboBox.SelectedIndex = 0;
-            }
+            comboBox.SelectedIndex = 0;
         }
 
         /// <summary>
@@ -335,13 +335,16 @@ namespace Client
 
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -353,6 +356,10 @@ namespace Client
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);

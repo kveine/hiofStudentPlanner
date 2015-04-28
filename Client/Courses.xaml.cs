@@ -55,7 +55,6 @@ namespace Client
             this.InitializeComponent();
             this.navigationHelper = new NavigationHelper(this);
             this.navigationHelper.LoadState += navigationHelper_LoadState;
-            //this.Fill_ComboBox();
         }
 
         /// <summary>
@@ -71,18 +70,19 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            Student student = await DataSource.GetStudentAsync(currentStudent);
-            ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-            if (student != null)
-            {
-                studentCoursesObs = student.Courses;
-            }
-            else
-            {
-                MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
-                await md.ShowAsync();
-            }
-            
+            //Student student = await DataSource.GetStudentAsync(currentStudent);
+            //ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
+            //if (student != null)
+            //{
+            //    studentCoursesObs = student.Courses;
+            //}
+            //else
+            //{
+            //    MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
+            //    await md.ShowAsync();
+            //}
+
+            ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent); 
             this.DefaultViewModel["Courses"] = studentCoursesObs;
         }
 
@@ -97,6 +97,11 @@ namespace Client
             this.Frame.Navigate(typeof(CourseDetailPage), course);
         }
 
+        /// <summary>
+        /// Handles the Click event of the AddCourse control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void AddCourse_Click(Object sender, RoutedEventArgs e)
         {
             if(CoursesComboBox.SelectedValue != null){
@@ -104,9 +109,9 @@ namespace Client
 
                 bool courseAdded = false;
                 Student student = await DataSource.GetStudentAsync(currentStudent);
-                ObservableCollection<Course> studentCoursesObs = student.Courses;
+                ObservableCollection<Course> studentCoursesObs1 = student.Courses;
 
-                foreach (var course in studentCoursesObs)
+                foreach (var course in studentCoursesObs1)
                 {
                     if (course.Title == selectedCourse)
                     {
@@ -137,10 +142,12 @@ namespace Client
                     Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, UserName = username, Password = password, Courses = updatedCourse };
                     await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
 
-                    Student student1 = await DataSource.GetStudentAsync(currentStudent);
-                    ObservableCollection<Course> studentCoursesObs1 = new ObservableCollection<Course>();
-                    studentCoursesObs1 = student1.Courses;
-                    this.DefaultViewModel["Courses"] = studentCoursesObs1;
+                    ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
+                    this.DefaultViewModel["Courses"] = studentCoursesObs;
+                    //Student student1 = await DataSource.GetStudentAsync(currentStudent);
+                    //ObservableCollection<Course> studentCoursesObs1 = new ObservableCollection<Course>();
+                    //studentCoursesObs1 = student1.Courses;
+                    //this.DefaultViewModel["Courses"] = studentCoursesObs1;
                 }
                 else
                 {
@@ -155,6 +162,11 @@ namespace Client
             }
         
         }
+        /// <summary>
+        /// Handles the Loaded event of the ComboBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private async void ComboBox_Loaded(object sender, RoutedEventArgs e)
         {
             List<String> data = new List<String>();
@@ -187,6 +199,11 @@ namespace Client
             
         }
 
+        /// <summary>
+        /// Handles the Checked event of the CheckBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
         {
             var submission = e.OriginalSource;
@@ -194,12 +211,22 @@ namespace Client
 
         }
 
+        /// <summary>
+        /// Handles the Unchecked event of the CheckBox control.
+        /// </summary>
+        /// <param name="sender">The source of the event.</param>
+        /// <param name="e">The <see cref="RoutedEventArgs"/> instance containing the event data.</param>
         private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
         {
             var submission = e.OriginalSource;
             Handle(sender as CheckBox, submission);
         }
 
+        /// <summary>
+        /// Handles the specified check box.
+        /// </summary>
+        /// <param name="checkBox">The check box.</param>
+        /// <param name="submission">The submission.</param>
         async void Handle(CheckBox checkBox, Object submission)
         {
             bool flag = checkBox.IsChecked.Value;
@@ -224,44 +251,26 @@ namespace Client
                     UserName = student.UserName
                 };
                 await DataSource.UpdateStudentAync(updatedStudent, currentStudent);
-                Student newStudent = await DataSource.GetStudentAsync(currentStudent);
-                ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-                studentCoursesObs = newStudent.Courses;
+                //Student newStudent = await DataSource.GetStudentAsync(currentStudent);
+                //ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
+                //studentCoursesObs = newStudent.Courses;
+                //this.DefaultViewModel["Courses"] = studentCoursesObs;
+                ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
                 this.DefaultViewModel["Courses"] = studentCoursesObs;
-
-                //foreach (var entry in gradesObs)
-                //{
-                //    courseInGradesObs.Add(entry.Course);
-                //}
-                //foreach (var course in courseInGradesObs)
-                //{
-                //    if (course.CourseId == selectedCourse.CourseId)
-                //    {
-                //        updatedCoursesObs.Remove(selectedCourse);
-                //        Student updatedStudent = new Student()
-                //        {
-                //            StudentId = student.StudentId,
-                //            FirstName = student.FirstName,
-                //            LastName = student.LastName,
-                //            Courses = updatedCoursesObs,
-                //            Password = student.Password,
-                //            UserName = student.UserName
-                //        };
-                //        await DataSource.UpdateStudentAync(updatedStudent, currentStudent);
-                //    }
-                //}
-
             }
         }
         #region NavigationHelper registration
 
+        /// <summary>
+        /// Invoked when the Page is loaded and becomes the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the pending navigation that will load the current Page. Usually the most relevant property to examine is Parameter.</param>
         /// The methods provided in this section are simply used to allow
         /// NavigationHelper to respond to the page's navigation methods.
-        /// 
-        /// Page specific logic should be placed in event handlers for the  
-        /// <see cref="GridCS.Common.NavigationHelper.LoadState"/>
-        /// and <see cref="GridCS.Common.NavigationHelper.SaveState"/>.
-        /// The navigation parameter is available in the LoadState method 
+        /// Page specific logic should be placed in event handlers for the
+        /// <see cref="GridCS.Common.NavigationHelper.LoadState" />
+        /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
+        /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
 
         protected override void OnNavigatedTo(NavigationEventArgs e)
@@ -273,6 +282,10 @@ namespace Client
             navigationHelper.OnNavigatedTo(e);
         }
 
+        /// <summary>
+        /// Invoked immediately after the Page is unloaded and is no longer the current source of a parent Frame.
+        /// </summary>
+        /// <param name="e">Event data that can be examined by overriding code. The event data is representative of the navigation that has unloaded the current Page.</param>
         protected override void OnNavigatedFrom(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedFrom(e);

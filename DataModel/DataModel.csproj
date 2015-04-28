@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Courses.cs" />
     <Compile Include="Exam.cs" />
+    <Compile Include="ExamMethod.cs" />
     <Compile Include="GlobalSuppressions.cs" />
     <Compile Include="Grade.cs" />
     <Compile Include="GradeValue.cs" />
