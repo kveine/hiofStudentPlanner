@@ -10,17 +10,35 @@
        <Types>
         <Type Name="CoursesController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
          <Members>
+          <Member Name="#CourseExists(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="CoursesController.cs" Line="125">'CoursesController.CourseExists(int)' appears to have no upstream public or protected callers.</Issue>
+            </Message>
+           </Messages>
+          </Member>
           <Member Name="#PostCourse(DataModel.DataModel.Course)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 02:07:11Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="CoursesController.cs" Line="97">In externally visible method 'CoursesController.PostCourse(Course)', validate parameter 'course' before using it.</Issue>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="CoursesController.cs" Line="81">In externally visible method 'CoursesController.PostCourse(Course)', validate parameter 'course' before using it.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#PutCourse(System.Int32,DataModel.DataModel.Course)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 02:07:11Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="CoursesController.cs" Line="48">In externally visible method 'CoursesController.PutCourse(int, Course)', validate parameter 'course' before using it.</Issue>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="CoursesController.cs" Line="50">In externally visible method 'CoursesController.PutCourse(int, Course)', validate parameter 'course' before using it.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+         </Members>
+        </Type>
+        <Type Name="GradesController" Kind="Class" Accessibility="Public" ExternallyVisible="True">
+         <Members>
+          <Member Name="#GradeExists(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="GradesController.cs" Line="131">'GradesController.GradeExists(int)' appears to have no upstream public or protected callers.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -30,22 +48,29 @@
          <Members>
           <Member Name="#GetLectures()" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-28 02:07:11Z" FixCategory="Breaking">
-             <Issue Certainty="50" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="23">Change 'LecturesController.GetLectures()' to a property if appropriate.</Issue>
+            <Message TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="Breaking">
+             <Issue Certainty="50" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="24">Change 'LecturesController.GetLectures()' to a property if appropriate.</Issue>
+            </Message>
+           </Messages>
+          </Member>
+          <Member Name="#LectureExists(System.Int32)" Kind="Method" Static="False" Accessibility="Private" ExternallyVisible="False">
+           <Messages>
+            <Message TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="NonBreaking">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="125">'LecturesController.LectureExists(int)' appears to have no upstream public or protected callers.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#PostLecture(DataModel.Lecture)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 02:07:11Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="83">In externally visible method 'LecturesController.PostLecture(Lecture)', validate parameter 'lecture' before using it.</Issue>
+            <Message Id="0" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="71">In externally visible method 'LecturesController.PostLecture(Lecture)', validate parameter 'lecture' before using it.</Issue>
             </Message>
            </Messages>
           </Member>
           <Member Name="#PutLecture(System.Int32,DataModel.Lecture)" Kind="Method" Static="False" Accessibility="Public" ExternallyVisible="True">
            <Messages>
-            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 02:07:11Z" FixCategory="DependsOnFix">
-             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="48">In externally visible method 'LecturesController.PutLecture(int, Lecture)', validate parameter 'lecture' before using it.</Issue>
+            <Message Id="1" TypeName="Validate arguments of public methods" Category="Microsoft.Design" CheckId="CA1062" Status="Active" Created="2015-04-28 09:54:55Z" FixCategory="DependsOnFix">
+             <Issue Certainty="75" Level="Warning" Path="c:\Users\Kristin\Documents\Visual Studio 2013\Projects\HiofStudentPlannerSolution\DataService\Controllers" File="LecturesController.cs" Line="49">In externally visible method 'LecturesController.PutLecture(int, Lecture)', validate parameter 'lecture' before using it.</Issue>
             </Message>
            </Messages>
           </Member>
@@ -59,6 +84,16 @@
   </Target>
  </Targets>
  <Rules>
+  <Rule TypeName="AvoidUncalledPrivateCode" Category="Microsoft.Performance" CheckId="CA1811">
+   <Name>Avoid uncalled private code</Name>
+   <Description>There is uncalled code that is not externally visible and is not a known runtime entry point. If this violation fires in error, please send a problem report to the Visual Studio Code Analysis team.</Description>
+   <Resolution Name="Default">{0} appears to have no upstream public or protected callers.</Resolution>
+   <Owner />
+   <Url>http://msdn.microsoft.com/library/ms182264.aspx</Url>
+   <Email>[none]</Email>
+   <MessageLevel Certainty="75">Warning</MessageLevel>
+   <File Name="performancerules.dll" Version="12.0.0.0" />
+  </Rule>
   <Rule TypeName="UsePropertiesWhereAppropriate" Category="Microsoft.Design" CheckId="CA1024">
    <Name>Use properties where appropriate</Name>
    <Description>Properties should be used instead of Get/Set methods in most situations. Methods are preferable to properties in the following situations: the operation is a conversion, is expensive or has an observable side-effect; the order of execution is important; calling the member twice in succession creates different results; a member is static but returns a mutable value; or the member returns an array.</Description>

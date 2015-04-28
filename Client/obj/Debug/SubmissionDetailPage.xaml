@@ -28,12 +28,17 @@
             </Grid.ColumnDefinitions>
             <StackPanel Grid.Column="0" >
                 <TextBlock Text="Course:" TextAlignment="Center"  Margin="15,10,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
-                <TextBlock Text="{Binding Course.Title}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock x:Name="courseTitleInput"  Text="{Binding Course.Title}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBlock Text="Title:" TextAlignment="Center"  Margin="15,10,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBox x:Name="titleInput" Text="{Binding Title}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
                 <TextBlock Text="Description:" TextAlignment="Center"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
-                <TextBlock Text="{Binding Description}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
+                <TextBox x:Name="descriptionInput" Text="{Binding Description}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
                 <TextBlock Text="Due date:" TextAlignment="Center"  Margin="15,40,15,5" FontSize="30" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
                 <TextBlock Text="{Binding DueDate}" TextAlignment="Center"  Margin="15,10,15,5" FontSize="20" TextWrapping="Wrap" Height="auto" Grid.Column="1"/>
-                
+                <DatePicker x:Name="datePickerInput" Header="Change due date" Margin="15,10,15,5" FontSize="20" Height="auto" Grid.Column="1" HorizontalAlignment="Center"/>
+                <Button Content="Update Submission" HorizontalAlignment="Center"/>
+                <TextBlock x:Name="id" Text="{Binding SubmissionId}" Visibility="Collapsed"/>
+
             </StackPanel>
         </Grid>
 

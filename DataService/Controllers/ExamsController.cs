@@ -55,8 +55,9 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DataException)
             {
                 if (!ExamExists(id))
                 {
@@ -64,11 +65,11 @@ namespace DataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
 
-            return StatusCode(HttpStatusCode.NoContent);
+            
         }
 
         // POST api/Exams
@@ -86,20 +87,12 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = exam.ExamId }, exam);
             }
             catch (DataException)
             {
-                if (!ExamExists(exam.ExamId))
-                {
-                    return Conflict();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
-
-            return CreatedAtRoute("DefaultApi", new { id = exam.ExamId }, exam);
         }
 
         // DELETE api/Exams/5
@@ -118,13 +111,12 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return Ok(exam);
             }
             catch (DataException)
             {
                 return BadRequest();
             }
-
-            return Ok(exam);
         }
 
         protected override void Dispose(bool disposing)
@@ -136,6 +128,7 @@ namespace DataService.Controllers
             base.Dispose(disposing);
         }
 
+        //Class coupling is >10. This is generated code.
         private bool ExamExists(int id)
         {
             return db.Exams.Count(e => e.ExamId == id) > 0;

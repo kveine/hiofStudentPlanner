@@ -17,13 +17,7 @@ namespace Client.DataModel
     class DataSource
     {
         private DataSource() { }
-        //public ObservableCollection<Student> Students { get; set; }
-        //public ObservableCollection<Course> Courses { get; set; }
-        //public ObservableCollection<Submission> Submissions { get; set; }
-        //public ObservableCollection<Grade> Grades { get; set; }
-        //public ObservableCollection<Course> StudentCourses { get; set; }
-
-
+       
         /// <summary>
         /// Gets the students asynchronous.
         /// </summary>
@@ -36,18 +30,25 @@ namespace Client.DataModel
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
 
-                var response = await client.GetAsync("api/Students");
-
-                if (response.IsSuccessStatusCode)
+                try
                 {
-                    var resultSTream = await response.Content.ReadAsStreamAsync();
-                    var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Student>));
+                    var response = await client.GetAsync("api/Students");
 
-                    ObservableCollection<Student> students = (ObservableCollection<Student>)serializer.ReadObject(resultSTream);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var resultSTream = await response.Content.ReadAsStreamAsync();
+                        var serializer = new DataContractJsonSerializer(typeof(ObservableCollection<Student>));
 
-                    return students;
+                        ObservableCollection<Student> students = (ObservableCollection<Student>)serializer.ReadObject(resultSTream);
+
+                        return students;
+                    }
+                    else
+                    {
+                        return null;
+                    }
                 }
-                else
+                catch(TaskCanceledException)
                 {
                     return null;
                 }
@@ -465,7 +466,7 @@ namespace Client.DataModel
 
                 var stream = new MemoryStream();
                 jsonSerializer.WriteObject(stream, updatedSubmission);
-                stream.Position = 0;   // Make sure to rewind the cursor before you try to read the stream
+                stream.Position = 0; 
                 var content = new StringContent(new StreamReader(stream).ReadToEnd(), System.Text.Encoding.UTF8, "application/json");
 
                 var response = await client.PutAsync("api/Submissions/" + updatedSubmission.SubmissionId, content);

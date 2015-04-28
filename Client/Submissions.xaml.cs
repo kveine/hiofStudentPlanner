@@ -142,55 +142,31 @@ namespace Client
         {
             List<string> data = new List<string>();
             Student student = await DataSource.GetStudentAsync(currentStudent);
-            ObservableCollection<Course> studentCourseObs = student.Courses;
 
-            if (studentCourseObs != null)
+            if (student != null)
             {
-                foreach (var course in studentCourseObs)
-                {
-                    data.Add(course.Title);
-                }
+                ObservableCollection<Course> studentCourseObs = student.Courses;
 
-                var comboBox = sender as ComboBox;
-                comboBox.ItemsSource = data;
-                if (data.Count != 0)
+                if (studentCourseObs != null)
                 {
-                    comboBox.SelectedIndex = 0;
+                    foreach (var course in studentCourseObs)
+                    {
+                        data.Add(course.Title);
+                    }
+
+                    var comboBox = sender as ComboBox;
+                    comboBox.ItemsSource = data;
+                    if (data.Count != 0)
+                    {
+                        comboBox.SelectedIndex = 0;
+                    }
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
+                    await md.ShowAsync();
                 }
             }
-            else
-            {
-                MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
-                await md.ShowAsync();
-            }
-            //List<String> data = new List<String>();
-            //ObservableCollection<Course> coursesObs = await DataSource.GetCoursesAsync();
-
-            //if (coursesObs != null)
-            //{
-            //    foreach (var course in coursesObs)
-            //    {
-            //        foreach (var student in course.Students)
-            //        {
-            //            if (student.StudentId != currentStudent)
-            //            {
-            //                data.Add(course.Title);
-            //                break;
-            //            }
-            //        }
-            //    }
-            //    var comboBox = sender as ComboBox;
-            //    comboBox.ItemsSource = data;
-            //    if (data.Count != 0)
-            //    {
-            //        comboBox.SelectedIndex = 0;
-            //    }
-            //}
-            //else
-            //{
-            //    MessageDialog md = new MessageDialog("Could not load available courses for your submission, check your internet connection and try again.");
-            //    await md.ShowAsync();
-            //}
             
         }
 

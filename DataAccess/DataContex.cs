@@ -21,10 +21,10 @@ namespace DataAccess
         public DataContext()
                 : base(@"Data Source=donau.hiof.no;Initial Catalog=kristikv;User ID=kristikv;Password=Sommer15")
         {
-            this.Configuration.ProxyCreationEnabled = false;  // Fix One - avoid cycles
+            this.Configuration.ProxyCreationEnabled = false;  // Fix One - avoid cycles - Code sample from Øyvind Øhra
         }
 
-        //Kode fra Øyvind Øhra, Class Coupling blir 15, vet ikke helt hvordan jeg skal gjøre det annerledes, men skal se mer på det til hovedinnleveringen
+        //Class coupling is >10, but this code is neccessary to provide a M:M relation
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Design", "CA1062:Validate arguments of public methods", MessageId = "0")]
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

@@ -18,6 +18,7 @@ namespace DataService.Controllers
     {
         private DataContext db = new DataContext();
 
+        //Class coupling is >10. This code is necessary for many to one relations.
         // GET api/Lectures
         public IQueryable<Lecture> GetLectures()
         {
@@ -55,40 +56,35 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DataException)
             {
-                if (!LectureExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
+                return BadRequest();
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/Lectures
         [ResponseType(typeof(Lecture))]
         public IHttpActionResult PostLecture(Lecture lecture)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
-
             var courseInLecture = lecture.Course;
             Course course = db.Courses.Find(courseInLecture.CourseId);
             lecture.Course = course;
             ModelState.Clear();
 
             db.Lectures.Add(lecture);
-            db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = lecture.LectureId }, lecture);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = lecture.LectureId }, lecture);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
+            
         }
 
         // DELETE api/Lectures/5
@@ -102,9 +98,17 @@ namespace DataService.Controllers
             }
 
             db.Lectures.Remove(lecture);
-            db.SaveChanges();
 
-            return Ok(lecture);
+            try
+            {
+                db.SaveChanges();
+                return Ok(lecture);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
+            
         }
 
         protected override void Dispose(bool disposing)
@@ -116,6 +120,7 @@ namespace DataService.Controllers
             base.Dispose(disposing);
         }
 
+        //Class coupling is >10. This is generated code.
         private bool LectureExists(int id)
         {
             return db.Lectures.Count(e => e.LectureId == id) > 0;

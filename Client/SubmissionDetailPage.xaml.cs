@@ -14,6 +14,7 @@ using Windows.UI.Xaml.Input;
 using Windows.UI.Xaml.Media;
 using Windows.UI.Xaml.Navigation;
 using Client.DataModel;
+using System.Collections.ObjectModel;
 
 // The Item Detail Page item template is documented at http://go.microsoft.com/fwlink/?LinkId=234232
 
@@ -27,6 +28,7 @@ namespace Client
     {
         private NavigationHelper navigationHelper;
         private ObservableDictionary defaultViewModel = new ObservableDictionary();
+        private int currentStudent;
 
         /// <summary>
         /// This can be changed to a strongly typed view model.
@@ -68,6 +70,37 @@ namespace Client
             this.DefaultViewModel["Submission"] = (Submission)e.NavigationParameter;
         }
 
+        //Did not have time to finsish implementing this method, so it is never used.
+        private async void UpdateSubmission_Click(object sender, RoutedEventArgs e)
+        {
+            string courseTitle = courseTitleInput.Text;
+            string title = titleInput.Text;
+            string description = descriptionInput.Text;
+            string dueDate = datePickerInput.ToString();
+            int submissionId = int.Parse(id.Text);
+            Student student = await DataSource.GetStudentAsync(currentStudent);
+
+            if (student != null)
+            {
+                ObservableCollection<Course> coursesObs = student.Courses;
+                Course course = new Course();
+
+                foreach (var entry in coursesObs)
+                {
+                    if (entry.Title == courseTitle)
+                    {
+                        course = entry;
+                    }
+                }
+                Submission updatedSubmission = new Submission() { SubmissionId = submissionId, Course = course, Description = description, Student = student, DueDate = dueDate, Title = title, Completed = false };
+            }
+            else
+            {
+
+            }
+            
+        }
+
         #region NavigationHelper registration
 
         /// <summary>
@@ -81,7 +114,6 @@ namespace Client
         /// and <see cref="GridCS.Common.NavigationHelper.SaveState" />.
         /// The navigation parameter is available in the LoadState method
         /// in addition to page state preserved during an earlier session.
-
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
             navigationHelper.OnNavigatedTo(e);

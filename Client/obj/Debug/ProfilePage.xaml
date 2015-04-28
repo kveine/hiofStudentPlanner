@@ -30,57 +30,7 @@
             <RowDefinition Height="140"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <!-- Horizontal scrolling grid -->
-        <!--<GridView
-            x:Name="itemGridView"
-            AutomationProperties.AutomationId="ItemGridView"
-            AutomationProperties.Name="Grouped Items"
-            Padding="116,137,40,46"
-            ItemsSource="{Binding Source={StaticResource profilePageViewSource}}"
-            SelectionMode="None"
-            IsSwipeEnabled="false"
-            IsItemClickEnabled="True"
-            ItemClick="Course_Click" SelectionChanged="itemGridView_SelectionChanged" Margin="0,50,0,0" Grid.RowSpan="2">
-            <GridView.ItemTemplate>
-                <DataTemplate>
-                    <Grid HorizontalAlignment="Left" Width="250" Height="100">
-                        
-                    </Grid>
-                </DataTemplate>
-            </GridView.ItemTemplate>
-            <GridView.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <ItemsWrapGrid GroupPadding="0,0,70,0"/>
-                </ItemsPanelTemplate>
-            </GridView.ItemsPanel>
-            <GridView.GroupStyle>
-                <GroupStyle>
-                    <GroupStyle.HeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="0,0,0,2">
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Firstname:" Margin="0,5,0,0"/>
-                                    <TextBox Text="{Binding FirstName}" Margin="10,0,0,10" TextWrapping="Wrap" IsReadOnly="True"/>
-                                </StackPanel>
-                                <StackPanel Margin="0,60,0,0" Orientation="Horizontal">
-                                    <TextBlock Text="Lastname: "/>
-                                    <TextBox Text="{Binding LastName}" Margin="10,0,0,10" TextWrapping="Wrap" IsReadOnly="True"/>
-                                </StackPanel>
-                                <StackPanel Margin="0,120,0,0" Orientation="Horizontal">
-                                    <TextBlock Text="Username" />
-                                    <TextBox Text="{Binding UserName}" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
-                                </StackPanel>
-                                <StackPanel Margin="30,180,0,30" Orientation="Horizontal">
-                                    <TextBox PlaceholderText="Old Password" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
-                                    <TextBox PlaceholderText="New Password" Margin="10,0,0,10" TextWrapping="NoWrap" IsReadOnly="False" />
-                                    <Button Content="Update" Margin="10,0,0,10"/>
-                                </StackPanel>
-                            </Grid>
-                        </DataTemplate>
-                    </GroupStyle.HeaderTemplate>
-                </GroupStyle>
-            </GridView.GroupStyle>
-        </GridView>-->
+ 
         <Grid Margin="10,0,0,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="120"/>

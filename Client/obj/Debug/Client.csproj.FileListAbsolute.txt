@@ -74,5 +74,3 @@ C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolutio
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.g.cs
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.xaml
 C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\obj\Debug\SubmissionDetailPage.xbf
-C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe.CodeAnalysisLog.xml
-C:\Users\Kristin\documents\visual studio 2013\Projects\HiofStudentPlannerSolution\Client\bin\Debug\Client.exe.lastcodeanalysissucceeded

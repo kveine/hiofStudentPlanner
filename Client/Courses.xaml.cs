@@ -70,18 +70,6 @@ namespace Client
         /// session.  The state will be null the first time a page is visited.</param>
         private async void navigationHelper_LoadState(object sender, LoadStateEventArgs e)
         {
-            //Student student = await DataSource.GetStudentAsync(currentStudent);
-            //ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-            //if (student != null)
-            //{
-            //    studentCoursesObs = student.Courses;
-            //}
-            //else
-            //{
-            //    MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
-            //    await md.ShowAsync();
-            //}
-
             ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent); 
             this.DefaultViewModel["Courses"] = studentCoursesObs;
         }
@@ -109,51 +97,57 @@ namespace Client
 
                 bool courseAdded = false;
                 Student student = await DataSource.GetStudentAsync(currentStudent);
-                ObservableCollection<Course> studentCoursesObs1 = student.Courses;
 
-                foreach (var course in studentCoursesObs1)
+                if (student != null)
                 {
-                    if (course.Title == selectedCourse)
+                    ObservableCollection<Course> studentCoursesObs1 = student.Courses;
+
+                    foreach (var course in studentCoursesObs1)
                     {
-                        courseAdded = true;
-                    }
-                }
-
-                if (!courseAdded)
-                {
-                    Student studentObs = await DataSource.GetStudentAsync(currentStudent);
-                    ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
-                    ObservableCollection<Course> updatedCourse = studentObs.Courses;
-
-                    string firstname = studentObs.FirstName;
-                    string lastname = studentObs.LastName;
-                    string username = studentObs.UserName;
-                    string password = studentObs.Password;
-
-                    foreach (var course in courseObs)
-                    {
-                        if (selectedCourse == course.Title)
+                        if (course.Title == selectedCourse)
                         {
-                            updatedCourse.Add(course);
-                            break;
+                            courseAdded = true;
                         }
                     }
 
-                    Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, UserName = username, Password = password, Courses = updatedCourse };
-                    await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
+                    if (!courseAdded)
+                    {
+                        Student studentObs = await DataSource.GetStudentAsync(currentStudent);
+                        ObservableCollection<Course> courseObs = await DataSource.GetCoursesAsync();
+                        ObservableCollection<Course> updatedCourse = studentObs.Courses;
 
-                    ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
-                    this.DefaultViewModel["Courses"] = studentCoursesObs;
-                    //Student student1 = await DataSource.GetStudentAsync(currentStudent);
-                    //ObservableCollection<Course> studentCoursesObs1 = new ObservableCollection<Course>();
-                    //studentCoursesObs1 = student1.Courses;
-                    //this.DefaultViewModel["Courses"] = studentCoursesObs1;
+                        string firstname = studentObs.FirstName;
+                        string lastname = studentObs.LastName;
+                        string username = studentObs.UserName;
+                        string password = studentObs.Password;
+
+                        foreach (var course in courseObs)
+                        {
+                            if (selectedCourse == course.Title)
+                            {
+                                updatedCourse.Add(course);
+                                break;
+                            }
+                        }
+
+                        Student updatedStudentCourses = new Student() { StudentId = currentStudent, FirstName = firstname, LastName = lastname, UserName = username, Password = password, Courses = updatedCourse };
+                        await DataSource.UpdateStudentAync(updatedStudentCourses, currentStudent);
+
+                        ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
+                        this.DefaultViewModel["Courses"] = studentCoursesObs;
+                    }
+                    else
+                    {
+                        MessageDialog md = new MessageDialog("You have already enrolled to " + selectedCourse);
+                        await md.ShowAsync();
+                    }
                 }
                 else
                 {
-                    MessageDialog md = new MessageDialog("You have already enrolled to " + selectedCourse);
+                    MessageDialog md = new MessageDialog("Could not add course, check your internet connection and try again.");
                     await md.ShowAsync();
                 }
+                
             }
             else
             {
@@ -191,11 +185,11 @@ namespace Client
                     comboBox.SelectedIndex = 0;
                 }
             }
-            //else
-            //{
-            //    MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
-            //    await md.ShowAsync();
-            //}
+            else
+            {
+                MessageDialog md = new MessageDialog("Could not load courses, check your internet connection and try again.");
+                await md.ShowAsync();
+            }
             
         }
 
@@ -237,26 +231,32 @@ namespace Client
             {
                 Course selectedCourse = await DataSource.GetCourseAsync(courseId);
                 Student student = await DataSource.GetStudentAsync(currentStudent);
-                ObservableCollection<Course> updatedCoursesObs = student.Courses;
 
-                updatedCoursesObs.Remove(updatedCoursesObs.Where(x => x.CourseId == selectedCourse.CourseId).Single());
-                
-                Student updatedStudent = new Student()
+                if (student != null)
                 {
-                    StudentId = student.StudentId,
-                    FirstName = student.FirstName,
-                    LastName = student.LastName,
-                    Courses = updatedCoursesObs,
-                    Password = student.Password,
-                    UserName = student.UserName
-                };
-                await DataSource.UpdateStudentAync(updatedStudent, currentStudent);
-                //Student newStudent = await DataSource.GetStudentAsync(currentStudent);
-                //ObservableCollection<Course> studentCoursesObs = new ObservableCollection<Course>();
-                //studentCoursesObs = newStudent.Courses;
-                //this.DefaultViewModel["Courses"] = studentCoursesObs;
-                ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
-                this.DefaultViewModel["Courses"] = studentCoursesObs;
+                    ObservableCollection<Course> updatedCoursesObs = student.Courses;
+
+                    updatedCoursesObs.Remove(updatedCoursesObs.Where(x => x.CourseId == selectedCourse.CourseId).Single());
+
+                    Student updatedStudent = new Student()
+                    {
+                        StudentId = student.StudentId,
+                        FirstName = student.FirstName,
+                        LastName = student.LastName,
+                        Courses = updatedCoursesObs,
+                        Password = student.Password,
+                        UserName = student.UserName
+                    };
+                    await DataSource.UpdateStudentAync(updatedStudent, currentStudent);
+                    ObservableCollection<Course> studentCoursesObs = await DataSource.GetStudentCoursesAsync(currentStudent);
+                    this.DefaultViewModel["Courses"] = studentCoursesObs;
+                }
+                else
+                {
+                    MessageDialog md = new MessageDialog("Could not delete course, check your internet connection and try again.");
+                    await md.ShowAsync();
+                }
+                
             }
         }
         #region NavigationHelper registration

@@ -83,7 +83,7 @@ namespace Client
         }
 
         /// <summary>
-        /// Calculates the Overs all grade for the current student.
+        /// Calculates the Overs all grade for the current student and sets the result in Grades.xaml
         /// </summary>
         private async void OverAllGrade()
         {

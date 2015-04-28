@@ -18,12 +18,14 @@ namespace DataService.Controllers
     {
         private DataContext db = new DataContext();
 
+        //Class coupling is >10, this code is necessary for many to many relations.
         // GET api/Students
         public IQueryable<Student> GetStudents()
         {
             return db.Students.Include(b => b.Courses);
         }
 
+        //Class coupling is >10, this code is necessary for many to many relations.
         // GET api/Students/5
         [ResponseType(typeof(Student))]
         public IHttpActionResult GetStudent(int id)
@@ -37,14 +39,10 @@ namespace DataService.Controllers
             return Ok(student);
         }
 
+        //Maintainability index <60, class coupling is >10, lines of code is >10. This code is not optimal, but I found no other way to make it work.
         // PUT api/Students/5
         public IHttpActionResult PutStudent(int id, Student student)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
-
             var student2 = db.Students.Find(student.StudentId);
             db.Entry(student2).Collection(s => s.Courses).Load();
 
@@ -72,8 +70,9 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
-            catch (DbUpdateConcurrencyException)
+            catch (DataException)
             {
                 if (!StudentExists(id))
                 {
@@ -81,22 +80,16 @@ namespace DataService.Controllers
                 }
                 else
                 {
-                    throw;
+                    return BadRequest();
                 }
             }
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
+        //Maintainability Index is <60, Class coupling is >10. this code is necessary for many to many relations.
         // POST api/Students
         [ResponseType(typeof(Student))]
         public IHttpActionResult PostStudent(Student student)
         {
-            /*if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }*/
-
             var courses = student.Courses.ToList<Course>();
             student.Courses.Clear();
 
@@ -108,9 +101,15 @@ namespace DataService.Controllers
             ModelState.Clear();
 
             db.Students.Add(student);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = student.StudentId }, student);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = student.StudentId }, student);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
         }
 
         // DELETE api/Students/5
@@ -124,9 +123,16 @@ namespace DataService.Controllers
             }
 
             db.Students.Remove(student);
-            db.SaveChanges();
 
-            return Ok(student);
+            try
+            {
+                db.SaveChanges();
+                return Ok(student);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }            
         }
 
         protected override void Dispose(bool disposing)
@@ -138,6 +144,7 @@ namespace DataService.Controllers
             base.Dispose(disposing);
         }
 
+        //Class coupling is >10, this code is generated.
         private bool StudentExists(int id)
         {
             return db.Students.Count(e => e.StudentId == id) > 0;

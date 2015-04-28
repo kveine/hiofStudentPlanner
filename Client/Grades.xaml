@@ -104,11 +104,4 @@
         </GridView>
 
     </Grid>
-    <!--<Page.BottomAppBar>
-        <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
-            <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
-        </CommandBar>
-    </Page.BottomAppBar>-->
 </Page>

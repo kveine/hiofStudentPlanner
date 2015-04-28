@@ -103,20 +103,6 @@
             </ComboBox>
             <Button x:ConnectionId='3' Content="Add course"                        />
         </GridView>
-        <!--<GridView HorizontalAlignment="Left" Margin="0,10,0,0" VerticalAlignment="Top" Width="298" Height="758" Background="Gray" Grid.RowSpan="2">
-            <TextBox Text="Kristin Kveine" Width="287" Height="50" Padding="40" IsReadOnly="True"/>
-            <Button Content="Week Overview" Width="287" Height="52" Click="WeekOverview_Click"/>
-            <Button Content="Courses" Width="287" Height="52" Click="Courses_Click"/>
-            <Button Content="Submissions" Width="287" Height="52"/>
-            <Button Content="Grades" Width="287" Height="52" Click="Grades_Click"/>
-        </GridView>-->
     </Grid>
-    <!--<Page.BottomAppBar>
-        <CommandBar IsOpen="True" IsSticky="True">
-            <AppBarButton Label="Courses" Icon="Library" Click="Courses_Click"/>
-            <AppBarButton Label="Submissions" Icon="Document"/>
-            <AppBarButton Label="Grades" Icon="List" Click="Grades_Click"/>
-        </CommandBar>
-    </Page.BottomAppBar>-->
 </Page>
 

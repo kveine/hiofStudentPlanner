@@ -17,12 +17,14 @@ namespace DataService.Controllers
     {
         private DataContext db = new DataContext();
 
+        //Class coupling > 10. This code is generated
         // GET api/Courses
         public IQueryable<Course> GetCourses()
         {
             return db.Courses.Include(c => c.Students).Include(c => c.Exam).Include(c => c.Lectures);
         }
 
+        //Class coupling > 10. This code is generated.
         // GET api/Courses/5
         [ResponseType(typeof(Course))]
         public IHttpActionResult GetCourse(int id)
@@ -55,31 +57,12 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return StatusCode(HttpStatusCode.NoContent);
             }
             catch (DataException)
             {
-                if (!CourseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
-            //catch(NotSupportedException){
-            //    return BadRequest();
-            //}
-            //catch (ObjectDisposedException)
-            //{
-            //    return BadRequest();
-            //}
-            //catch (InvalidOperationException)
-            //{
-            //    return BadRequest();
-            //}
-
-            return StatusCode(HttpStatusCode.NoContent);
         }
 
         // POST api/Courses
@@ -92,9 +75,16 @@ namespace DataService.Controllers
             }
 
             db.Courses.Add(course);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = course.CourseId }, course);
+            try
+            {
+                db.SaveChanges();
+                return CreatedAtRoute("DefaultApi", new { id = course.CourseId }, course);
+            }
+            catch (DataException)
+            {
+                return BadRequest();
+            }
+            
         }
 
         // DELETE api/Courses/5
@@ -113,19 +103,12 @@ namespace DataService.Controllers
             try
             {
                 db.SaveChanges();
+                return Ok(course);
             }
             catch (DataException)
             {
-                if (!CourseExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    return BadRequest();
-                }
+                return BadRequest();
             }
-            return Ok(course);
         }
 
         protected override void Dispose(bool disposing)
@@ -137,6 +120,7 @@ namespace DataService.Controllers
             base.Dispose(disposing);
         }
 
+        //Class coupling >10. This is generated code.
         private bool CourseExists(int id)
         {
             return db.Courses.Count(e => e.CourseId == id) > 0;
